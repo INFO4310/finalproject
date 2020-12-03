@@ -1,31 +1,96 @@
 <html>
-    <head>
 
-        <style>
-            body {
-                background-color: #15202B;
-                margin: 50px 100px 100px 100px;
-            }
-            h1, h2, h3, h4, h5, h6, p {
-                color: white;
-                font-family: arial;
-            }
-            #header {
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
 
+
+    <style>
+        body {
+            background-color: #15202B;
+            margin: 50px 100px 100px 100px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            color: white;
+            font-family: arial;
+        }
+
+        #trump_talking {
+            width: 500px;
+            position: absolute;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Donald Trump's Tweets Before and During Presidency</h1>
+    <div id="header">
+        <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
+        <svg></svg>
+    </div>
+    <script>
+        //preprocessing data
+        const load_network_graph = async () => {
+
+            //some preprocessing done here to combine all tweets
+            // let tweets1 = await d3.json('condensed_2018.json')
+            // let tweets2 = await d3.json('condensed_2017.json')
+            // let tweets3 = await d3.json('condensed_2016.json')
+            // let tweets4 = await d3.json('condensed_2015.json')
+            // let tweets5 = await d3.json('condensed_2014.json')
+            // let tweets6 = await d3.json('condensed_2013.json')
+            // let tweets7 = await d3.json('condensed_2012.json')
+            // let tweets8 = await d3.json('condensed_2011.json')
+            // let tweets9 = await d3.json('condensed_2010.json')
+            // let tweets10 = await d3.json('condensed_2009.json')
+
+            // finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
+            // console.log(finalObj.length)
+            // console.log(JSON.stringify(finalObj))
+
+
+            //used this site to preprocess the data
+            //https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
+
+            let tweets = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
+            word_occurr = new Map();
+
+            tweets.forEach((d) => {
+                d.token_meaningful.forEach((word) => {
+                    if (word_occurr.has(word)) // if already exists then update count. 
+                        word_occurr.set(word, word_occurr.get(word) + 1);
+                    else
+                        word_occurr.set(word, 1)
+                })
+            })
+
+            //ordering the hashmap based on value
+            //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+            word_occurr[Symbol.iterator] = function* () {
+                yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
             }
 
-            #trump_talking {
-                width: 500px;
-                position: absolute;
-                left: 10px;
+            ordered_words = [];
+            for (let [key, value] of word_occurr) {     // get data sorted
+                ordered_words.push({"name": key, "value": value})
             }
-        </style>
-    </head>
-    <body>
-        <h1>Donald Trump's Tweets Before and During Presidency</h1>
-        <div id="header">
-            <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking"/>
-            <svg></svg>
-        </div>
-    </body>
+
+            console.log(ordered_words)
+
+        }
+
+
+
+        load_network_graph()
+    </script>
+</body>
+
 </html>
