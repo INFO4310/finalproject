@@ -1,96 +1,241 @@
 <html>
 
 <head>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
 
 
-    <style>
-        body {
-            background-color: #15202B;
-            margin: 50px 100px 100px 100px;
-        }
+  <style>
+    body {
+      background-color: #15202B;
+      margin: 50px 100px 100px 100px;
+    }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p {
-            color: white;
-            font-family: arial;
-        }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: white;
+      font-family: arial;
+    }
+    #header {
+      height: 100px;
+    }
+    #trump_talking {
+      width: 500px;
+      position: absolute;
+      left: 10px;
+    }
 
-        #trump_talking {
-            width: 500px;
-            position: absolute;
-            left: 10px;
-        }
-    </style>
+    #bubble-chart {
+      position: absolute;
+      left: 400;
+      top: 100;
+    }
+
+    #speech-bub {
+      position: absolute;
+      width: 950;
+      height: 520;
+      left: 390;
+      top: 110;
+      z-index: -1;
+      opacity: .9;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Donald Trump's Tweets Before and During Presidency</h1>
-    <div id="header">
-        <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
-        <svg></svg>
-    </div>
-    <script>
-        //preprocessing data
-        const load_network_graph = async () => {
+  <div id="header">
+  <h1>Donald Trump's Tweets Before and During Presidency</h1>
+</div>
+    <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
+    <svg id="bubble-chart"></svg>
+    <img id="speech-bub" src="SpeechBub.png" alt="Speech Bubble Drawing"/>
+  
+  <script>
+    //preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
+    //https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
 
-            //some preprocessing done here to combine all tweets
-            // let tweets1 = await d3.json('condensed_2018.json')
-            // let tweets2 = await d3.json('condensed_2017.json')
-            // let tweets3 = await d3.json('condensed_2016.json')
-            // let tweets4 = await d3.json('condensed_2015.json')
-            // let tweets5 = await d3.json('condensed_2014.json')
-            // let tweets6 = await d3.json('condensed_2013.json')
-            // let tweets7 = await d3.json('condensed_2012.json')
-            // let tweets8 = await d3.json('condensed_2011.json')
-            // let tweets9 = await d3.json('condensed_2010.json')
-            // let tweets10 = await d3.json('condensed_2009.json')
+    //using JavaScript to combine the json files
+    // let tweets1 = await d3.json('condensed_2018.json')
+    // let tweets2 = await d3.json('condensed_2017.json')
+    // let tweets3 = await d3.json('condensed_2016.json')
+    // let tweets4 = await d3.json('condensed_2015.json')
+    // let tweets5 = await d3.json('condensed_2014.json')
+    // let tweets6 = await d3.json('condensed_2013.json')
+    // let tweets7 = await d3.json('condensed_2012.json')
+    // let tweets8 = await d3.json('condensed_2011.json')
+    // let tweets9 = await d3.json('condensed_2010.json')
+    // let tweets10 = await d3.json('condensed_2009.json')
 
-            // finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
-            // console.log(finalObj.length)
-            // console.log(JSON.stringify(finalObj))
+    // finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
+    // console.log(finalObj.length)
+    // console.log(JSON.stringify(finalObj))
+
+    //drawing first graph
+    const load_network_graph = async () => {
+      //             let tweets = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
+
+      //             //create a hashmap of all word occurrances, key = word, value = occurrances
+      //             word_occurr = new Map();
+      //             tweets.forEach((d) => {
+      //                 d.token_meaningful.forEach((word) => {
+      //                     if (word_occurr.has(word)) // if already exists then update count. 
+      //                         word_occurr.set(word, word_occurr.get(word) + 1);
+      //                     else
+      //                         word_occurr.set(word, 1)
+      //                 })
+      //             })
+
+      //             //ordering the hashmap based on value
+      //             //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+      //             word_occurr[Symbol.iterator] = function* () {
+      //                 yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+      //             }
+      //             ordered_words = [];
+      //             for (let [key, value] of word_occurr) {  
+
+      //            shortening list to words occurring 500+ times
+
+      //                 if (value > 500) {   
+      //                 ordered_words.push({"name": key, "value": value})
+      //                 }
+      //             }
+
+      //             console.log(ordered_words)
+
+      //             console.log(JSON.stringify(ordered_words))
 
 
-            //used this site to preprocess the data
-            //https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
+      //             var json = ordered_words
+      // var fields = Object.keys(json[0])
+      // var replacer = function(key, value) { return value === null ? '' : value } 
+      // var csv = json.map(function(row){
+      //   return fields.map(function(fieldName){
+      //     return JSON.stringify(row[fieldName], replacer)
+      //   }).join(',')
+      // })
+      // csv.unshift(fields.join(',')) // add header column
+      //  csv = csv.join('\r\n');
+      // console.log(csv)
 
-            let tweets = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
-            word_occurr = new Map();
+      const rawData = await d3.csv('processed_tweets/Bubble_Chart_Data.csv');
+      const width = 1050;
+      const height = 550;
 
-            tweets.forEach((d) => {
-                d.token_meaningful.forEach((word) => {
-                    if (word_occurr.has(word)) // if already exists then update count. 
-                        word_occurr.set(word, word_occurr.get(word) + 1);
-                    else
-                        word_occurr.set(word, 1)
-                })
-            })
+      const center = { "x": width / 2, 'y': height / 2 };
 
-            //ordering the hashmap based on value
-            //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
-            word_occurr[Symbol.iterator] = function* () {
-                yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-            }
+      let svg = null;
+      let bubbles = null;
+      let labels = null;
+      let nodes = [];
 
-            ordered_words = [];
-            for (let [key, value] of word_occurr) {     // get data sorted
-                ordered_words.push({"name": key, "value": value})
-            }
+      function charge(d) {
+        return Math.pow(d.radius, 2.0) * 0.04
+      }
 
-            console.log(ordered_words)
+      var simulation = d3.forceSimulation(nodes)
+        .force('charge', d3.forceManyBody().strength(charge))
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .on('tick', ticked)
+        .force('collision', d3.forceCollide().radius(function (d) {
+          return d.radius
+        }))
+        .force('y', d3.forceY().strength(.03).y(function (d) {
+          return 0;
+        }))
 
-        }
+      simulation.stop();
 
+      var fillColor = d3.scaleLinear()
+        .domain([500, 1000, 2000, 5000])
+        .range(['#C8C8C8', '#808080', "#606060","#484848"])
+        .clamp(true)
+        .interpolate(d3.interpolateHcl);
 
+      function createNodes() {
+        const maxSize = d3.max(rawData, d => +d.value);
+        const radiusScale = d3.scaleSqrt()
+          .domain([0, maxSize])
+          .range([0, 80])
 
-        load_network_graph()
-    </script>
+        // use map() to convert raw data into node data
+        const myNodes = rawData.map(d => ({
+          name: d.name,
+          value: d.value,
+          radius: radiusScale(+d.value),
+          size: +d.value,
+          x: Math.random() * 900,
+          y: Math.random() * 800
+        }))
+
+        return myNodes;
+        // console.log(myNodes)
+        console.log('hi')
+      }
+      createNodes();
+
+      let chart = function chart(rawData) {
+        // convert raw data into nodes data
+        nodes = createNodes(rawData);
+
+        // create svg element inside provided selector
+        svg = d3.select('#bubble-chart')
+          .attr('width', width)
+          .attr('height', height)
+
+        // bind nodes data to circle elements
+        const elements = svg.selectAll('.bubble')
+          .data(nodes, d => d.name)
+          .enter()
+          .append('g')
+
+        bubbles = elements
+          .append('circle')
+          .classed('bubble', true)
+          .attr('r', d => d.radius)
+          .attr('fill', d => fillColor(d.value))
+
+        // labels
+        labels = elements
+          .append('text')
+          .attr('dy', '.3em')
+          .style('text-anchor', 'middle')
+          .style('font-size', 12)
+          .style('font-weight', 'bold')
+          .text(d => d.name.charAt(0).toUpperCase() + d.name.slice(1))
+
+        // set simulation's nodes to our newly created nodes array
+        // simulation starts running automatically once nodes are set
+        simulation.nodes(nodes)
+          .on('tick', ticked)
+          .restart();
+      }
+
+      // callback function called after every tick of the force simulation
+      // here we do the actual repositioning of the circles based on current x and y value of their bound node data
+      // x and y values are modified by the force simulation
+      function ticked() {
+        bubbles
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y)
+
+        labels
+          .attr('x', d => d.x)
+          .attr('y', d => d.y)
+      }
+
+      // return chart function from closure
+      //   return chart;
+      chart();
+    }
+    load_network_graph()
+
+  </script>
 </body>
 
 </html>
