@@ -1,0 +1,376 @@
+{
+    "nodes": [
+        {
+            "node": 0,
+            "name": "Female-Gender"
+        },
+        {
+            "node": 1,
+            "name": "Nonbinary-Gender"
+        },
+        {
+            "node": 2,
+            "name": "Male-Gender"
+        },
+        {
+            "node": 3,
+            "name": "Yes-treatment"
+        },
+        {
+            "node": 4,
+            "name": "No-treatment"
+        },
+        {
+            "node": 5,
+            "name": "Often-work_interfere"
+        },
+        {
+            "node": 6,
+            "name": "Rarely-work_interfere"
+        },
+        {
+            "node": 7,
+            "name": "Never-work_interfere"
+        },
+        {
+            "node": 8,
+            "name": "Sometimes-work_interfere"
+        },
+        {
+            "node": 9,
+            "name": "NA-work_interfere"
+        },
+        {
+            "node": 10,
+            "name": "No-mental_health_consequence"
+        },
+        {
+            "node": 11,
+            "name": "Maybe-mental_health_consequence"
+        },
+        {
+            "node": 12,
+            "name": "Yes-mental_health_consequence"
+        },
+        {
+            "node": 13,
+            "name": "North America-Continent"
+        },
+        {
+            "node": 14,
+            "name": "Europe-Continent"
+        },
+        {
+            "node": 15,
+            "name": "Oceania-Continent"
+        },
+        {
+            "node": 16,
+            "name": "Asia-Continent"
+        },
+        {
+            "node": 17,
+            "name": "South America-Continent"
+        },
+        {
+            "node": 18,
+            "name": "Africa-Continent"
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 3,
+            "name": "Female-Yes",
+            "value": 23
+        },
+        {
+            "source": 0,
+            "target": 4,
+            "name": "Female-No",
+            "value": 54
+        },
+        {
+            "source": 1,
+            "target": 3,
+            "name": "Nonbinary-Yes",
+            "value": 122
+        },
+        {
+            "source": 1,
+            "target": 4,
+            "name": "Nonbinary-No",
+            "value": 125
+        },
+        {
+            "source": 2,
+            "target": 3,
+            "name": "Male-Yes",
+            "value": 379
+        },
+        {
+            "source": 2,
+            "target": 4,
+            "name": "Male-No",
+            "value": 440
+        },
+        {
+            "source": 3,
+            "target": 5,
+            "name": "Yes-Often",
+            "value": 119
+        },
+        {
+            "source": 3,
+            "target": 6,
+            "name": "Yes-Rarely",
+            "value": 122
+        },
+        {
+            "source": 3,
+            "target": 7,
+            "name": "Yes-Never",
+            "value": 30
+        },
+        {
+            "source": 3,
+            "target": 8,
+            "name": "Yes-Sometimes",
+            "value": 357
+        },
+        {
+            "source": 3,
+            "target": 9,
+            "name": "Yes-NA",
+            "value": 4
+        },
+        {
+            "source": 4,
+            "target": 5,
+            "name": "No-Often",
+            "value": 21
+        },
+        {
+            "source": 4,
+            "target": 6,
+            "name": "No-Rarely",
+            "value": 51
+        },
+        {
+            "source": 4,
+            "target": 7,
+            "name": "No-Never",
+            "value": 182
+        },
+        {
+            "source": 4,
+            "target": 8,
+            "name": "No-Sometimes",
+            "value": 107
+        },
+        {
+            "source": 4,
+            "target": 9,
+            "name": "No-NA",
+            "value": 258
+        },
+        {
+            "source": 5,
+            "target": 10,
+            "name": "Often-No",
+            "value": 41
+        },
+        {
+            "source": 5,
+            "target": 11,
+            "name": "Often-Maybe",
+            "value": 52
+        },
+        {
+            "source": 5,
+            "target": 12,
+            "name": "Often-Yes",
+            "value": 47
+        },
+        {
+            "source": 6,
+            "target": 10,
+            "name": "Rarely-No",
+            "value": 71
+        },
+        {
+            "source": 6,
+            "target": 11,
+            "name": "Rarely-Maybe",
+            "value": 65
+        },
+        {
+            "source": 6,
+            "target": 12,
+            "name": "Rarely-Yes",
+            "value": 37
+        },
+        {
+            "source": 7,
+            "target": 10,
+            "name": "Never-No",
+            "value": 96
+        },
+        {
+            "source": 7,
+            "target": 11,
+            "name": "Never-Maybe",
+            "value": 78
+        },
+        {
+            "source": 7,
+            "target": 12,
+            "name": "Never-Yes",
+            "value": 38
+        },
+        {
+            "source": 8,
+            "target": 10,
+            "name": "Sometimes-No",
+            "value": 145
+        },
+        {
+            "source": 8,
+            "target": 11,
+            "name": "Sometimes-Maybe",
+            "value": 185
+        },
+        {
+            "source": 8,
+            "target": 12,
+            "name": "Sometimes-Yes",
+            "value": 134
+        },
+        {
+            "source": 9,
+            "target": 10,
+            "name": "NA-No",
+            "value": 134
+        },
+        {
+            "source": 9,
+            "target": 11,
+            "name": "NA-Maybe",
+            "value": 96
+        },
+        {
+            "source": 9,
+            "target": 12,
+            "name": "NA-Yes",
+            "value": 32
+        },
+        {
+            "source": 10,
+            "target": 13,
+            "name": "No-North America",
+            "value": 311
+        },
+        {
+            "source": 10,
+            "target": 14,
+            "name": "No-Europe",
+            "value": 149
+        },
+        {
+            "source": 10,
+            "target": 15,
+            "name": "No-Oceania",
+            "value": 13
+        },
+        {
+            "source": 10,
+            "target": 16,
+            "name": "No-Asia",
+            "value": 7
+        },
+        {
+            "source": 10,
+            "target": 17,
+            "name": "No-South America",
+            "value": 4
+        },
+        {
+            "source": 10,
+            "target": 18,
+            "name": "No-Africa",
+            "value": 3
+        },
+        {
+            "source": 11,
+            "target": 13,
+            "name": "Maybe-North America",
+            "value": 325
+        },
+        {
+            "source": 11,
+            "target": 14,
+            "name": "Maybe-Europe",
+            "value": 131
+        },
+        {
+            "source": 11,
+            "target": 15,
+            "name": "Maybe-Oceania",
+            "value": 4
+        },
+        {
+            "source": 11,
+            "target": 16,
+            "name": "Maybe-Asia",
+            "value": 9
+        },
+        {
+            "source": 11,
+            "target": 17,
+            "name": "Maybe-South America",
+            "value": 4
+        },
+        {
+            "source": 11,
+            "target": 18,
+            "name": "Maybe-Africa",
+            "value": 3
+        },
+        {
+            "source": 12,
+            "target": 13,
+            "name": "Yes-North America",
+            "value": 186
+        },
+        {
+            "source": 12,
+            "target": 14,
+            "name": "Yes-Europe",
+            "value": 77
+        },
+        {
+            "source": 12,
+            "target": 15,
+            "name": "Yes-Oceania",
+            "value": 12
+        },
+        {
+            "source": 12,
+            "target": 16,
+            "name": "Yes-Asia",
+            "value": 11
+        },
+        {
+            "source": 12,
+            "target": 17,
+            "name": "Yes-South America",
+            "value": 1
+        },
+        {
+            "source": 12,
+            "target": 18,
+            "name": "Yes-Africa",
+            "value": 1
+        }
+    ]
+}

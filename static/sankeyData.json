@@ -1,0 +1,12 @@
+{
+    "nodes": [{
+        "node": 0,
+        "name": "NA-work_interfere"
+    }],
+    "links": [{
+        "source": 12,
+        "target": 18,
+        "name": "Yes-Africa",
+        "value": 1
+    }]
+}
