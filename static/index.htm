@@ -8,7 +8,7 @@
   <style>
     body {
       background-color: #15202B;
-      margin: 50px 100px 100px 100px;
+      margin: 50px 0px 100px 0px;
     }
 
     h1,
@@ -21,13 +21,17 @@
       color: white;
       font-family: arial;
     }
+
     #header {
-      height: 100px;
+      height: 670px;
+      margin: 0px 100px 0px 100px;
     }
+
     #trump_talking {
       width: 500px;
       position: absolute;
       left: 10px;
+      top: 150px;
     }
 
     #bubble-chart {
@@ -45,36 +49,80 @@
       z-index: -1;
       opacity: .9;
     }
+
+    #title2 {
+      text-align: center;
+    }
+
+    #section2 {
+      background-color: #212E39;
+      padding: 20px 200px 20px 200px;
+      border: 1px #37444C;
+      border-style: solid none;
+    }
+
+    #analysis2 {
+      margin: 60px 0px 20px 200px;
+      width: 400px;
+    }
   </style>
 </head>
 
 <body>
   <div id="header">
-  <h1>Donald Trump's Tweets Before and During Presidency</h1>
-</div>
+    <h1>Donald Trump's Tweets Before and During Presidency</h1>
+  </div>
+  <div>
     <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
     <svg id="bubble-chart"></svg>
-    <img id="speech-bub" src="SpeechBub.png" alt="Speech Bubble Drawing"/>
-  
+    <img id="speech-bub" src="SpeechBub.png" alt="Speech Bubble Drawing" />
+  </div>
+  <div id="section2">
+    <h2 id="title2">What was on Donald Trump's Mind?</h2>
+    <p>Enter analysis here on the above and below graphs. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+      officia deserunt mollit anim id est laborum."</p>
+  </div>
+  <div>
+    <p id="analysis2">
+      Here is an analysis on the graph to the left. Bind a behavior to nodes to allow interactive dragging, either using
+      the mouse or touch. Use this in conjunction with the call operator on the nodes; for example, say
+      node.call(force.drag) on initialization. The drag event sets the fixed attribute of nodes on mouseover, such that
+      as soon as the mouse is over a node, it stops moving. Fixing on mouseover, rather than on mousedown, makes it
+      easier to catch moving nodes. When a mousedown event is received, and on each subsequent mousemove until mouseup,
+      the node center is set to the current mouse position. In addition, each mousemove triggers a resume of the force
+      layout, reheating the simulation. If you want dragged nodes to remain fixed after dragging, set the fixed
+      attribute to true on dragstart, as in the sticky force layout example.
+    </p>
+  </div>
+  <!-- <h3>The most popular topics from his 39,306 tweets.</h3> -->
   <script>
-    //preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
-    //https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
+    // preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
+    // https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
+    //   const get_data = async () => {
+    // //  using JavaScript to combine the json files
+    //   let tweets1 = await d3.json('raw_tweets_data/condensed_2018.json')
+    //   let tweets2 = await d3.json('raw_tweets_data/condensed_2017.json')
+    //   let tweets3 = await d3.json('raw_tweets_data/condensed_2016.json')
+    //   let tweets4 = await d3.json('raw_tweets_data/condensed_2015.json')
+    //   let tweets5 = await d3.json('raw_tweets_data/condensed_2014.json')
+    //   let tweets6 = await d3.json('raw_tweets_data/condensed_2013.json')
+    //   let tweets7 = await d3.json('raw_tweets_data/condensed_2012.json')
+    //   let tweets8 = await d3.json('raw_tweets_data/condensed_2011.json')
+    //   let tweets9 = await d3.json('raw_tweets_data/condensed_2010.json')
+    //   let tweets10 = await d3.json('raw_tweets_data/condensed_2009.json')
 
-    //using JavaScript to combine the json files
-    // let tweets1 = await d3.json('condensed_2018.json')
-    // let tweets2 = await d3.json('condensed_2017.json')
-    // let tweets3 = await d3.json('condensed_2016.json')
-    // let tweets4 = await d3.json('condensed_2015.json')
-    // let tweets5 = await d3.json('condensed_2014.json')
-    // let tweets6 = await d3.json('condensed_2013.json')
-    // let tweets7 = await d3.json('condensed_2012.json')
-    // let tweets8 = await d3.json('condensed_2011.json')
-    // let tweets9 = await d3.json('condensed_2010.json')
-    // let tweets10 = await d3.json('condensed_2009.json')
-
-    // finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
-    // console.log(finalObj.length)
-    // console.log(JSON.stringify(finalObj))
+    //   finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
+    //   beforePrez = tweets3.concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
+    //   duringPrez = tweets1.concat(tweets2)
+    //   // console.log(finalObj.length)
+    //   // console.log(JSON.stringify(finalObj))
+    //   console.log(JSON.stringify(beforePrez))
+    //   console.log(JSON.stringify(duringPrez))
+    //   }
+    //   get_data();
 
     //drawing first graph
     const load_network_graph = async () => {
@@ -127,6 +175,10 @@
       const width = 1050;
       const height = 550;
 
+      //creating the bubble chart
+      //https://bl.ocks.org/officeofjane/a70f4b44013d06b9c0a973f163d8ab7a
+
+
       const center = { "x": width / 2, 'y': height / 2 };
 
       let svg = null;
@@ -153,7 +205,7 @@
 
       var fillColor = d3.scaleLinear()
         .domain([500, 1000, 2000, 5000])
-        .range(['#C8C8C8', '#808080', "#606060","#484848"])
+        .range(['#C8C8C8', '#808080', "#606060", "#484848"])
         .clamp(true)
         .interpolate(d3.interpolateHcl);
 
@@ -163,7 +215,6 @@
           .domain([0, maxSize])
           .range([0, 80])
 
-        // use map() to convert raw data into node data
         const myNodes = rawData.map(d => ({
           name: d.name,
           value: d.value,
@@ -174,21 +225,16 @@
         }))
 
         return myNodes;
-        // console.log(myNodes)
-        console.log('hi')
       }
       createNodes();
 
       let chart = function chart(rawData) {
-        // convert raw data into nodes data
         nodes = createNodes(rawData);
 
-        // create svg element inside provided selector
         svg = d3.select('#bubble-chart')
           .attr('width', width)
           .attr('height', height)
 
-        // bind nodes data to circle elements
         const elements = svg.selectAll('.bubble')
           .data(nodes, d => d.name)
           .enter()
@@ -200,7 +246,6 @@
           .attr('r', d => d.radius)
           .attr('fill', d => fillColor(d.value))
 
-        // labels
         labels = elements
           .append('text')
           .attr('dy', '.3em')
@@ -209,16 +254,12 @@
           .style('font-weight', 'bold')
           .text(d => d.name.charAt(0).toUpperCase() + d.name.slice(1))
 
-        // set simulation's nodes to our newly created nodes array
-        // simulation starts running automatically once nodes are set
+
         simulation.nodes(nodes)
           .on('tick', ticked)
           .restart();
       }
 
-      // callback function called after every tick of the force simulation
-      // here we do the actual repositioning of the circles based on current x and y value of their bound node data
-      // x and y values are modified by the force simulation
       function ticked() {
         bubbles
           .attr('cx', d => d.x)
@@ -229,12 +270,80 @@
           .attr('y', d => d.y)
       }
 
-      // return chart function from closure
-      //   return chart;
       chart();
     }
-    load_network_graph()
+    load_network_graph();
 
+
+    const load_compare_cols = async () => {
+      let tweets = await d3.json('processed_tweets/Before_Prez_Not_Stemmed.json');
+      //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+
+
+      //create a hashmap of all word occurrances, key = word, value = occurrances
+      word_occurr = new Map();
+      tweets.forEach((d) => {
+        d.token_meaningful.forEach((word) => {
+          if (word_occurr.has(word)) // if already exists then update count. 
+            word_occurr.set(word, word_occurr.get(word) + 1);
+          else
+            word_occurr.set(word, 1)
+        })
+      })
+
+      //ordering the hashmap based on value
+      //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+      word_occurr[Symbol.iterator] = function* () {
+        yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+      }
+      ordered_words = [];
+      for (let [key, value] of word_occurr) {
+
+        //shortening list to words occurring 500 + times
+
+        if (value > 500) {
+          ordered_words.push({ "name": key, "value": value })
+        }
+      }
+
+      console.log(ordered_words)
+    }
+    load_compare_cols();
+
+    const load_compare_cols2 = async () => {
+      let tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+      //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+
+
+      //create a hashmap of all word occurrances, key = word, value = occurrances
+      word_occurr = new Map();
+      tweets.forEach((d) => {
+        d.token_meaningful.forEach((word) => {
+          if (word_occurr.has(word)) // if already exists then update count. 
+            word_occurr.set(word, word_occurr.get(word) + 1);
+          else
+            word_occurr.set(word, 1)
+        })
+      })
+
+      //ordering the hashmap based on value
+      //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+      word_occurr[Symbol.iterator] = function* () {
+        yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+      }
+      ordered_words = [];
+      for (let [key, value] of word_occurr) {
+
+        //shortening list to words occurring 500 + times
+
+        if (value > 200) {
+          ordered_words.push({ "name": key, "value": value })
+        }
+      }
+
+      console.log(ordered_words)
+    }
+    load_compare_cols2();
   </script>
 </body>
 
