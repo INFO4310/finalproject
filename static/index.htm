@@ -106,19 +106,20 @@
   </div>
   <div id="tweet-contain">
     <div class="tweet-examples">
-    <div id="tweet-example-before" class="tweet-example">
-      <h3 id="tweet-text-before"></h3>
-      <div class="likes-comments">
-        <p>&#9829;</p><p id="likes-before"></p>
+      <div id="tweet-example-before" class="tweet-example">
+        <h3 id="tweet-text-before"></h3>
+        <div class="likes-comments">
+          <p>&#9829;</p>
+          <p id="likes-before"></p>
+        </div>
+      </div>
+      <div id="tweet-example-after" class="tweet-example">
+        <h3 id="tweet-text-after"></h3>
+        <div class="likes-comments">
+          <p id="likes-after"></p>
+        </div>
       </div>
     </div>
-    <div id="tweet-example-after" class="tweet-example">
-      <h3 id="tweet-text-after"></h3>
-      <div class="likes-comments">
-        <p id="likes-after"></p>
-      </div>
-    </div>
-  </div>
   </div>
   <div id="section2">
     <h2 id="title2">What was on Donald Trump's Mind?</h2>
@@ -363,7 +364,6 @@
         let hoverData = d3.json('processed_tweets/Bubble_Chart_Hover_Data.json').then((hoverData) => {
           bubble = d3.select(this)
           bubble.attr("stroke-width", 5).attr("stroke", "black")
-          previewSVG = d3.select("#tweet-examples")
 
           let data = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
@@ -392,81 +392,89 @@
         bubble = d3.select(this)
         bubble.attr("stroke", "none")
 
-        previewSVG = d3.select("#tweet-examples")
+        d3.select("#tweet-text-before")
+          .text("")
+        d3.select("#likes-before")
+          .text("")
+        d3.select("#tweet-text-after")
+          .text("")
+        d3.select("#likes-after")
+          .text("")
       }
     }
     load_network_graph();
 
-    const load_compare_cols = async () => {
-      let tweets = await d3.json('processed_tweets/Before_Prez_Not_Stemmed.json');
-      //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+    // const load_compare_cols = async () => {
+    //   let tweets = await d3.json('processed_tweets/Before_Prez_Not_Stemmed.json');
+    //   //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
 
 
-      //create a hashmap of all word occurrances, key = word, value = occurrances
-      word_occurr = new Map();
-      tweets.forEach((d) => {
-        d.token_meaningful.forEach((word) => {
-          if (word_occurr.has(word)) // if already exists then update count. 
-            word_occurr.set(word, word_occurr.get(word) + 1);
-          else
-            word_occurr.set(word, 1)
-        })
-      })
+    //   //create a hashmap of all word occurrances, key = word, value = occurrances
+    //   word_occurr = new Map();
+    //   tweets.forEach((d) => {
+    //     d.token_meaningful.forEach((word) => {
+    //       if (word_occurr.has(word)) // if already exists then update count. 
+    //         word_occurr.set(word, word_occurr.get(word) + 1);
+    //       else
+    //         word_occurr.set(word, 1)
+    //     })
+    //   })
 
-      //ordering the hashmap based on value
-      //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
-      word_occurr[Symbol.iterator] = function* () {
-        yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-      }
-      ordered_words = [];
-      for (let [key, value] of word_occurr) {
+    //   //ordering the hashmap based on value
+    //   //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+    //   word_occurr[Symbol.iterator] = function* () {
+    //     yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+    //   }
+    //   ordered_words = [];
+    //   for (let [key, value] of word_occurr) {
 
-        //shortening list to words occurring 500 + times
+    //     //shortening list to words occurring 500 + times
 
-        if (value > 500) {
-          ordered_words.push({ "name": key, "value": value })
-        }
-      }
-      console.log("Before Prez")
-      console.log(ordered_words)
-    }
-    load_compare_cols();
+    //     if (value > 500) {
+    //       ordered_words.push({ "name": key, "value": value })
+    //     }
+    //   }
+    //   console.log("Before Prez")
+    //   console.log(ordered_words)
+    // }
+    // load_compare_cols();
 
-    const load_compare_cols2 = async () => {
-      let tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
-      //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+    // const load_compare_cols2 = async () => {
+    //   let tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
+    //   //let During_Tweets = await d3.json('processed_tweets/During_Prez_Not_Stemmed.json');
 
 
-      //create a hashmap of all word occurrances, key = word, value = occurrances
-      word_occurr = new Map();
-      tweets.forEach((d) => {
-        d.token_meaningful.forEach((word) => {
-          if (word_occurr.has(word)) // if already exists then update count. 
-            word_occurr.set(word, word_occurr.get(word) + 1);
-          else
-            word_occurr.set(word, 1)
-        })
-      })
+    //   //create a hashmap of all word occurrances, key = word, value = occurrances
+    //   word_occurr = new Map();
+    //   tweets.forEach((d) => {
+    //     d.token_meaningful.forEach((word) => {
+    //       if (word_occurr.has(word)) // if already exists then update count. 
+    //         word_occurr.set(word, word_occurr.get(word) + 1);
+    //       else
+    //         word_occurr.set(word, 1)
+    //     })
+    //   })
 
-      //ordering the hashmap based on value
-      //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
-      word_occurr[Symbol.iterator] = function* () {
-        yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-      }
-      ordered_words = [];
-      for (let [key, value] of word_occurr) {
+    //   //ordering the hashmap based on value
+    //   //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
+    //   word_occurr[Symbol.iterator] = function* () {
+    //     yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+    //   }
+    //   ordered_words = [];
+    //   for (let [key, value] of word_occurr) {
 
-        //shortening list to words occurring 500 + times
+    //     //shortening list to words occurring 500 + times
 
-        if (value > 200) {
-          ordered_words.push({ "name": key, "value": value })
-        }
-      }
-      console.log("After Prez")
-      console.log(ordered_words)
-    }
-    load_compare_cols2();
+    //     if (value > 200) {
+    //       ordered_words.push({ "name": key, "value": value })
+    //     }
+    //   }
+    //   console.log("After Prez")
+    //   console.log(ordered_words)
+    // }
+    // load_compare_cols2();
 
+      
 
   </script>
 </body>
