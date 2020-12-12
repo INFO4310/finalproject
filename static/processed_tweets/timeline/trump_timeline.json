@@ -1,0 +1,582 @@
+[
+    {
+        "date": "2009-05-04T18:54:25.000Z",
+        "occurrences": 15,
+        "likes": 2366
+    },
+    {
+        "date": "2009-06-04T18:54:25.000Z",
+        "occurrences": 8,
+        "likes": 75
+    },
+    {
+        "date": "2009-07-04T18:54:25.000Z",
+        "occurrences": 4,
+        "likes": 38
+    },
+    {
+        "date": "2009-08-04T18:54:25.000Z",
+        "occurrences": 4,
+        "likes": 36
+    },
+    {
+        "date": "2009-09-04T18:54:25.000Z",
+        "occurrences": 3,
+        "likes": 66
+    },
+    {
+        "date": "2009-10-04T18:54:25.000Z",
+        "occurrences": 4,
+        "likes": 21
+    },
+    {
+        "date": "2009-11-04T19:54:25.000Z",
+        "occurrences": 2,
+        "likes": 9
+    },
+    {
+        "date": "2009-12-04T19:54:25.000Z",
+        "occurrences": 2,
+        "likes": 18
+    },
+    {
+        "date": "2010-01-04T19:54:25.000Z",
+        "occurrences": 3,
+        "likes": 3244
+    },
+    {
+        "date": "2010-02-04T19:54:25.000Z",
+        "occurrences": 3,
+        "likes": 25
+    },
+    {
+        "date": "2010-03-04T19:54:25.000Z",
+        "occurrences": 4,
+        "likes": 22
+    },
+    {
+        "date": "2010-04-04T18:54:25.000Z",
+        "occurrences": 4,
+        "likes": 12
+    },
+    {
+        "date": "2010-05-04T18:54:25.000Z",
+        "occurrences": 0,
+        "likes": 0
+    },
+    {
+        "date": "2010-06-04T18:54:25.000Z",
+        "occurrences": 5,
+        "likes": 20
+    },
+    {
+        "date": "2010-07-04T18:54:25.000Z",
+        "occurrences": 1,
+        "likes": 2
+    },
+    {
+        "date": "2010-08-04T18:54:25.000Z",
+        "occurrences": 3,
+        "likes": 10
+    },
+    {
+        "date": "2010-09-04T18:54:25.000Z",
+        "occurrences": 3,
+        "likes": 19
+    },
+    {
+        "date": "2010-10-04T18:54:25.000Z",
+        "occurrences": 1,
+        "likes": 5
+    },
+    {
+        "date": "2010-11-04T18:54:25.000Z",
+        "occurrences": 1,
+        "likes": 6
+    },
+    {
+        "date": "2010-12-04T19:54:25.000Z",
+        "occurrences": 3,
+        "likes": 20
+    },
+    {
+        "date": "2011-01-04T19:54:25.000Z",
+        "occurrences": 0,
+        "likes": 0
+    },
+    {
+        "date": "2011-02-04T19:54:25.000Z",
+        "occurrences": 3,
+        "likes": 72
+    },
+    {
+        "date": "2011-03-04T19:54:25.000Z",
+        "occurrences": 5,
+        "likes": 66
+    },
+    {
+        "date": "2011-04-04T18:54:25.000Z",
+        "occurrences": 0,
+        "likes": 0
+    },
+    {
+        "date": "2011-05-04T18:54:25.000Z",
+        "occurrences": 2,
+        "likes": 9
+    },
+    {
+        "date": "2011-06-04T18:54:25.000Z",
+        "occurrences": 2,
+        "likes": 23
+    },
+    {
+        "date": "2011-07-04T18:54:25.000Z",
+        "occurrences": 5,
+        "likes": 659
+    },
+    {
+        "date": "2011-08-04T18:54:25.000Z",
+        "occurrences": 2,
+        "likes": 21
+    },
+    {
+        "date": "2011-09-04T18:54:25.000Z",
+        "occurrences": 3,
+        "likes": 15
+    },
+    {
+        "date": "2011-10-04T18:54:25.000Z",
+        "occurrences": 2,
+        "likes": 19
+    },
+    {
+        "date": "2011-11-04T18:54:25.000Z",
+        "occurrences": 1,
+        "likes": 12
+    },
+    {
+        "date": "2011-12-04T19:54:25.000Z",
+        "occurrences": 16,
+        "likes": 103
+    },
+    {
+        "date": "2012-01-04T19:54:25.000Z",
+        "occurrences": 3,
+        "likes": 41
+    },
+    {
+        "date": "2012-02-04T19:54:25.000Z",
+        "occurrences": 15,
+        "likes": 199
+    },
+    {
+        "date": "2012-03-04T19:54:25.000Z",
+        "occurrences": 6,
+        "likes": 1520
+    },
+    {
+        "date": "2012-04-04T18:54:25.000Z",
+        "occurrences": 7,
+        "likes": 126
+    },
+    {
+        "date": "2012-05-04T18:54:25.000Z",
+        "occurrences": 5,
+        "likes": 382
+    },
+    {
+        "date": "2012-06-04T18:54:25.000Z",
+        "occurrences": 10,
+        "likes": 586
+    },
+    {
+        "date": "2012-07-04T18:54:25.000Z",
+        "occurrences": 10,
+        "likes": 312
+    },
+    {
+        "date": "2012-08-04T18:54:25.000Z",
+        "occurrences": 16,
+        "likes": 601
+    },
+    {
+        "date": "2012-09-04T18:54:25.000Z",
+        "occurrences": 16,
+        "likes": 887
+    },
+    {
+        "date": "2012-10-04T18:54:25.000Z",
+        "occurrences": 34,
+        "likes": 2873
+    },
+    {
+        "date": "2012-11-04T19:54:25.000Z",
+        "occurrences": 28,
+        "likes": 3960
+    },
+    {
+        "date": "2012-12-04T19:54:25.000Z",
+        "occurrences": 30,
+        "likes": 4245
+    },
+    {
+        "date": "2013-01-04T19:54:25.000Z",
+        "occurrences": 29,
+        "likes": 21197
+    },
+    {
+        "date": "2013-02-04T19:54:25.000Z",
+        "occurrences": 59,
+        "likes": 5548
+    },
+    {
+        "date": "2013-03-04T19:54:25.000Z",
+        "occurrences": 102,
+        "likes": 3177
+    },
+    {
+        "date": "2013-04-04T18:54:25.000Z",
+        "occurrences": 67,
+        "likes": 2809
+    },
+    {
+        "date": "2013-05-04T18:54:25.000Z",
+        "occurrences": 57,
+        "likes": 1793
+    },
+    {
+        "date": "2013-06-04T18:54:25.000Z",
+        "occurrences": 41,
+        "likes": 1680
+    },
+    {
+        "date": "2013-07-04T18:54:25.000Z",
+        "occurrences": 85,
+        "likes": 2646
+    },
+    {
+        "date": "2013-08-04T18:54:25.000Z",
+        "occurrences": 85,
+        "likes": 2433
+    },
+    {
+        "date": "2013-09-04T18:54:25.000Z",
+        "occurrences": 55,
+        "likes": 2496
+    },
+    {
+        "date": "2013-10-04T18:54:25.000Z",
+        "occurrences": 53,
+        "likes": 2303
+    },
+    {
+        "date": "2013-11-04T19:54:25.000Z",
+        "occurrences": 24,
+        "likes": 1185
+    },
+    {
+        "date": "2013-12-04T19:54:25.000Z",
+        "occurrences": 31,
+        "likes": 2062
+    },
+    {
+        "date": "2014-01-04T19:54:25.000Z",
+        "occurrences": 41,
+        "likes": 3093
+    },
+    {
+        "date": "2014-02-04T19:54:25.000Z",
+        "occurrences": 43,
+        "likes": 2396
+    },
+    {
+        "date": "2014-03-04T19:54:25.000Z",
+        "occurrences": 35,
+        "likes": 2725
+    },
+    {
+        "date": "2014-04-04T18:54:25.000Z",
+        "occurrences": 73,
+        "likes": 4407
+    },
+    {
+        "date": "2014-05-04T18:54:25.000Z",
+        "occurrences": 61,
+        "likes": 3780
+    },
+    {
+        "date": "2014-06-04T18:54:25.000Z",
+        "occurrences": 121,
+        "likes": 6478
+    },
+    {
+        "date": "2014-07-04T18:54:25.000Z",
+        "occurrences": 93,
+        "likes": 6277
+    },
+    {
+        "date": "2014-08-04T18:54:25.000Z",
+        "occurrences": 46,
+        "likes": 4089
+    },
+    {
+        "date": "2014-09-04T18:54:25.000Z",
+        "occurrences": 66,
+        "likes": 4857
+    },
+    {
+        "date": "2014-10-04T18:54:25.000Z",
+        "occurrences": 116,
+        "likes": 6602
+    },
+    {
+        "date": "2014-11-04T19:54:25.000Z",
+        "occurrences": 121,
+        "likes": 9210
+    },
+    {
+        "date": "2014-12-04T19:54:25.000Z",
+        "occurrences": 120,
+        "likes": 6253
+    },
+    {
+        "date": "2015-01-04T19:54:25.000Z",
+        "occurrences": 162,
+        "likes": 9019
+    },
+    {
+        "date": "2015-02-04T19:54:25.000Z",
+        "occurrences": 90,
+        "likes": 6776
+    },
+    {
+        "date": "2015-03-04T19:54:25.000Z",
+        "occurrences": 94,
+        "likes": 5795
+    },
+    {
+        "date": "2015-04-04T18:54:25.000Z",
+        "occurrences": 138,
+        "likes": 7310
+    },
+    {
+        "date": "2015-05-04T18:54:25.000Z",
+        "occurrences": 159,
+        "likes": 9797
+    },
+    {
+        "date": "2015-06-04T18:54:25.000Z",
+        "occurrences": 117,
+        "likes": 28979
+    },
+    {
+        "date": "2015-07-04T18:54:25.000Z",
+        "occurrences": 200,
+        "likes": 170377
+    },
+    {
+        "date": "2015-08-04T18:54:25.000Z",
+        "occurrences": 74,
+        "likes": 158538
+    },
+    {
+        "date": "2015-09-04T18:54:25.000Z",
+        "occurrences": 74,
+        "likes": 189043
+    },
+    {
+        "date": "2015-10-04T18:54:25.000Z",
+        "occurrences": 183,
+        "likes": 356241
+    },
+    {
+        "date": "2015-11-04T19:54:25.000Z",
+        "occurrences": 91,
+        "likes": 223142
+    },
+    {
+        "date": "2015-12-04T19:54:25.000Z",
+        "occurrences": 98,
+        "likes": 347011
+    },
+    {
+        "date": "2016-01-04T19:54:25.000Z",
+        "occurrences": 72,
+        "likes": 307325
+    },
+    {
+        "date": "2016-02-04T19:54:25.000Z",
+        "occurrences": 62,
+        "likes": 376650
+    },
+    {
+        "date": "2016-03-04T19:54:25.000Z",
+        "occurrences": 51,
+        "likes": 609920
+    },
+    {
+        "date": "2016-04-04T18:54:25.000Z",
+        "occurrences": 23,
+        "likes": 231046
+    },
+    {
+        "date": "2016-05-04T18:54:25.000Z",
+        "occurrences": 35,
+        "likes": 464681
+    },
+    {
+        "date": "2016-06-04T18:54:25.000Z",
+        "occurrences": 26,
+        "likes": 350586
+    },
+    {
+        "date": "2016-07-04T18:54:25.000Z",
+        "occurrences": 15,
+        "likes": 282730
+    },
+    {
+        "date": "2016-08-04T18:54:25.000Z",
+        "occurrences": 25,
+        "likes": 318760
+    },
+    {
+        "date": "2016-09-04T18:54:25.000Z",
+        "occurrences": 22,
+        "likes": 438264
+    },
+    {
+        "date": "2016-10-04T18:54:25.000Z",
+        "occurrences": 29,
+        "likes": 683759
+    },
+    {
+        "date": "2016-11-04T18:54:25.000Z",
+        "occurrences": 15,
+        "likes": 736134
+    },
+    {
+        "date": "2016-12-04T19:54:25.000Z",
+        "occurrences": 4,
+        "likes": 100343
+    },
+    {
+        "date": "2017-01-04T19:54:25.000Z",
+        "occurrences": 13,
+        "likes": 775435
+    },
+    {
+        "date": "2017-02-04T19:54:25.000Z",
+        "occurrences": 8,
+        "likes": 558051
+    },
+    {
+        "date": "2017-03-04T19:54:25.000Z",
+        "occurrences": 7,
+        "likes": 283550
+    },
+    {
+        "date": "2017-04-04T18:54:25.000Z",
+        "occurrences": 8,
+        "likes": 349606
+    },
+    {
+        "date": "2017-05-04T18:54:25.000Z",
+        "occurrences": 7,
+        "likes": 244106
+    },
+    {
+        "date": "2017-06-04T18:54:25.000Z",
+        "occurrences": 14,
+        "likes": 446900
+    },
+    {
+        "date": "2017-07-04T18:54:25.000Z",
+        "occurrences": 8,
+        "likes": 485277
+    },
+    {
+        "date": "2017-08-04T18:54:25.000Z",
+        "occurrences": 22,
+        "likes": 728341
+    },
+    {
+        "date": "2017-09-04T18:54:25.000Z",
+        "occurrences": 8,
+        "likes": 311062
+    },
+    {
+        "date": "2017-10-04T18:54:25.000Z",
+        "occurrences": 14,
+        "likes": 702105
+    },
+    {
+        "date": "2017-11-04T18:54:25.000Z",
+        "occurrences": 6,
+        "likes": 506231
+    },
+    {
+        "date": "2017-12-04T19:54:25.000Z",
+        "occurrences": 17,
+        "likes": 702363
+    },
+    {
+        "date": "2018-01-04T19:54:25.000Z",
+        "occurrences": 17,
+        "likes": 1079125
+    },
+    {
+        "date": "2018-02-04T19:54:25.000Z",
+        "occurrences": 18,
+        "likes": 1876731
+    },
+    {
+        "date": "2018-03-04T19:54:25.000Z",
+        "occurrences": 12,
+        "likes": 825974
+    },
+    {
+        "date": "2018-04-04T18:54:25.000Z",
+        "occurrences": 18,
+        "likes": 1051365
+    },
+    {
+        "date": "2018-05-04T18:54:25.000Z",
+        "occurrences": 21,
+        "likes": 1388055
+    },
+    {
+        "date": "2018-06-04T18:54:25.000Z",
+        "occurrences": 19,
+        "likes": 1141716
+    },
+    {
+        "date": "2018-07-04T18:54:25.000Z",
+        "occurrences": 32,
+        "likes": 1888356
+    },
+    {
+        "date": "2018-08-04T18:54:25.000Z",
+        "occurrences": 44,
+        "likes": 3064454
+    },
+    {
+        "date": "2018-09-04T18:54:25.000Z",
+        "occurrences": 43,
+        "likes": 1809999
+    },
+    {
+        "date": "2018-10-04T18:54:25.000Z",
+        "occurrences": 15,
+        "likes": 674529
+    },
+    {
+        "date": "2018-11-04T19:54:25.000Z",
+        "occurrences": 13,
+        "likes": 773174
+    },
+    {
+        "date": "2018-12-04T19:54:25.000Z",
+        "occurrences": 23,
+        "likes": 1718988
+    }
+]
