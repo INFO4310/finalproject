@@ -116,12 +116,24 @@
     #line-chart-div {
       text-align: center;
     }
+
+    #top-header{
+      color: #1DA1F2;
+      margin: 0px;
+      padding: 0px;
+      font-size: 50px;
+    }
+    #bottom-header {
+      margin: 0px;
+      padding: 0px;
+      font-size: 30px;
+    }
   </style>
 </head>
 
 <body>
   <div id="header">
-    <h1>Donald Trump's Tweets<br>Before and During Presidency</h1>
+    <h1 id="top-header">Donald Trump's Tweets</h1><h1 id="bottom-header">Before and During Presidency</h1>
   </div>
   <div>
     <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
@@ -389,7 +401,7 @@
       function bubbleMouseover() {
         let hoverData = d3.json('processed_tweets/Bubble_Chart_Hover_Data.json').then((hoverData) => {
           bubble = d3.select(this)
-          bubble.attr("stroke-width", 5).attr("stroke", "black")
+          bubble.attr("stroke-width", 5).attr("stroke", "#1DA1F2")
 
           let data = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
@@ -575,7 +587,7 @@
       linechart.append("path")
         .datum(trump_data_json)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#1DA1F2")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x(function (d) { return scaleX((new Date(d.date))) })
@@ -586,7 +598,7 @@
       linechart.append("path")
         .datum(thank_data_json)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#1DA1F2")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x(function (d) { return scaleX((new Date(d.date))) })
@@ -597,7 +609,7 @@
       linechart.append("path")
         .datum(trump_data_json)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#1DA1F2")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x(function (d) { return scaleX((new Date(d.date))) })
@@ -608,7 +620,7 @@
       linechart.append("path")
         .datum(president_data_json)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#1DA1F2")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x(function (d) { return scaleX((new Date(d.date))) })
@@ -619,7 +631,7 @@
       linechart.append("path")
         .datum(obama_data_json)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#1DA1F2")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x(function (d) { return scaleX((new Date(d.date))) })
