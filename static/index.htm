@@ -24,21 +24,22 @@
     }
 
     #header {
-      height: 670px;
+      height: 500px;
       margin: 0px 100px 0px 100px;
     }
 
     #trump_talking {
-      width: 500px;
+      width: 400px;
       position: absolute;
-      left: 10px;
-      top: 150px;
+      left: 50px;
+      top: 120px;
+      z-index: -1;
     }
 
     #bubble-chart {
       position: absolute;
       left: 400;
-      top: 100;
+      top: 10;
     }
 
     #speech-bub {
@@ -46,7 +47,7 @@
       width: 950;
       height: 520;
       left: 390;
-      top: 110;
+      top: 20;
       z-index: -1;
       opacity: .9;
     }
@@ -55,7 +56,7 @@
       text-align: center;
     }
 
-    #section2 {
+    .section {
       background-color: #212E39;
       padding: 20px 200px 20px 200px;
       border: 1px #37444C;
@@ -72,9 +73,11 @@
     }
 
     .tweet-contain {
-      width: 250px;
-      max-width: 250px;
-      display: inline-block;
+      display: block;
+      width: 100%;
+      height: 300px;
+      background-color: #475;
+      overflow: scroll;
     }
 
     .tweet-examples {
@@ -82,26 +85,43 @@
       /* margin: 100px; */
       display: flex;
       justify-content: center;
+      height: 300px;
+
     }
 
     .tweet-example {
-      width: 400px;
+      width: 40%;
       border: 1px #37444C;
       border-radius: 5px;
       border-style: solid;
       padding: 10px;
       margin: 10px;
+      background-color: #1B2732;
     }
-    #analysis2-div{
-      text-align: center;
+
+    #analysis2-div {
+      text-align: left;
       display: flex;
+    }
+
+    #analysis2 {
+      width: 100%;
+    }
+
+    .line-graph-axis {
+      color: white;
+      z-index: -1;
+    }
+
+    #line-chart-div {
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
   <div id="header">
-    <h1>Donald Trump's Tweets Before and During Presidency</h1>
+    <h1>Donald Trump's Tweets<br>Before and During Presidency</h1>
   </div>
   <div>
     <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
@@ -113,7 +133,6 @@
       <div id="tweet-example-before" class="tweet-example">
         <h3 id="tweet-text-before"></h3>
         <div class="likes-comments">
-          <p>&#9829;</p>
           <p id="likes-before"></p>
         </div>
       </div>
@@ -125,7 +144,7 @@
       </div>
     </div>
   </div>
-  <div id="section2">
+  <div class="section">
     <h2 id="title2">What was on Donald Trump's Mind?</h2>
     <p>Enter analysis here on the above and below graphs. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
       do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -133,7 +152,10 @@
       esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
       officia deserunt mollit anim id est laborum."</p>
   </div>
-  <div id = "analysis2-div">
+  <div id="line-chart-div">
+    <svg id="line-chart"></svg>
+  </div>
+  <div class="section">
     <p id="analysis2">
       Here is an analysis on the line graph. Bind a behavior to nodes to allow interactive dragging, either
       using
@@ -145,7 +167,6 @@
       layout, reheating the simulation. If you want dragged nodes to remain fixed after dragging, set the fixed
       attribute to true on dragstart, as in the sticky force layout example.
     </p>
-    <svg id="line-chart"></svg>
   </div>
   <script>
     // preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
@@ -421,84 +442,84 @@
       // "obama",2276
 
 
-      let great = [];
-      let trump = [];
-      let thank = [];
-      let president = [];
-      let obama = [];
-      let minDate1 = new Date(2025, 11, 17);
-      let maxDate1 = new Date(1990, 11, 17);
+      // let great = [];
+      // let trump = [];
+      // let thank = [];
+      // let president = [];
+      // let obama = [];
+      // let minDate1 = new Date(2025, 11, 17);
+      // let maxDate1 = new Date(1990, 11, 17);
 
-      const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
+      // const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
 
-      console.log(rawData)
-      rawData.forEach((d, i) => {
-        date = new Date(d.created_at)
-        if (date >= maxDate1) {
-          maxDate1 = date
-        } else if (date <= minDate1) {
-          minDate1 = date
-        }
-        if (d.token_meaningful.includes("great")) {
-          great.push(d)
-        } else if (d.token_meaningful.includes("trump")) {
-          trump.push(d)
-        } else if (d.token_meaningful.includes("thank")) {
-          thank.push(d)
-        } else if (d.token_meaningful.includes("president")) {
-          president.push(d)
-        } else if (d.token_meaningful.includes("obama")) {
-          obama.push(d)
-        }
-      })
+      // console.log(rawData)
+      // rawData.forEach((d, i) => {
+      //   date = new Date(d.created_at)
+      //   if (date >= maxDate1) {
+      //     maxDate1 = date
+      //   } else if (date <= minDate1) {
+      //     minDate1 = date
+      //   }
+      // if (d.token_meaningful.includes("great")) {
+      //   great.push(d)
+      // } else if (d.token_meaningful.includes("trump")) {
+      //   trump.push(d)
+      // } else if (d.token_meaningful.includes("thank")) {
+      //   thank.push(d)
+      // } else if (d.token_meaningful.includes("president")) {
+      //   president.push(d)
+      // } else if (d.token_meaningful.includes("obama")) {
+      //   obama.push(d)
+      // }
+      // })
       // arrays of each
       //  console.log(great.length, trump.length, thank.length, president.length, obama.length)
       // console.log(minDate, maxDate)
       // min = Mon May 04 2009 14:54:25 GMT-0400 (Eastern Daylight Time) 
       // max = Mon Dec 31 2018 18:53:06 GMT-0500 (Eastern Standard Time)
       // now count by month
-      var now = new Date(maxDate1);
-      var months = [];
-      for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
-        months.push(new Date(d));
-      }
+      // var now = new Date(maxDate1);
+      // var months = [];
+      // for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
+      //   months.push(new Date(d));
+      // }
 
       // console.log(months)
 
-      let great_data = [];
-      let trump_data = [];
-      let thank_data = [];
-      let president_data = [];
-      let obama_data = []
+      // let great_data = [];
+      // let trump_data = [];
+      // let thank_data = [];
+      // let president_data = [];
+      // let obama_data = []
 
       //summing occurrences and likes per month per topic
 
-      months.forEach((d, i) => {
-        let great_counter = 0;
-        let trump_counter = 0;
-        let than_counter = 0;
-        let president_counter = 0;
-        let obama_counter = 0
-        let like_counter = 0;
-        let word_counter = 0;
-        obama.forEach((e, j) => {
-          date = new Date(e.created_at)
-          if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
-            word_counter += 1;
-            like_counter += e.favorite_count;
-          }
-        })
-        obama_data.push({
-          date: d,
-          occurrences: word_counter,
-          likes: like_counter
-        })
-      })
-      console.log(JSON.stringify(obama_data))
+      // months.forEach((d, i) => {
+      //   let great_counter = 0;
+      //   let trump_counter = 0;
+      //   let than_counter = 0;
+      //   let president_counter = 0;
+      //   let obama_counter = 0
+      //   let like_counter = 0;
+      //   let word_counter = 0;
+      //   obama.forEach((e, j) => {
+      //     date = new Date(e.created_at)
+      //     if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
+      //       word_counter += 1;
+      //       like_counter += e.favorite_count;
+      //     }
+      //   })
+      //   obama_data.push({
+      //     date: d,
+      //     occurrences: word_counter,
+      //     likes: like_counter
+      //   })
+      // })
+      // console.log(JSON.stringify(obama_data))
 
 
 
-      const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+      const margin = { top: 50, right: 60, bottom: 50, left: 60 };
       const width = 1000
       const height = 500
 
@@ -517,23 +538,36 @@
       const president_data_json = await d3.json('processed_tweets/timeline/president_timeline.json');
       const obama_data_json = await d3.json('processed_tweets/timeline/obama_timeline.json');
 
+      //Find the max value between all datasets
+      // maxValue = 0;
+      // trump_data_json.forEach((d)=> {
+      //   if (d.occurrences >= maxValue) {
+      //     maxValue = d.occurrences
+      //   }
+      // })
+      // console.log(maxValue)
+      //max occurrences is 200!
+      let maxOccurrences = 200;
 
       let minDate = new Date(2009, 04, 4)
       let maxDate = new Date(2018, 11, 4);
 
       var scaleX = d3.scaleTime()
-        .domain([minDate,maxDate])
+        .domain([minDate, maxDate])
         .range([0, width]);
 
       svg.append("g")
-        .attr("transform", "translate("+margin.left+"," + height + ")")
+        .attr("class", "line-graph-axis")
+        .attr("transform", "translate(" + margin.left + "," + height + ")")
         .call(d3.axisBottom(scaleX))
 
       var scaleY = d3.scaleLinear()
-        .domain([0, 60])
-        .range([height-margin.bottom, 300]);
+        .domain([0, maxOccurrences])
+        .range([height - margin.bottom, margin.top]);
 
       svg.append("g")
+        .attr("class", "line-graph-axis")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(d3.axisLeft(scaleY));
       //adding "great" line
 
@@ -544,11 +578,10 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date)))})
-          // 2009-06-04T18:54:25.000Z
+          .x(function (d) { return scaleX((new Date(d.date))) })
           .y(function (d) { return scaleY(d.occurrences) })
         )
-      
+
       //adding thank
       linechart.append("path")
         .datum(thank_data_json)
@@ -556,8 +589,7 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date)))})
-          // 2009-06-04T18:54:25.000Z
+          .x(function (d) { return scaleX((new Date(d.date))) })
           .y(function (d) { return scaleY(d.occurrences) })
         )
 
@@ -568,8 +600,7 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date)))})
-          // 2009-06-04T18:54:25.000Z
+          .x(function (d) { return scaleX((new Date(d.date))) })
           .y(function (d) { return scaleY(d.occurrences) })
         )
 
@@ -580,8 +611,7 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date)))})
-          // 2009-06-04T18:54:25.000Z
+          .x(function (d) { return scaleX((new Date(d.date))) })
           .y(function (d) { return scaleY(d.occurrences) })
         )
 
@@ -592,11 +622,26 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date)))})
-          // 2009-06-04T18:54:25.000Z
+          .x(function (d) { return scaleX((new Date(d.date))) })
           .y(function (d) { return scaleY(d.occurrences) })
         )
 
+      svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .text("Number of Occurrences");
+
+      svg.append("text")
+        .attr("transform",
+          "translate(" + ((width / 2)+margin.left) + " ," +
+          (height + margin.top + 10) + ")")
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .text("Date");
 
     }
     load_line_graph();
