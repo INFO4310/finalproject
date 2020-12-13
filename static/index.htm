@@ -91,10 +91,11 @@
 
     .tweet-example {
       width: 40%;
+      max-width: 400px;
       border: 1px #37444C;
       border-radius: 5px;
       border-style: solid;
-      padding: 10px;
+      padding: 20px 30px 20px 30px;
       margin: 10px;
       background-color: #1B2732;
     }
@@ -117,12 +118,13 @@
       text-align: center;
     }
 
-    #top-header{
+    #top-header {
       color: #1DA1F2;
       margin: 0px;
       padding: 0px;
       font-size: 50px;
     }
+
     #bottom-header {
       margin: 0px;
       padding: 0px;
@@ -133,7 +135,8 @@
 
 <body>
   <div id="header">
-    <h1 id="top-header">Donald Trump's Tweets</h1><h1 id="bottom-header">Before and During Presidency</h1>
+    <h1 id="top-header">Donald Trump's Tweets</h1>
+    <h1 id="bottom-header">Before and During Presidency</h1>
   </div>
   <div>
     <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
@@ -445,8 +448,8 @@
     const load_line_graph = async () => {
       // console.log("linechart data")
 
-      //getting data for line charts
-      //top 5 words
+      // getting data for line charts
+      // top 5 words
       // great",5052
       // "trump",4917
       // "thank",4392
@@ -454,80 +457,80 @@
       // "obama",2276
 
 
-      // let great = [];
-      // let trump = [];
-      // let thank = [];
-      // let president = [];
-      // let obama = [];
-      // let minDate1 = new Date(2025, 11, 17);
-      // let maxDate1 = new Date(1990, 11, 17);
+      let great = [];
+      let trump = [];
+      let thank = [];
+      let president = [];
+      let obama = [];
+      let minDate1 = new Date(2025, 11, 17);
+      let maxDate1 = new Date(1990, 11, 17);
 
-      // const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
+      const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
 
-      // console.log(rawData)
-      // rawData.forEach((d, i) => {
-      //   date = new Date(d.created_at)
-      //   if (date >= maxDate1) {
-      //     maxDate1 = date
-      //   } else if (date <= minDate1) {
-      //     minDate1 = date
-      //   }
-      // if (d.token_meaningful.includes("great")) {
-      //   great.push(d)
-      // } else if (d.token_meaningful.includes("trump")) {
-      //   trump.push(d)
-      // } else if (d.token_meaningful.includes("thank")) {
-      //   thank.push(d)
-      // } else if (d.token_meaningful.includes("president")) {
-      //   president.push(d)
-      // } else if (d.token_meaningful.includes("obama")) {
-      //   obama.push(d)
-      // }
-      // })
+      console.log(rawData)
+      rawData.forEach((d, i) => {
+        date = new Date(d.created_at)
+        if (date >= maxDate1) {
+          maxDate1 = date
+        } else if (date <= minDate1) {
+          minDate1 = date
+        }
+        if (d.token_meaningful.includes("great")) {
+          great.push(d)
+        } else if (d.token_meaningful.includes("trump")) {
+          trump.push(d)
+        } else if (d.token_meaningful.includes("thank")) {
+          thank.push(d)
+        } else if (d.token_meaningful.includes("president")) {
+          president.push(d)
+        } else if (d.token_meaningful.includes("obama")) {
+          obama.push(d)
+        }
+      })
       // arrays of each
-      //  console.log(great.length, trump.length, thank.length, president.length, obama.length)
-      // console.log(minDate, maxDate)
+      console.log(great.length, trump.length, thank.length, president.length, obama.length)
+      console.log(minDate1, maxDate1)
       // min = Mon May 04 2009 14:54:25 GMT-0400 (Eastern Daylight Time) 
       // max = Mon Dec 31 2018 18:53:06 GMT-0500 (Eastern Standard Time)
       // now count by month
-      // var now = new Date(maxDate1);
-      // var months = [];
-      // for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
-      //   months.push(new Date(d));
-      // }
+      var now = new Date(maxDate1);
+      var months = [];
+      for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
+        months.push(new Date(d));
+      }
 
-      // console.log(months)
+      console.log(months)
 
-      // let great_data = [];
-      // let trump_data = [];
-      // let thank_data = [];
-      // let president_data = [];
-      // let obama_data = []
+      let great_data = [];
+      let trump_data = [];
+      let thank_data = [];
+      let president_data = [];
+      let obama_data = []
 
       //summing occurrences and likes per month per topic
 
-      // months.forEach((d, i) => {
-      //   let great_counter = 0;
-      //   let trump_counter = 0;
-      //   let than_counter = 0;
-      //   let president_counter = 0;
-      //   let obama_counter = 0
-      //   let like_counter = 0;
-      //   let word_counter = 0;
-      //   obama.forEach((e, j) => {
-      //     date = new Date(e.created_at)
-      //     if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
-      //       word_counter += 1;
-      //       like_counter += e.favorite_count;
-      //     }
-      //   })
-      //   obama_data.push({
-      //     date: d,
-      //     occurrences: word_counter,
-      //     likes: like_counter
-      //   })
-      // })
-      // console.log(JSON.stringify(obama_data))
+      months.forEach((d, i) => {
+        let great_counter = 0;
+        let trump_counter = 0;
+        let than_counter = 0;
+        let president_counter = 0;
+        let obama_counter = 0
+        let like_counter = 0;
+        let word_counter = 0;
+        president.forEach((e, j) => {
+          date = new Date(e.created_at)
+          if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
+            word_counter += 1;
+            like_counter += e.favorite_count;
+          }
+        })
+        president_data.push(
+          // date: d,
+          word_counter
+          // likes: like_counter
+        )
+      })
+      console.log(JSON.stringify(president_data))
 
 
 
@@ -549,7 +552,7 @@
       const thank_data_json = await d3.json('processed_tweets/timeline/thank_timeline.json');
       const president_data_json = await d3.json('processed_tweets/timeline/president_timeline.json');
       const obama_data_json = await d3.json('processed_tweets/timeline/obama_timeline.json');
-
+      const data = await d3.json('processed_tweets/timeline/timeline_data.json');
       //Find the max value between all datasets
       // maxValue = 0;
       // trump_data_json.forEach((d)=> {
@@ -564,6 +567,7 @@
       let minDate = new Date(2009, 04, 4)
       let maxDate = new Date(2018, 11, 4);
 
+      //adding axis and labels
       var scaleX = d3.scaleTime()
         .domain([minDate, maxDate])
         .range([0, width]);
@@ -581,62 +585,6 @@
         .attr("class", "line-graph-axis")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(d3.axisLeft(scaleY));
-      //adding "great" line
-
-      //adding great
-      linechart.append("path")
-        .datum(trump_data_json)
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date))) })
-          .y(function (d) { return scaleY(d.occurrences) })
-        )
-
-      //adding thank
-      linechart.append("path")
-        .datum(thank_data_json)
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date))) })
-          .y(function (d) { return scaleY(d.occurrences) })
-        )
-
-      //adding trump
-      linechart.append("path")
-        .datum(trump_data_json)
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date))) })
-          .y(function (d) { return scaleY(d.occurrences) })
-        )
-
-      //adding president
-      linechart.append("path")
-        .datum(president_data_json)
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date))) })
-          .y(function (d) { return scaleY(d.occurrences) })
-        )
-
-      //adding obama
-      linechart.append("path")
-        .datum(obama_data_json)
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-          .x(function (d) { return scaleX((new Date(d.date))) })
-          .y(function (d) { return scaleY(d.occurrences) })
-        )
 
       svg.append("text")
         .attr("transform", "rotate(-90)")
@@ -649,12 +597,150 @@
 
       svg.append("text")
         .attr("transform",
-          "translate(" + ((width / 2)+margin.left) + " ," +
+          "translate(" + ((width / 2) + margin.left) + " ," +
           (height + margin.top + 10) + ")")
         .style("text-anchor", "middle")
         .style("fill", "white")
         .text("Date");
 
+      //adding great
+      // linechart.append("path")
+      //   .datum(trump_data_json)
+      //   .attr("fill", "none")
+      //   .attr("stroke", "#1DA1F2")
+      //   .attr("stroke-width", 1.5)
+      //   .attr("d", d3.line()
+      //     .x(function (d) { return scaleX((new Date(d.date))) })
+      //     .y(function (d) { return scaleY(d.occurrences) })
+      //   )
+      //   .on("mouseover", function (d) {
+      //     d3.select(this).style("cursor", "pointer");
+      //   })
+      //   .on("mouseout", function (d) {
+      //     d3.select(this).style("cursor", "default");
+      //   });
+
+      // //adding thank
+      // linechart.append("path")
+      //   .datum(thank_data_json)
+      //   .attr("fill", "none")
+      //   .attr("stroke", "#1DA1F2")
+      //   .attr("stroke-width", 1.5)
+      //   .attr("d", d3.line()
+      //     .x(function (d) { return scaleX((new Date(d.date))) })
+      //     .y(function (d) { return scaleY(d.occurrences) })
+      //   )
+      //   .on("mouseover", function (d) {
+      //     d3.select(this).style("cursor", "pointer");
+      //   })
+      //   .on("mouseout", function (d) {
+      //     d3.select(this).style("cursor", "default");
+      //   });
+
+      // //adding trump
+      // linechart.append("path")
+      //   .datum(trump_data_json)
+      //   .attr("fill", "none")
+      //   .attr("stroke", "#1DA1F2")
+      //   .attr("stroke-width", 1.5)
+      //   .attr("d", d3.line()
+      //     .x(function (d) { return scaleX((new Date(d.date))) })
+      //     .y(function (d) { return scaleY(d.occurrences) })
+      //   )
+      //   .on("mouseover", function (d) {
+      //     d3.select(this).style("cursor", "pointer");
+      //   })
+      //   .on("mouseout", function (d) {
+      //     d3.select(this).style("cursor", "default");
+      //   });
+
+      // //adding president
+      // linechart.append("path")
+      //   .datum(president_data_json)
+      //   .attr("fill", "none")
+      //   .attr("stroke", "#1DA1F2")
+      //   .attr("stroke-width", 1.5)
+      //   .attr("d", d3.line()
+      //     .x(function (d) { return scaleX((new Date(d.date))) })
+      //     .y(function (d) { return scaleY(d.occurrences) })
+      //   )
+      //   .on("mouseover", function (d) {
+      //     d3.select(this).style("cursor", "pointer");
+      //   })
+      //   .on("mouseout", function (d) {
+      //     d3.select(this).style("cursor", "default");
+      //   });
+
+      // //adding obama
+      // linechart.append("path")
+      //   .datum(obama_data_json)
+      //   .attr("fill", "none")
+      //   .attr("stroke", "#1DA1F2")
+      //   .attr("stroke-width", 1.5)
+      //   .attr("d", d3.line()
+      //     .x(function (d) { return scaleX((new Date(d.date))) })
+      //     .y(function (d) { return scaleY(d.occurrences) })
+      //   )
+      //   .on("mouseover", function (d) {
+      //     d3.select(this).style("cursor", "pointer");
+      //   })
+      //   .on("mouseout", function (d) {
+      //     d3.select(this).style("cursor", "default");
+      //   });
+
+      // adding lines
+
+      line = d3.line()
+        .defined(d => !isNaN(d))
+        .x((d, i) => scaleX(new Date(data.dates[i])))
+        .y(d => scaleY(d))
+
+
+      const path = linechart.append("g")
+        .attr("fill", "none")
+        .attr("stroke", "#1DA1F2")
+        .attr("stroke-width", 1.5)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .selectAll("path")
+        .data(data.series)
+        .join("path")
+        // .style("mix-blend-mode", "multiply")
+        .attr("d", d => line(d.values));
+
+
+
+
+
+
+
+      //adding hover function to viz
+      svg.call(hover, path);
+
+      function hover(svg, path) {
+
+        function moved(event) {
+          event.preventDefault();
+          const pointer = d3.pointer(event, this);
+          const xm = x.invert(pointer[0]);
+          const ym = y.invert(pointer[1]);
+          const i = d3.bisectCenter(data.dates, xm);
+          const s = d3.least(data.series, d => Math.abs(d.values[i] - ym));
+          path.attr("stroke", d => d === s ? null : "#ddd").filter(d => d === s).raise();
+          dot.attr("transform", `translate(${x(data.dates[i])},${y(s.values[i])})`);
+          dot.select("text").text(s.name);
+        }
+
+        function entered() {
+          path.style("mix-blend-mode", null).attr("stroke", "#ddd");
+          dot.attr("display", null);
+        }
+
+        function left() {
+          path.style("mix-blend-mode", "multiply").attr("stroke", null);
+          dot.attr("display", "none");
+        }
+      }
     }
     load_line_graph();
 
