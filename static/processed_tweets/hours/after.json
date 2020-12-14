@@ -1,253 +1,951 @@
 [
     {
         "hour": 0,
-        "frequency": 51,
+        "frequency": 26,
         "topics": [
             {
                 "name": "great",
-                "value": 15
+                "value": 8
             },
             {
                 "name": "rt",
-                "value": 10
+                "value": 5
             },
             {
                 "name": "trump",
-                "value": 9
+                "value": 5
             },
             {
                 "name": "thank",
-                "value": 7
+                "value": 4
             },
             {
                 "name": "president",
-                "value": 7
+                "value": 4
             },
             {
                 "name": "vote",
-                "value": 5
+                "value": 3
             },
             {
                 "name": "senate",
-                "value": 5
+                "value": 3
             },
             {
                 "name": "made",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "better",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "donald",
-                "value": 4
+                "value": 2
             }
         ]
     },
     {
         "hour": 1,
-        "frequency": 18,
+        "frequency": 9,
         "topics": [
             {
                 "name": "magic",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "media",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "great",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "trump",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "vote",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "tax",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "nato",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "much",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "republicans",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "tonight",
-                "value": 2
+                "value": 1
             }
         ]
     },
     {
         "hour": 2,
-        "frequency": 14,
+        "frequency": 7,
         "topics": [
             {
                 "name": "great",
-                "value": 6
+                "value": 3
             },
             {
                 "name": "russia",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "one",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "honor",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "thanks",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "years",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "matt",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "people",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "get",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "massive",
-                "value": 2
+                "value": 1
             }
         ]
     },
     {
         "hour": 3,
-        "frequency": 13,
+        "frequency": 7,
         "topics": [
             {
                 "name": "great",
-                "value": 5
+                "value": 3
             },
             {
                 "name": "one",
-                "value": 4
+                "value": 2
             },
             {
                 "name": "celebrate",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "end",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "world",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "war",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "time",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "forest",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "criticize",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "thank",
-                "value": 2
+                "value": 1
             }
         ]
     },
     {
         "hour": 4,
-        "frequency": 13,
+        "frequency": 7,
         "topics": [
             {
                 "name": "get",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "senators",
-                "value": 3
+                "value": 2
             },
             {
                 "name": "put",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "zero",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "good",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "going",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "run",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "honor",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "thank",
-                "value": 2
+                "value": 1
             },
             {
                 "name": "throughout",
-                "value": 2
+                "value": 1
             }
         ]
     },
     {
         "hour": 5,
-        "frequency": 98,
+        "frequency": 49,
         "topics": [
             {
                 "name": "rt",
-                "value": 41
+                "value": 21
             },
             {
                 "name": "great",
-                "value": 18
+                "value": 9
             },
             {
                 "name": "many",
-                "value": 13
+                "value": 7
             },
             {
                 "name": "security",
+                "value": 6
+            },
+            {
+                "name": "country",
+                "value": 5
+            },
+            {
+                "name": "president",
+                "value": 5
+            },
+            {
+                "name": "trump",
+                "value": 5
+            },
+            {
+                "name": "national",
+                "value": 5
+            },
+            {
+                "name": "florence",
+                "value": 4
+            },
+            {
+                "name": "time",
+                "value": 4
+            }
+        ]
+    },
+    {
+        "hour": 6,
+        "frequency": 228,
+        "topics": [
+            {
+                "name": "great",
+                "value": 43
+            },
+            {
+                "name": "rt",
+                "value": 34
+            },
+            {
+                "name": "people",
+                "value": 24
+            },
+            {
+                "name": "trump",
+                "value": 22
+            },
+            {
+                "name": "big",
+                "value": 21
+            },
+            {
+                "name": "democrats",
+                "value": 20
+            },
+            {
+                "name": "country",
+                "value": 19
+            },
+            {
+                "name": "many",
+                "value": 19
+            },
+            {
+                "name": "news",
+                "value": 19
+            },
+            {
+                "name": "new",
+                "value": 18
+            }
+        ]
+    },
+    {
+        "hour": 7,
+        "frequency": 337,
+        "topics": [
+            {
+                "name": "great",
+                "value": 65
+            },
+            {
+                "name": "rt",
+                "value": 53
+            },
+            {
+                "name": "people",
+                "value": 47
+            },
+            {
+                "name": "border",
+                "value": 36
+            },
+            {
+                "name": "country",
+                "value": 35
+            },
+            {
+                "name": "many",
+                "value": 34
+            },
+            {
+                "name": "democrats",
+                "value": 32
+            },
+            {
+                "name": "president",
+                "value": 31
+            },
+            {
+                "name": "news",
+                "value": 31
+            },
+            {
+                "name": "trump",
+                "value": 31
+            }
+        ]
+    },
+    {
+        "hour": 8,
+        "frequency": 339,
+        "topics": [
+            {
+                "name": "great",
+                "value": 70
+            },
+            {
+                "name": "news",
+                "value": 46
+            },
+            {
+                "name": "fake",
+                "value": 44
+            },
+            {
+                "name": "rt",
+                "value": 42
+            },
+            {
+                "name": "people",
+                "value": 40
+            },
+            {
+                "name": "big",
+                "value": 31
+            },
+            {
+                "name": "president",
+                "value": 28
+            },
+            {
+                "name": "country",
+                "value": 25
+            },
+            {
+                "name": "democrats",
+                "value": 25
+            },
+            {
+                "name": "would",
+                "value": 24
+            }
+        ]
+    },
+    {
+        "hour": 9,
+        "frequency": 251,
+        "topics": [
+            {
+                "name": "great",
+                "value": 54
+            },
+            {
+                "name": "people",
+                "value": 32
+            },
+            {
+                "name": "news",
+                "value": 31
+            },
+            {
+                "name": "fake",
+                "value": 30
+            },
+            {
+                "name": "trump",
+                "value": 26
+            },
+            {
+                "name": "country",
+                "value": 26
+            },
+            {
+                "name": "get",
+                "value": 24
+            },
+            {
+                "name": "rt",
+                "value": 24
+            },
+            {
+                "name": "democrats",
+                "value": 23
+            },
+            {
+                "name": "big",
+                "value": 22
+            }
+        ]
+    },
+    {
+        "hour": 10,
+        "frequency": 177,
+        "topics": [
+            {
+                "name": "great",
+                "value": 41
+            },
+            {
+                "name": "rt",
+                "value": 25
+            },
+            {
+                "name": "people",
+                "value": 19
+            },
+            {
+                "name": "democrats",
+                "value": 16
+            },
+            {
+                "name": "president",
+                "value": 15
+            },
+            {
+                "name": "would",
+                "value": 15
+            },
+            {
+                "name": "many",
+                "value": 14
+            },
+            {
+                "name": "country",
+                "value": 14
+            },
+            {
+                "name": "news",
+                "value": 14
+            },
+            {
+                "name": "big",
+                "value": 14
+            }
+        ]
+    },
+    {
+        "hour": 11,
+        "frequency": 113,
+        "topics": [
+            {
+                "name": "great",
+                "value": 23
+            },
+            {
+                "name": "rt",
+                "value": 15
+            },
+            {
+                "name": "president",
+                "value": 14
+            },
+            {
+                "name": "people",
+                "value": 10
+            },
+            {
+                "name": "thank",
+                "value": 9
+            },
+            {
+                "name": "trump",
+                "value": 9
+            },
+            {
+                "name": "new",
+                "value": 8
+            },
+            {
+                "name": "vote",
+                "value": 8
+            },
+            {
+                "name": "news",
+                "value": 8
+            },
+            {
+                "name": "state",
+                "value": 8
+            }
+        ]
+    },
+    {
+        "hour": 12,
+        "frequency": 113,
+        "topics": [
+            {
+                "name": "great",
+                "value": 22
+            },
+            {
+                "name": "rt",
+                "value": 10
+            },
+            {
+                "name": "back",
+                "value": 10
+            },
+            {
+                "name": "people",
+                "value": 9
+            },
+            {
+                "name": "country",
+                "value": 8
+            },
+            {
+                "name": "america",
+                "value": 8
+            },
+            {
+                "name": "thank",
+                "value": 8
+            },
+            {
+                "name": "today",
+                "value": 8
+            },
+            {
+                "name": "american",
+                "value": 8
+            },
+            {
+                "name": "would",
+                "value": 7
+            }
+        ]
+    },
+    {
+        "hour": 13,
+        "frequency": 126,
+        "topics": [
+            {
+                "name": "great",
+                "value": 21
+            },
+            {
+                "name": "people",
+                "value": 17
+            },
+            {
+                "name": "today",
+                "value": 15
+            },
+            {
+                "name": "rt",
+                "value": 14
+            },
+            {
+                "name": "trump",
                 "value": 12
+            },
+            {
+                "name": "whitehouse",
+                "value": 9
+            },
+            {
+                "name": "vote",
+                "value": 9
+            },
+            {
+                "name": "president",
+                "value": 9
+            },
+            {
+                "name": "country",
+                "value": 8
+            },
+            {
+                "name": "many",
+                "value": 8
+            }
+        ]
+    },
+    {
+        "hour": 14,
+        "frequency": 109,
+        "topics": [
+            {
+                "name": "great",
+                "value": 25
+            },
+            {
+                "name": "today",
+                "value": 17
+            },
+            {
+                "name": "people",
+                "value": 13
+            },
+            {
+                "name": "america",
+                "value": 12
+            },
+            {
+                "name": "thank",
+                "value": 11
+            },
+            {
+                "name": "president",
+                "value": 10
+            },
+            {
+                "name": "country",
+                "value": 9
+            },
+            {
+                "name": "honor",
+                "value": 9
+            },
+            {
+                "name": "american",
+                "value": 8
+            },
+            {
+                "name": "united",
+                "value": 7
+            }
+        ]
+    },
+    {
+        "hour": 15,
+        "frequency": 150,
+        "topics": [
+            {
+                "name": "great",
+                "value": 37
+            },
+            {
+                "name": "today",
+                "value": 21
+            },
+            {
+                "name": "people",
+                "value": 18
+            },
+            {
+                "name": "country",
+                "value": 15
+            },
+            {
+                "name": "president",
+                "value": 14
+            },
+            {
+                "name": "america",
+                "value": 14
+            },
+            {
+                "name": "american",
+                "value": 13
+            },
+            {
+                "name": "honor",
+                "value": 11
+            },
+            {
+                "name": "whitehouse",
+                "value": 11
+            },
+            {
+                "name": "vote",
+                "value": 10
+            }
+        ]
+    },
+    {
+        "hour": 16,
+        "frequency": 152,
+        "topics": [
+            {
+                "name": "great",
+                "value": 38
+            },
+            {
+                "name": "people",
+                "value": 24
+            },
+            {
+                "name": "american",
+                "value": 16
+            },
+            {
+                "name": "today",
+                "value": 15
+            },
+            {
+                "name": "america",
+                "value": 13
+            },
+            {
+                "name": "thank",
+                "value": 12
+            },
+            {
+                "name": "president",
+                "value": 11
+            },
+            {
+                "name": "vote",
+                "value": 11
+            },
+            {
+                "name": "honor",
+                "value": 10
+            },
+            {
+                "name": "rt",
+                "value": 10
+            }
+        ]
+    },
+    {
+        "hour": 17,
+        "frequency": 147,
+        "topics": [
+            {
+                "name": "great",
+                "value": 36
+            },
+            {
+                "name": "rt",
+                "value": 22
+            },
+            {
+                "name": "today",
+                "value": 18
+            },
+            {
+                "name": "thank",
+                "value": 14
+            },
+            {
+                "name": "america",
+                "value": 13
+            },
+            {
+                "name": "trump",
+                "value": 12
+            },
+            {
+                "name": "president",
+                "value": 12
+            },
+            {
+                "name": "honor",
+                "value": 11
+            },
+            {
+                "name": "first",
+                "value": 10
+            },
+            {
+                "name": "people",
+                "value": 9
+            }
+        ]
+    },
+    {
+        "hour": 18,
+        "frequency": 164,
+        "topics": [
+            {
+                "name": "great",
+                "value": 46
+            },
+            {
+                "name": "country",
+                "value": 17
+            },
+            {
+                "name": "america",
+                "value": 16
+            },
+            {
+                "name": "president",
+                "value": 16
+            },
+            {
+                "name": "today",
+                "value": 15
+            },
+            {
+                "name": "rt",
+                "value": 15
+            },
+            {
+                "name": "news",
+                "value": 14
+            },
+            {
+                "name": "people",
+                "value": 13
+            },
+            {
+                "name": "honor",
+                "value": 12
+            },
+            {
+                "name": "thank",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "hour": 19,
+        "frequency": 119,
+        "topics": [
+            {
+                "name": "great",
+                "value": 24
+            },
+            {
+                "name": "rt",
+                "value": 14
+            },
+            {
+                "name": "people",
+                "value": 13
+            },
+            {
+                "name": "new",
+                "value": 12
+            },
+            {
+                "name": "thank",
+                "value": 12
+            },
+            {
+                "name": "news",
+                "value": 10
+            },
+            {
+                "name": "america",
+                "value": 9
+            },
+            {
+                "name": "governor",
+                "value": 8
+            },
+            {
+                "name": "today",
+                "value": 8
+            },
+            {
+                "name": "american",
+                "value": 8
+            }
+        ]
+    },
+    {
+        "hour": 20,
+        "frequency": 120,
+        "topics": [
+            {
+                "name": "great",
+                "value": 29
+            },
+            {
+                "name": "thank",
+                "value": 20
+            },
+            {
+                "name": "rt",
+                "value": 15
+            },
+            {
+                "name": "fake",
+                "value": 14
+            },
+            {
+                "name": "news",
+                "value": 13
+            },
+            {
+                "name": "people",
+                "value": 13
             },
             {
                 "name": "country",
@@ -258,848 +956,150 @@
                 "value": 9
             },
             {
-                "name": "trump",
+                "name": "america",
                 "value": 9
-            },
-            {
-                "name": "national",
-                "value": 9
-            },
-            {
-                "name": "florence",
-                "value": 8
-            },
-            {
-                "name": "time",
-                "value": 8
-            }
-        ]
-    },
-    {
-        "hour": 6,
-        "frequency": 456,
-        "topics": [
-            {
-                "name": "great",
-                "value": 85
-            },
-            {
-                "name": "rt",
-                "value": 68
-            },
-            {
-                "name": "people",
-                "value": 48
-            },
-            {
-                "name": "trump",
-                "value": 43
-            },
-            {
-                "name": "big",
-                "value": 41
-            },
-            {
-                "name": "democrats",
-                "value": 39
-            },
-            {
-                "name": "country",
-                "value": 37
-            },
-            {
-                "name": "many",
-                "value": 37
-            },
-            {
-                "name": "news",
-                "value": 37
-            },
-            {
-                "name": "new",
-                "value": 35
-            }
-        ]
-    },
-    {
-        "hour": 7,
-        "frequency": 673,
-        "topics": [
-            {
-                "name": "great",
-                "value": 129
-            },
-            {
-                "name": "rt",
-                "value": 105
-            },
-            {
-                "name": "people",
-                "value": 93
-            },
-            {
-                "name": "border",
-                "value": 72
-            },
-            {
-                "name": "country",
-                "value": 70
-            },
-            {
-                "name": "many",
-                "value": 68
-            },
-            {
-                "name": "democrats",
-                "value": 63
-            },
-            {
-                "name": "president",
-                "value": 62
-            },
-            {
-                "name": "news",
-                "value": 62
-            },
-            {
-                "name": "trump",
-                "value": 62
-            }
-        ]
-    },
-    {
-        "hour": 8,
-        "frequency": 677,
-        "topics": [
-            {
-                "name": "great",
-                "value": 140
-            },
-            {
-                "name": "news",
-                "value": 91
-            },
-            {
-                "name": "fake",
-                "value": 88
-            },
-            {
-                "name": "rt",
-                "value": 84
-            },
-            {
-                "name": "people",
-                "value": 79
-            },
-            {
-                "name": "big",
-                "value": 62
-            },
-            {
-                "name": "president",
-                "value": 55
-            },
-            {
-                "name": "country",
-                "value": 50
-            },
-            {
-                "name": "democrats",
-                "value": 49
-            },
-            {
-                "name": "would",
-                "value": 48
-            }
-        ]
-    },
-    {
-        "hour": 9,
-        "frequency": 501,
-        "topics": [
-            {
-                "name": "great",
-                "value": 108
-            },
-            {
-                "name": "people",
-                "value": 64
-            },
-            {
-                "name": "news",
-                "value": 62
-            },
-            {
-                "name": "fake",
-                "value": 59
-            },
-            {
-                "name": "trump",
-                "value": 52
-            },
-            {
-                "name": "country",
-                "value": 51
-            },
-            {
-                "name": "get",
-                "value": 47
-            },
-            {
-                "name": "rt",
-                "value": 47
-            },
-            {
-                "name": "democrats",
-                "value": 46
-            },
-            {
-                "name": "big",
-                "value": 43
-            }
-        ]
-    },
-    {
-        "hour": 10,
-        "frequency": 354,
-        "topics": [
-            {
-                "name": "great",
-                "value": 81
-            },
-            {
-                "name": "rt",
-                "value": 49
-            },
-            {
-                "name": "people",
-                "value": 37
-            },
-            {
-                "name": "democrats",
-                "value": 32
-            },
-            {
-                "name": "president",
-                "value": 30
-            },
-            {
-                "name": "would",
-                "value": 29
-            },
-            {
-                "name": "many",
-                "value": 28
-            },
-            {
-                "name": "country",
-                "value": 28
-            },
-            {
-                "name": "news",
-                "value": 28
-            },
-            {
-                "name": "big",
-                "value": 27
-            }
-        ]
-    },
-    {
-        "hour": 11,
-        "frequency": 226,
-        "topics": [
-            {
-                "name": "great",
-                "value": 46
-            },
-            {
-                "name": "rt",
-                "value": 30
-            },
-            {
-                "name": "president",
-                "value": 27
-            },
-            {
-                "name": "people",
-                "value": 19
-            },
-            {
-                "name": "thank",
-                "value": 18
-            },
-            {
-                "name": "trump",
-                "value": 17
-            },
-            {
-                "name": "new",
-                "value": 16
-            },
-            {
-                "name": "vote",
-                "value": 16
-            },
-            {
-                "name": "news",
-                "value": 15
-            },
-            {
-                "name": "state",
-                "value": 15
-            }
-        ]
-    },
-    {
-        "hour": 12,
-        "frequency": 226,
-        "topics": [
-            {
-                "name": "great",
-                "value": 44
-            },
-            {
-                "name": "rt",
-                "value": 20
-            },
-            {
-                "name": "back",
-                "value": 19
-            },
-            {
-                "name": "people",
-                "value": 18
-            },
-            {
-                "name": "country",
-                "value": 15
-            },
-            {
-                "name": "america",
-                "value": 15
-            },
-            {
-                "name": "thank",
-                "value": 15
-            },
-            {
-                "name": "today",
-                "value": 15
-            },
-            {
-                "name": "american",
-                "value": 15
-            },
-            {
-                "name": "would",
-                "value": 13
-            }
-        ]
-    },
-    {
-        "hour": 13,
-        "frequency": 251,
-        "topics": [
-            {
-                "name": "great",
-                "value": 42
-            },
-            {
-                "name": "people",
-                "value": 33
-            },
-            {
-                "name": "today",
-                "value": 30
-            },
-            {
-                "name": "rt",
-                "value": 28
-            },
-            {
-                "name": "trump",
-                "value": 23
-            },
-            {
-                "name": "whitehouse",
-                "value": 18
-            },
-            {
-                "name": "vote",
-                "value": 18
-            },
-            {
-                "name": "president",
-                "value": 17
-            },
-            {
-                "name": "country",
-                "value": 16
-            },
-            {
-                "name": "many",
-                "value": 16
-            }
-        ]
-    },
-    {
-        "hour": 14,
-        "frequency": 217,
-        "topics": [
-            {
-                "name": "great",
-                "value": 50
-            },
-            {
-                "name": "today",
-                "value": 34
-            },
-            {
-                "name": "people",
-                "value": 25
-            },
-            {
-                "name": "america",
-                "value": 23
-            },
-            {
-                "name": "thank",
-                "value": 22
-            },
-            {
-                "name": "president",
-                "value": 20
-            },
-            {
-                "name": "country",
-                "value": 18
-            },
-            {
-                "name": "honor",
-                "value": 17
-            },
-            {
-                "name": "american",
-                "value": 16
-            },
-            {
-                "name": "united",
-                "value": 14
-            }
-        ]
-    },
-    {
-        "hour": 15,
-        "frequency": 299,
-        "topics": [
-            {
-                "name": "great",
-                "value": 74
-            },
-            {
-                "name": "today",
-                "value": 41
-            },
-            {
-                "name": "people",
-                "value": 36
-            },
-            {
-                "name": "country",
-                "value": 29
-            },
-            {
-                "name": "president",
-                "value": 28
-            },
-            {
-                "name": "america",
-                "value": 27
-            },
-            {
-                "name": "american",
-                "value": 25
-            },
-            {
-                "name": "honor",
-                "value": 22
-            },
-            {
-                "name": "whitehouse",
-                "value": 21
-            },
-            {
-                "name": "vote",
-                "value": 19
-            }
-        ]
-    },
-    {
-        "hour": 16,
-        "frequency": 303,
-        "topics": [
-            {
-                "name": "great",
-                "value": 76
-            },
-            {
-                "name": "people",
-                "value": 48
-            },
-            {
-                "name": "american",
-                "value": 31
-            },
-            {
-                "name": "today",
-                "value": 29
-            },
-            {
-                "name": "america",
-                "value": 26
-            },
-            {
-                "name": "thank",
-                "value": 24
-            },
-            {
-                "name": "president",
-                "value": 21
-            },
-            {
-                "name": "vote",
-                "value": 21
-            },
-            {
-                "name": "honor",
-                "value": 20
-            },
-            {
-                "name": "rt",
-                "value": 20
-            }
-        ]
-    },
-    {
-        "hour": 17,
-        "frequency": 293,
-        "topics": [
-            {
-                "name": "great",
-                "value": 71
-            },
-            {
-                "name": "rt",
-                "value": 43
-            },
-            {
-                "name": "today",
-                "value": 36
-            },
-            {
-                "name": "thank",
-                "value": 27
-            },
-            {
-                "name": "america",
-                "value": 25
-            },
-            {
-                "name": "trump",
-                "value": 23
-            },
-            {
-                "name": "president",
-                "value": 23
-            },
-            {
-                "name": "honor",
-                "value": 22
-            },
-            {
-                "name": "first",
-                "value": 20
-            },
-            {
-                "name": "people",
-                "value": 18
-            }
-        ]
-    },
-    {
-        "hour": 18,
-        "frequency": 327,
-        "topics": [
-            {
-                "name": "great",
-                "value": 92
-            },
-            {
-                "name": "country",
-                "value": 34
-            },
-            {
-                "name": "america",
-                "value": 32
-            },
-            {
-                "name": "president",
-                "value": 31
-            },
-            {
-                "name": "today",
-                "value": 30
-            },
-            {
-                "name": "rt",
-                "value": 29
-            },
-            {
-                "name": "news",
-                "value": 27
-            },
-            {
-                "name": "people",
-                "value": 26
-            },
-            {
-                "name": "honor",
-                "value": 23
-            },
-            {
-                "name": "thank",
-                "value": 23
-            }
-        ]
-    },
-    {
-        "hour": 19,
-        "frequency": 237,
-        "topics": [
-            {
-                "name": "great",
-                "value": 48
-            },
-            {
-                "name": "rt",
-                "value": 28
-            },
-            {
-                "name": "people",
-                "value": 25
-            },
-            {
-                "name": "new",
-                "value": 23
-            },
-            {
-                "name": "thank",
-                "value": 23
-            },
-            {
-                "name": "news",
-                "value": 20
-            },
-            {
-                "name": "america",
-                "value": 17
-            },
-            {
-                "name": "governor",
-                "value": 16
-            },
-            {
-                "name": "today",
-                "value": 16
-            },
-            {
-                "name": "american",
-                "value": 16
-            }
-        ]
-    },
-    {
-        "hour": 20,
-        "frequency": 240,
-        "topics": [
-            {
-                "name": "great",
-                "value": 58
-            },
-            {
-                "name": "thank",
-                "value": 39
-            },
-            {
-                "name": "rt",
-                "value": 29
-            },
-            {
-                "name": "fake",
-                "value": 27
-            },
-            {
-                "name": "news",
-                "value": 26
-            },
-            {
-                "name": "people",
-                "value": 26
-            },
-            {
-                "name": "country",
-                "value": 19
-            },
-            {
-                "name": "president",
-                "value": 18
-            },
-            {
-                "name": "america",
-                "value": 17
             },
             {
                 "name": "media",
-                "value": 17
+                "value": 9
             }
         ]
     },
     {
         "hour": 21,
-        "frequency": 266,
+        "frequency": 133,
         "topics": [
             {
                 "name": "great",
-                "value": 64
+                "value": 32
             },
             {
                 "name": "rt",
-                "value": 44
+                "value": 22
             },
             {
                 "name": "trump",
-                "value": 35
+                "value": 18
             },
             {
                 "name": "thank",
-                "value": 26
+                "value": 13
             },
             {
                 "name": "people",
-                "value": 25
+                "value": 13
             },
             {
                 "name": "vote",
-                "value": 25
+                "value": 13
             },
             {
                 "name": "country",
-                "value": 23
+                "value": 12
             },
             {
                 "name": "america",
-                "value": 23
+                "value": 12
             },
             {
                 "name": "president",
-                "value": 17
+                "value": 9
             },
             {
                 "name": "big",
-                "value": 17
+                "value": 9
             }
         ]
     },
     {
         "hour": 22,
-        "frequency": 211,
+        "frequency": 106,
         "topics": [
             {
                 "name": "great",
-                "value": 49
+                "value": 25
             },
             {
                 "name": "rt",
-                "value": 33
+                "value": 17
             },
             {
                 "name": "people",
-                "value": 21
+                "value": 11
             },
             {
                 "name": "president",
-                "value": 20
+                "value": 10
             },
             {
                 "name": "trump",
-                "value": 20
+                "value": 10
             },
             {
                 "name": "america",
-                "value": 18
+                "value": 9
             },
             {
                 "name": "many",
-                "value": 16
+                "value": 8
             },
             {
                 "name": "big",
-                "value": 16
+                "value": 8
             },
             {
                 "name": "thank",
-                "value": 15
+                "value": 8
             },
             {
                 "name": "win",
-                "value": 15
+                "value": 8
             }
         ]
     },
     {
         "hour": 23,
-        "frequency": 151,
+        "frequency": 76,
         "topics": [
             {
                 "name": "great",
-                "value": 52
+                "value": 26
             },
             {
                 "name": "rt",
-                "value": 34
+                "value": 17
             },
             {
                 "name": "president",
-                "value": 18
+                "value": 9
             },
             {
                 "name": "thank",
-                "value": 18
+                "value": 9
             },
             {
                 "name": "big",
-                "value": 16
+                "value": 8
             },
             {
                 "name": "trump",
-                "value": 16
+                "value": 8
             },
             {
                 "name": "border",
-                "value": 14
+                "value": 7
             },
             {
                 "name": "people",
-                "value": 14
+                "value": 7
             },
             {
                 "name": "military",
-                "value": 14
+                "value": 7
             },
             {
                 "name": "state",
-                "value": 12
+                "value": 6
             }
         ]
     }

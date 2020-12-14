@@ -775,7 +775,7 @@
         }
       }
     }
-    // load_line_graph();
+    load_line_graph();
 
     // const make_jennifers_data = async () => {
     //   const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
@@ -804,7 +804,7 @@
     //   hours.forEach((d, i) => {
     //     counter = 0;
     //     word_occurr = new Map();
-    //     afterPrez.forEach((e, j) => {
+    //     beforePrez.forEach((e, j) => {
     //       date = new Date(e.created_at)
     //       if (date.getHours() == d) {
     //         counter += 1;
@@ -823,11 +823,11 @@
     //     ordered_words = [];
     //     for (let [key, value] of word_occurr) {
     //       //shortening list to words occurring 500+ times
-    //         ordered_words.push({ "name": key, "value": value })
+    //         ordered_words.push({ "name": key, "value": Math.round(value/8,1) })
     //     }
     //     data.push({
     //       hour: d,
-    //       frequency: counter,
+    //       frequency: Math.round(counter/8, 1),
     //       topics: ordered_words.slice(0,10)
     //     })
     //   })
