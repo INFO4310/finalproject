@@ -131,6 +131,14 @@
       padding: 0px;
       font-size: 30px;
     }
+
+    h3{
+      text-align: left;
+    }
+    span{
+      margin-left: 24.5%;
+    }
+
   </style>
 </head>
 
@@ -189,7 +197,9 @@
       attribute to true on dragstart, as in the sticky force layout example.
     </p>
   </div>
+  <h2 id="title2">Tweeting Around the Clock</h2>
   <div id="radial-chart-div">
+    <h3><span>Pre-Presidency</span> <span>During Presidency</span></h3>
     <svg id="radial" width="700" height="800"></svg>
     <svg id="radial2" width="700" height="800"></svg>
   </div>
@@ -849,9 +859,9 @@
     const height = radialsvg.attr("height");
 
     const radialChart = radialsvg.append("g")
-      .attr("transform", "translate(" + 400 + "," + 350 + ")");
+      .attr("transform", "translate(" + 400 + "," + 300 + ")");
     const radialChart2 = radialsvg2.append("g")
-      .attr("transform", "translate(" + 300 + "," + 350 + ")");
+      .attr("transform", "translate(" + 300 + "," + 300 + ")");
     
 
     const drawRadial = async () => {
@@ -891,7 +901,7 @@
         .range([innerRadius, outerRadius])
         .domain(dataExtent2);
 
-      let bars = radialChart.append("g")
+      var bars = radialChart.append("g")
         .selectAll("path")
         .data(tweets)
         .enter()
@@ -904,20 +914,124 @@
           .endAngle(d => {return x(d.hour) + x.bandwidth();})
           .padAngle(0.05)
           .padRadius(innerRadius))
+        
+      //bar labels
+      let labelWidth = 90;
+      let labelHeight = 50;
 
-        let bars2 = radialChart2.append("g")
-          .selectAll("path")
-          .data(tweets2)
-          .enter()
-          .append("path")
-          .attr("fill", "green")
-          .attr("d", d3.arc()
-            .innerRadius(innerRadius)
-            .outerRadius(d => { return y(d.frequency); })
-            .startAngle(d => { return x(d.hour); })
-            .endAngle(d => {return x(d.hour) + x.bandwidth(); })
-            .padAngle(0.05)
-            .padRadius(innerRadius))
+      let labelBox = radialChart.append("g")
+        .attr("id", "labelBox")
+        .attr("visibility", "hidden")
+        .attr("width", labelWidth)
+        .attr("height", labelHeight)
+      labelBox.append("rect")
+        .attr("fill", "white")
+        .attr("opacity", 0.9)
+        .attr("width", labelWidth)
+        .attr("height", labelHeight)
+
+      labelBox.append("text")
+        .attr("class", "text")
+        .attr("id", "frequency")
+        .attr("fill", "black")
+        .attr("x", 8)
+        .attr("y", 16)
+        .attr("font-size", 16)
+        .attr("text-anchor", "start")
+        .attr("alignment-baseline", "text-before-edge")
+        .attr("font-weight", "bold");
+
+      bars.on("mouseover", function () {
+        let current = d3.select(this);
+
+        current.transition().duration(200)
+          .attr("fill", "yellow");
+
+        currentdata = current.datum();
+        d3.select("#labelBox").attr("visibility", "visible")
+          .attr("text-anchor", d => { return (x(currentdata.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+          .attr("transform", d => { return "rotate(" + ((x(currentdata.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (outerRadius / 1.5 + 10) + ",0)"; })
+
+        currentLabel = currentdata.frequency + " tweets";
+        d3.select("#frequency").text(currentLabel)
+          .attr("transform", d => { return (x(currentdata.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" + "translate(-88,-50)" : "rotate(0)"; });
+      })
+
+      bars.on("mouseout", function () {
+        let current = d3.select(this);
+
+        current.transition().duration(200)
+          .attr("fill", "green");
+
+        currentdata = current.datum();
+        d3.select("#labelBox").attr("visibility", "hidden");
+        d3.select("#frequency").text("");
+      })
+
+      var bars2 = radialChart2.append("g")
+        .selectAll("path")
+        .data(tweets2)
+        .enter()
+        .append("path")
+        .attr("fill", "green")
+        .attr("d", d3.arc()
+          .innerRadius(innerRadius)
+          .outerRadius(d => { return y(d.frequency); })
+          .startAngle(d => { return x(d.hour); })
+          .endAngle(d => { return x(d.hour) + x.bandwidth(); })
+          .padAngle(0.05)
+          .padRadius(innerRadius))
+
+      //bar labels
+      let labelBox2 = radialChart2.append("g")
+        .attr("id", "labelBox2")
+        .attr("visibility", "hidden")
+        .attr("width", labelWidth)
+        .attr("height", labelHeight)
+      labelBox2.append("rect")
+        .attr("fill", "white")
+        .attr("opacity", 0.9)
+        .attr("width", labelWidth)
+        .attr("height", labelHeight)
+
+      labelBox2.append("text")
+        .attr("class", "text")
+        .attr("id", "frequency2")
+        .attr("fill", "black")
+        .attr("x", 8)
+        .attr("y", 16)
+        .attr("font-size", 16)
+        .attr("text-anchor", "start")
+        .attr("alignment-baseline", "text-before-edge")
+        .attr("font-weight", "bold");
+
+      bars2.on("mouseover", function () {
+        let current = d3.select(this);
+
+        current.transition().duration(200)
+          .attr("fill", "yellow");
+
+        currentdata = current.datum();
+        d3.select("#labelBox2").attr("visibility", "visible")
+          .attr("text-anchor", d => { return (x(currentdata.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+          .attr("transform", d => { return "rotate(" + ((x(currentdata.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (outerRadius / 1.5 + 10) + ",0)"; })
+
+        currentLabel = currentdata.frequency + " tweets";
+        d3.select("#frequency2").text(currentLabel)
+          .attr("transform", d => { return (x(currentdata.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" + "translate(-88,-50)" : "rotate(0)"; });
+      })
+
+      bars2.on("mouseout", function () {
+        let current = d3.select(this);
+
+        current.transition().duration(200)
+          .attr("fill", "green");
+
+        currentdata = current.datum();
+        d3.select("#labelBox2").attr("visibility", "hidden");
+        d3.select("#frequency2").text("");
+      })
+
 
       radialChart.append("g")
         .selectAll("g")
