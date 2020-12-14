@@ -161,11 +161,16 @@
   </div>
   <div class="section">
     <h2 id="title2">What was on Donald Trump's Mind?</h2>
-    <p>Enter analysis here on the above and below graphs. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum."</p>
+    <p>We have created a visualization based on Donald Trump’s tweets. We recognize that this dataset is frequently
+      analyzed by Donald Trump dissenters, and one of the main focuses of our design is to provide some new insight into
+      the matter. As a result, the unifying theme on which we have decided is Donald Trump pre-presidency vs. during
+      presidency. We explore this topic by looking at a variety of variables.
+      First, we have included a bubble chart of the most popular words of all time that Donald Trump has tweeted. Hover
+      over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The
+      words included in this chart are the words that he said more than 500 times over all time. The radius reflects the
+      frequency of his use of each word. The five most frequent words Trump says are: Great, Trump, Thank, President,
+      Obama.
+    </p>
   </div>
   <div id="line-chart-div">
     <svg id="line-chart"></svg>
@@ -705,29 +710,57 @@
         .selectAll("path")
         .data(data.series)
         .join("path")
-        // .style("mix-blend-mode", "multiply")
+        .style("mix-blend-mode", "multiply")
         .attr("d", d => line(d.values));
-
-
-
-
-
-
 
       //adding hover function to viz
       svg.call(hover, path);
 
-      function hover(svg, path) {
+      function hover(linechart, path) {
+        path
+          .on("mousemove", moved)
+          .on("mouseover", entered)
+          .on("mouseout", left);
+
+        const dot = linechart.append("g")
+          .attr("display", "none");
+
+        dot.append("circle")
+          .attr("r", 2.5);
+
+        dot.append("text")
+          .attr("font-family", "sans-serif")
+          .attr("font-size", 10)
+          .attr("text-anchor", "middle")
+          .attr("y", -8);
 
         function moved(event) {
-          event.preventDefault();
-          const pointer = d3.pointer(event, this);
-          const xm = x.invert(pointer[0]);
-          const ym = y.invert(pointer[1]);
-          const i = d3.bisectCenter(data.dates, xm);
-          const s = d3.least(data.series, d => Math.abs(d.values[i] - ym));
+          // event.preventDefault();
+          // const pointer = d3.pointer(event, this);
+          const pointer = d3.mouse(this);
+          // const xm = x.invert(pointer[0]);
+          // const ym = y.invert(pointer[1]);
+          var coordinates = d3.mouse(this);
+          var xm = scaleX.invert(coordinates[0]);
+          var ym = scaleY.invert(coordinates[1]);
+          // const i = d3.bisect(data.dates, xm);
+          //find closest date from mouse
+          let i = null;
+          data.dates.forEach((d, idx) => {
+            e = new Date(d)
+            if (e.getMonth() == xm.getMonth() && e.getYear() == xm.getYear()) {
+              i = idx;
+            }
+          })
+          console.log(i)
+          //TO DO: understand what this is calling for
+          // find closest line from mouse
+          const s = d3.min(data.series, d => Math.abs(d.values[i] - ym));
+          console.log(s)
+
+
           path.attr("stroke", d => d === s ? null : "#ddd").filter(d => d === s).raise();
-          dot.attr("transform", `translate(${x(data.dates[i])},${y(s.values[i])})`);
+          dot.attr("transform", `translate(${scaleX(data.dates[i])},${scaleY(s.values[i])})`);
           dot.select("text").text(s.name);
         }
 
@@ -742,8 +775,68 @@
         }
       }
     }
-    load_line_graph();
+    // load_line_graph();
 
+    // const make_jennifers_data = async () => {
+    //   const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
+
+    //   let beforePrez = [];
+    //   let afterPrez = [];
+
+    //   rawData.forEach((d,i) => {
+    //     date = new Date(d.created_at)
+    //       if (date.getYear()+1900 <= 2016) {
+    //         beforePrez.push(d)
+    //       }
+    //       // console.log(date.getYear())
+    //       if (date.getYear()+1900 > 2016) {
+    //         afterPrez.push(d)
+    //       }
+    //   })
+
+    //   console.log(afterPrez)
+
+
+    //   var hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+
+    //   data = [];
+
+    //   hours.forEach((d, i) => {
+    //     counter = 0;
+    //     word_occurr = new Map();
+    //     afterPrez.forEach((e, j) => {
+    //       date = new Date(e.created_at)
+    //       if (date.getHours() == d) {
+    //         counter += 1;
+    //         e.token_meaningful.forEach((word) => {
+    //           if (word != "realdonaldtrump") {
+    //           if (word_occurr.has(word)) // if already exists then update count. 
+    //             word_occurr.set(word, word_occurr.get(word) + 1);
+    //           else
+    //             word_occurr.set(word, 1)
+    //         }})
+    //       }
+    //     })
+    //     word_occurr[Symbol.iterator] = function* () {
+    //       yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+    //     }
+    //     ordered_words = [];
+    //     for (let [key, value] of word_occurr) {
+    //       //shortening list to words occurring 500+ times
+    //         ordered_words.push({ "name": key, "value": value })
+    //     }
+    //     data.push({
+    //       hour: d,
+    //       frequency: counter,
+    //       topics: ordered_words.slice(0,10)
+    //     })
+    //   })
+
+    //   console.log(JSON.stringify(data))
+    // }
+
+
+    // make_jennifers_data();
 
   </script>
 </body>
