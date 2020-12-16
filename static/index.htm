@@ -10,7 +10,7 @@
   <style>
     body {
       background-color: #15202B;
-      margin: 50px 0px 100px 0px;
+      margin: 30px 0px 100px 0px;
     }
 
     h1,
@@ -25,30 +25,30 @@
     }
 
     #header {
-      height: 500px;
+      height: 400px;
       margin: 0px 100px 0px 100px;
     }
 
     #trump_talking {
       width: 400px;
       position: absolute;
-      left: 50px;
+      left: 0px;
       top: 120px;
       z-index: -1;
     }
 
     #bubble-chart {
       position: absolute;
-      left: 400;
-      top: 10;
+      left: 350;
+      top: -10;
     }
 
     #speech-bub {
       position: absolute;
-      width: 950;
-      height: 520;
-      left: 390;
-      top: 20;
+      width: 1060;
+      height: 430;
+      left: 330;
+      top: 40;
       z-index: -1;
       opacity: .9;
     }
@@ -86,19 +86,20 @@
       /* margin: 100px; */
       display: flex;
       justify-content: center;
-      height: 300px;
+      min-height: 300px;
+      height: auto;
 
     }
 
     .tweet-example {
       width: 40%;
-      max-width: 400px;
+      /* max-width: 400px;
       border: 1px #37444C;
       border-radius: 5px;
-      border-style: solid;
-      padding: 20px 30px 20px 30px;
+      border-style: solid; */
+      padding: 20px 0px 20px 0px;
       margin: 10px;
-      background-color: #1B2732;
+      /* background-color: #1B2732; */
     }
 
     #analysis2-div {
@@ -338,7 +339,7 @@
       // console.log(csv)
 
       const rawData = await d3.csv('processed_tweets/bubble/Bubble_Chart_Data.csv');
-      const width = 1050;
+      const width = 1100;
       const height = 550;
 
       //creating the bubble chart
@@ -353,7 +354,7 @@
       let nodes = [];
 
       function charge(d) {
-        return Math.pow(d.radius, 2.0) * 0.04
+        return Math.pow(d.radius, 2.0) * 0.03
       }
 
       var simulation = d3.forceSimulation(nodes)
@@ -363,7 +364,7 @@
         .force('collision', d3.forceCollide().radius(function (d) {
           return d.radius
         }))
-        .force('y', d3.forceY().strength(.03).y(function (d) {
+        .force('y', d3.forceY().strength(.08).y(function (d) {
           return 0;
         }))
 
@@ -451,9 +452,6 @@
 
           let singleData = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
-          console.log(hoverData)
-          console.log(singleData)
-
           beforeTweet = singleData[0].tweet_before.id_str;
           afterTweet = singleData[0].tweet_after.id_str;
 
@@ -471,7 +469,10 @@
             beforeTweet,
             document.getElementById('tweet-text-before'),
             {
-              theme: 'dark'
+              theme: 'dark',
+              // width: '550px',
+              cards: 'hidden',
+              conversation: 'none'
             }
           );
 
@@ -479,7 +480,10 @@
             afterTweet,
             document.getElementById('tweet-text-after'),
             {
-              theme: 'dark'
+              theme: 'dark',
+              // width: '550px',
+              cards: 'hidden',
+              conversation: 'none'
             }
           );
 
@@ -529,7 +533,6 @@
 
       const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
 
-      console.log(rawData)
       rawData.forEach((d, i) => {
         date = new Date(d.created_at)
         if (date >= maxDate1) {
@@ -550,8 +553,8 @@
         }
       })
       // arrays of each
-      console.log(great.length, trump.length, thank.length, president.length, obama.length)
-      console.log(minDate1, maxDate1)
+      // console.log(great.length, trump.length, thank.length, president.length, obama.length)
+      // console.log(minDate1, maxDate1)
       // min = Mon May 04 2009 14:54:25 GMT-0400 (Eastern Daylight Time) 
       // max = Mon Dec 31 2018 18:53:06 GMT-0500 (Eastern Standard Time)
       // now count by month
@@ -560,8 +563,6 @@
       for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
         months.push(new Date(d));
       }
-
-      console.log(months)
 
       let great_data = [];
       let trump_data = [];
@@ -592,7 +593,7 @@
           // likes: like_counter
         )
       })
-      console.log(JSON.stringify(president_data))
+      // console.log(JSON.stringify(president_data))
 
 
 
@@ -761,13 +762,12 @@
       const path = linechart.append("g")
         .attr("fill", "none")
         .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 1.5)
+        .attr("stroke-width", 4)
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .selectAll("path")
         .data(data.series)
         .join("path")
-        .style("mix-blend-mode", "multiply")
         .attr("d", d => line(d.values));
 
       //adding hover function to viz
@@ -783,25 +783,22 @@
           .attr("display", "none");
 
         dot.append("circle")
-          .attr("r", 2.5);
+          .attr("r", 4)
+          .attr("fill", "white")
 
         dot.append("text")
           .attr("font-family", "sans-serif")
-          .attr("font-size", 10)
+          .attr("font-size", 20)
+          .attr("fill", "white")
           .attr("text-anchor", "middle")
-          .attr("y", -8);
+          .attr("y", -12);
 
         function moved(event) {
-          // event.preventDefault();
-          // const pointer = d3.pointer(event, this);
-          const pointer = d3.mouse(this);
-          // const xm = x.invert(pointer[0]);
-          // const ym = y.invert(pointer[1]);
+
           var coordinates = d3.mouse(this);
           var xm = scaleX.invert(coordinates[0]);
           var ym = scaleY.invert(coordinates[1]);
-          // const i = d3.bisect(data.dates, xm);
-          //find closest date from mouse
+
           let i = null;
           data.dates.forEach((d, idx) => {
             e = new Date(d)
@@ -809,25 +806,31 @@
               i = idx;
             }
           })
-          console.log(i)
-          //TO DO: understand what this is calling for
-          // find closest line from mouse
-          const s = d3.min(data.series, d => Math.abs(d.values[i] - ym));
-          console.log(s)
+
+          let s = null;
+          let distance = Infinity;
+          data.series.forEach((d) => {
+            if (Math.abs(d.values[i] - ym) < distance) {
+              distance = Math.abs(d.values[i] - ym)
+              s = d;
+            }
+          })
+
+          path.attr("stroke", d => d === s ? null : "#212E39").filter(d => d === s).raise();
+
+          dot.attr("transform", `translate(${margin.left+scaleX(new Date(data.dates[i]))},${margin.top+scaleY(s.values[i])})`);
 
 
-          path.attr("stroke", d => d === s ? null : "#ddd").filter(d => d === s).raise();
-          dot.attr("transform", `translate(${scaleX(data.dates[i])},${scaleY(s.values[i])})`);
-          dot.select("text").text(s.name);
+          dot.select("text").text(s.name.charAt(0).toUpperCase() + s.name.slice(1)+ ", " + s.values[i] + " times");
         }
 
         function entered() {
-          path.style("mix-blend-mode", null).attr("stroke", "#ddd");
+        //   path.style("mix-blend-mode", null).attr("stroke", "#ddd");
           dot.attr("display", null);
         }
 
         function left() {
-          path.style("mix-blend-mode", "multiply").attr("stroke", null);
+          path.attr("stroke", "#1DA1F2");
           dot.attr("display", "none");
         }
       }
