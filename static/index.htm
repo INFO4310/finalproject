@@ -115,7 +115,8 @@
       z-index: -1;
     }
 
-    #line-chart-div, #radial-chart-div {
+    #line-chart-div,
+    #radial-chart-div {
       text-align: center;
     }
 
@@ -132,13 +133,13 @@
       font-size: 30px;
     }
 
-    h3{
+    h3 {
       text-align: left;
     }
-    span{
+
+    span {
       margin-left: 24.5%;
     }
-
   </style>
 </head>
 
@@ -203,6 +204,27 @@
     <svg id="radial" width="700" height="800"></svg>
     <svg id="radial2" width="700" height="800"></svg>
   </div>
+  <script>
+
+    window.twttr = (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function (f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+
+
+  </script>
   <script>
     // preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
     // https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
@@ -428,20 +450,33 @@
 
           let data = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
+          console.log(data)
+          
           beforeTweet = data[0].tweet_before;
           afterTweet = data[0].tweet_after;
 
+          id = String(beforeTweet.id_str)
 
+          console.log(id)
           // console.log(beforeTweet)
-          d3.select("#tweet-text-before")
-            .text(beforeTweet.text)
-          d3.select("#likes-before")
-            .text(beforeTweet.favorite_count)
-          d3.select("#tweet-text-after")
-            .text(afterTweet.text)
-          d3.select("#likes-after")
-            .text(afterTweet.favorite_count)
+          // d3.select("#tweet-text-before")
+          //   .text(beforeTweet.text)
+          // d3.select("#likes-before")
+          //   .text(beforeTweet.favorite_count)
+          // d3.select("#tweet-text-after")
+          //   .text(afterTweet.text)
+          // d3.select("#likes-after")
+          //   .text(afterTweet.favorite_count)
 
+          twttr.widgets.createTweet(
+            '792456539151806464',
+            document.getElementById('tweet-text-before'),
+            {
+              theme: 'dark'
+            }
+          );
+
+          
 
         }, (error) => {
           console.log(error);
@@ -852,8 +887,8 @@
 
 
     // make_jennifers_data();
-    const radialsvg=d3.select("#radial");
-    const radialsvg2=d3.select("#radial2");
+    const radialsvg = d3.select("#radial");
+    const radialsvg2 = d3.select("#radial2");
 
     const width = radialsvg.attr("width");
     const height = radialsvg.attr("height");
@@ -862,7 +897,7 @@
       .attr("transform", "translate(" + 400 + "," + 300 + ")");
     const radialChart2 = radialsvg2.append("g")
       .attr("transform", "translate(" + 300 + "," + 300 + ")");
-    
+
 
     const drawRadial = async () => {
 
@@ -872,12 +907,12 @@
       let counts = [];
       let counts2 = [];
       let hours = [];
-        
-      tweets.forEach(d=>{
+
+      tweets.forEach(d => {
         counts.push(d["frequency"]);
       })
 
-      tweets2.forEach(d=>{
+      tweets2.forEach(d => {
         counts2.push(d["frequency"]);
       })
 
@@ -891,12 +926,12 @@
       var x = d3.scaleBand()
         .range([0, 2 * Math.PI])
         .align(0)
-        .domain(tweets.map(d => { return d.hour;})); //list of hours
+        .domain(tweets.map(d => { return d.hour; })); //list of hours
 
       var y = d3.scaleRadial()
         .range([innerRadius, outerRadius])
         .domain(dataExtent);
-      
+
       var z = d3.scaleRadial()
         .range([innerRadius, outerRadius])
         .domain(dataExtent2);
@@ -911,10 +946,10 @@
           .innerRadius(innerRadius)
           .outerRadius(d => { return y(d.frequency); })
           .startAngle(d => { return x(d.hour); })
-          .endAngle(d => {return x(d.hour) + x.bandwidth();})
+          .endAngle(d => { return x(d.hour) + x.bandwidth(); })
           .padAngle(0.05)
           .padRadius(innerRadius))
-        
+
       //bar labels
       let labelWidth = 90;
       let labelHeight = 50;
@@ -1038,20 +1073,21 @@
         .data(tweets)
         .enter()
         .append("g")
-        .attr("text-anchor", d=> { return (x(d.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
-        .attr("transform", d=>{ 
-          if(d.time == "12AM" || d.time == "12PM"){
-            return "rotate(" + ((x(d.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius-60) + ",0)"; 
-          }else {
-            return "rotate(" + ((x(d.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius-30) + ",0)"; }
-          })
+        .attr("text-anchor", d => { return (x(d.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+        .attr("transform", d => {
+          if (d.time == "12AM" || d.time == "12PM") {
+            return "rotate(" + ((x(d.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius - 60) + ",0)";
+          } else {
+            return "rotate(" + ((x(d.hour) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius - 30) + ",0)";
+          }
+        })
         .append("text")
-        .text(d=> { return (d.time) })
-        .attr("transform", d=> { return (x(d.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+        .text(d => { return (d.time) })
+        .attr("transform", d => { return (x(d.hour) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
         .style("font-size", "20px")
         .style("fill", "white")
         .attr("alignment-baseline", "middle");
-      
+
       radialChart2.append("g")
         .selectAll("g")
         .data(tweets2)
@@ -1071,8 +1107,8 @@
         .style("font-size", "20px")
         .style("fill", "white")
         .attr("alignment-baseline", "middle");
-        }
-      drawRadial();
+    }
+    drawRadial();
 
   </script>
 </body>
