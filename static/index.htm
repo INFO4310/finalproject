@@ -337,7 +337,7 @@
       // csv = csv.join('\r\n');
       // console.log(csv)
 
-      const rawData = await d3.csv('processed_tweets/Bubble_Chart_Data.csv');
+      const rawData = await d3.csv('processed_tweets/bubble/Bubble_Chart_Data.csv');
       const width = 1050;
       const height = 550;
 
@@ -444,20 +444,18 @@
 
 
       function bubbleMouseover() {
-        let hoverData = d3.json('processed_tweets/Bubble_Chart_Hover_Data.json').then((hoverData) => {
+        let hoverData = d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data_Old.json').then((hoverData) => {
           bubble = d3.select(this)
 
-          console.log(bubble.attr("name"))
           bubble.attr("stroke-width", 5).attr("stroke", "#1DA1F2")
 
-          let data = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
+          let singleData = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
-          console.log(data)
+          console.log(hoverData)
+          console.log(singleData)
 
-          beforeTweet = data[0].tweet_before.id_str;
-          afterTweet = data[0].tweet_after.id_str;
-
-          console.log(beforeTweet)
+          beforeTweet = singleData[0].tweet_before.id_str;
+          afterTweet = singleData[0].tweet_after.id_str;
 
           d3.select("#tweet-text-before")
             .text("")
@@ -470,7 +468,7 @@
 
           //i changed all the id numbers, idk why the browser is still loading the old numbers :(
           twttr.widgets.createTweet(
-            '792456539151806464',
+            beforeTweet,
             document.getElementById('tweet-text-before'),
             {
               theme: 'dark'
@@ -478,7 +476,7 @@
           );
 
           twttr.widgets.createTweet(
-            '792456539151806464',
+            afterTweet,
             document.getElementById('tweet-text-after'),
             {
               theme: 'dark'
@@ -836,7 +834,7 @@
     }
     load_line_graph();
 
-    // const make_jennifers_data = async () => {
+    const make_jennifers_data = async () => {
     //   const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
 
     //   let beforePrez = [];
@@ -894,8 +892,18 @@
     //   console.log(JSON.stringify(data))
     // }
 
+      ///const data = await d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data_Old.json')
 
-    // make_jennifers_data();
+      // data.forEach((d,i)=>{
+      //   d.tweet_before.id_str = String(d.tweet_before.id_str)
+      //   d.tweet_after.id_str = String(d.tweet_after.id_str)
+      // })
+      // console.log(data)
+      // console.log(JSON.stringify(data))
+    }
+    make_jennifers_data();
+
+
     const radialsvg = d3.select("#radial");
     const radialsvg2 = d3.select("#radial2");
 
