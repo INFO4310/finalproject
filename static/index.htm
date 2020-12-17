@@ -7,54 +7,7 @@
   <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
 
   <style>
-    body {
-      background-color: #15202B;
-      margin: 30px 0px 100px 0px;
-    }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      color: white;
-      font-family: arial;
-    }
-
-    #header {
-      height: 400px;
-      margin: 0px 100px 0px 100px;
-    }
-
-    #trump_talking {
-      width: 400px;
-      position: absolute;
-      left: 0px;
-      top: 120px;
-      z-index: -1;
-    }
-
-    #bubble-chart {
-      position: absolute;
-      left: 350;
-      top: -10;
-    }
-
-    #speech-bub {
-      position: absolute;
-      width: 1060;
-      height: 430;
-      left: 330;
-      top: 40;
-      z-index: -1;
-      opacity: .4;
-    }
-
-    #title2 {
-      text-align: center;
-    }
 
     .section {
       background-color: #212E39;
@@ -127,18 +80,6 @@
       cursor: pointer;
     }
 
-    #top-header {
-      color: #1DA1F2;
-      margin: 0px;
-      padding: 0px;
-      font-size: 50px;
-    }
-
-    #bottom-header {
-      margin: 0px;
-      padding: 0px;
-      font-size: 30px;
-    }
 
     h3 {
       text-align: left;
@@ -147,7 +88,7 @@
     span {
       margin-left: 24.5%;
     }
-
+/* (['#D6EFFF', "#A6DBFC","#75C6F8","#1DA1F2"]) */
     /* styling two range slider */
     #input-slider {
 	margin: 0;
@@ -178,7 +119,7 @@
 	top: 0;
 	bottom: 0;
 	border-radius: 5px;
-	background-color: #c6aee7;
+	background-color: #D6EFFF;
 }
 .slider > .range {
 	position: absolute;
@@ -188,16 +129,16 @@
 	top: 0;
 	bottom: 0;
 	border-radius: 5px;
-	background-color: #6200ee;
+	background-color: #1DA1F2;
 }
 .slider > .thumb {
 	position: absolute;
 	z-index: 3;
 	width: 30px;
 	height: 30px;
-	background-color: #6200ee;
+	background-color: #1DA1F2;
 	border-radius: 50%;
-	box-shadow: 0 0 0 0 rgba(98,0,238,.1);
+	box-shadow: 0 0 0 0 rgba(29,161,242,.2);
 	transition: box-shadow .3s ease-in-out;
 }
 .slider > .thumb.left {
@@ -209,10 +150,10 @@
 	transform: translate(15px, -10px);
 }
 .slider > .thumb.hover {
-	box-shadow: 0 0 0 20px rgba(98,0,238,.1);
+	box-shadow: 0 0 0 20px rgba(29,161,242,.2);
 }
 .slider > .thumb.active {
-	box-shadow: 0 0 0 40px rgba(98,0,238,.2);
+	box-shadow: 0 0 0 40px rgba(29,161,242,.2);
 }
 
 input[type=range] {
@@ -238,6 +179,102 @@ input[type=range]::-webkit-slider-thumb {
   z-index: 1;
 }
 
+body {
+      background-color: #15202B;
+      margin: 50px 0px 100px 0px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: white;
+      font-family: arial;
+      margin: 0px 30px 0px 30px
+    }
+    p {
+      font-size: 20px;
+      line-height: 28px;
+      color: white;
+    }
+    h2 {
+      font-size: 30px;
+      line-height: 30px;
+      color: #D36228;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+
+#header {
+      margin: 0px 100px 0px 100px;
+}
+
+    #top-header {
+      color: #1DA1F2;
+      margin: 0px;
+      padding: 0px;
+      font-size: 50px;
+    }
+
+    #bottom-header {
+      margin: 0px;
+      padding: 0px;
+      font-size: 30px;
+    }
+
+#intro {
+  margin-top: 20px;
+  padding: 20px 200px 20px 200px;
+}
+
+#arrow {
+  width: 100px;
+  height: 100px;
+}
+#text-processing-example {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  align-items: center;
+}
+
+#text-processing-example p {
+  width: 400px;
+  margin: 20px;
+  background-color: #212E39;
+  padding: 20px;
+  border: 1px #37444C;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+  #trump_talking {
+      width: 500px;
+      position: absolute;
+      left: -50px;
+      top: 1000px;
+      z-index: -1;
+    }
+
+    #bubble-chart {
+      position: absolute;
+      left: 500;
+      top: 900px;
+    }
+
+    #speech-bub {
+      position: absolute;
+      width: 1060;
+      height: 430;
+      left: 330;
+      top: 40;
+      z-index: -1;
+      opacity: .4;
+    }
   </style>
 </head>
 
@@ -245,6 +282,36 @@ input[type=range]::-webkit-slider-thumb {
   <div id="header">
     <h1 id="top-header">Donald Trump's Tweets</h1>
     <h1 id="bottom-header">Before and During Presidency</h1>
+  </div>
+  <div id="intro">
+  <h2>What is on Donald Trump's Mind?</h2>
+    <p>Donald Trump is many things: a bussinessman, a television personality, an avid Twitter user, and the 45th President of the United States. 
+      Because of the complexity of his character, many have taken to Trump's Twitter account to gain insight to the intricate mechanisms of his mind.
+      And like many others, we too were curious to understand what it was like in the life of the 45th President of the United States.<p>
+
+      <p>For this article we have processed all 36,307 tweets Trump has posted from 2009 (3 years after Twitter was founded) to 2018. Keeping in mind,
+      that to reach this number of tweets, Trump had to have created about 11 tweets a day, everyday, for 9 years...that's a lot of thoughts!</p>
+
+      <p>So, we analyzed these tweets through three visualizations all detailing Trump's thought processes and activities during those 9 years.  
+      Because Trump's tweets have been analyzed extensively by many others, our team decided that we wanted 
+      to highlight specifically the types of topics Trump thought about before presidency and during presicency.</p>
+
+      <p> To do this, we took a dataset gathered via the Twitter API and processeded them using the <a href="https://www.nltk.org/">'NLTK' natural language processing tooklit.</a> This tool allowed our team to preprocess Trump's tweets and extract the core topics discussed per each tweet. Below you can see how we processed Trump's first-ever tweet.</p>
+    
+      <div id="text-processing-example">
+      <p>"Be sure to tune in and watch Donald Trump on Late Night with David Letterman as he presents the Top Ten List tonight!"</p>
+      <img src="right-arrow.png" alt="arrow" id="arrow">
+      <p>["sure", "tune", "watch", "donald", "trump", "late", "night", "david", "letterman", "presents", "top", "ten", "list", "tonight"]</p>
+      </div>
+  </div>
+    <div class="section">
+    <h2>Trumps Favorite Topics</h2>
+    <p>We have included a bubble chart of the most popular words of all time that Donald Trump has tweeted. Hover
+      over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The
+      words included in this chart are the words that he said more than 500 times over all time. The radius reflects the
+      frequency of his use of each word. The five most frequent words Trump says are: Great, Trump, Thank, President,
+      Obama.
+    </p>
   </div>
   <div>
     <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking" />
@@ -259,19 +326,7 @@ input[type=range]::-webkit-slider-thumb {
       </div>
     </div>
   </div>
-  <div class="section">
-    <h2 id="title2">What was on Donald Trump's Mind?</h2>
-    <p>We have created a visualization based on Donald Trump’s tweets. We recognize that this dataset is frequently
-      analyzed by Donald Trump dissenters, and one of the main focuses of our design is to provide some new insight into
-      the matter. As a result, the unifying theme on which we have decided is Donald Trump pre-presidency vs. during
-      presidency. We explore this topic by looking at a variety of variables.
-      First, we have included a bubble chart of the most popular words of all time that Donald Trump has tweeted. Hover
-      over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The
-      words included in this chart are the words that he said more than 500 times over all time. The radius reflects the
-      frequency of his use of each word. The five most frequent words Trump says are: Great, Trump, Thank, President,
-      Obama.
-    </p>
-  </div>
+  <!-- code taken from here: https://codepen.io/MinzCode/pen/MWKgyqb -->
   <div id="input-slider">
     <div class="middle">
 	<div class="multi-range-slider">
@@ -304,15 +359,18 @@ input[type=range]::-webkit-slider-thumb {
       attribute to true on dragstart, as in the sticky force layout example.
     </p>
   </div>
-  <h2 id="title2">Tweeting Around the Clock</h2>
+  <h2>Tweeting Around the Clock</h2>
   <div id="radial-chart-div">
     <h3><span>Pre-Presidency</span> <span>During Presidency</span></h3>
     <svg id="radial" width="700" height="800"></svg>
     <svg id="radial2" width="700" height="800"></svg>
   </div>
-  <script>
 
-  ////////////////////////////////////////SETTING UP TWITTER INTEGRATION///////////////////////
+
+  <script>
+  ////////////////////////////////////////////////////////SETTING UP TWITTER INTEGRATION//////////////////////////////////////////////////
+  //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function  
+    
     window.twttr = (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
@@ -330,139 +388,24 @@ input[type=range]::-webkit-slider-thumb {
       return t;
     }(document, "script", "twitter-wjs"));
 
-
-  </script>
-  <script>
-    // preprocessing data occurred in /processed_tweets/Preprocessing Tweets without Stemming.ipynb
-    // https://pythonhealthcare.org/2018/12/14/101-pre-processing-data-tokenization-stemming-and-removal-of-stop-words/
-    //   const get_data = async () => {
-    // //  using JavaScript to combine the json files
-    //   let tweets1 = await d3.json('raw_tweets_data/condensed_2018.json')
-    //   let tweets2 = await d3.json('raw_tweets_data/condensed_2017.json')
-    //   let tweets3 = await d3.json('raw_tweets_data/condensed_2016.json')
-    //   let tweets4 = await d3.json('raw_tweets_data/condensed_2015.json')
-    //   let tweets5 = await d3.json('raw_tweets_data/condensed_2014.json')
-    //   let tweets6 = await d3.json('raw_tweets_data/condensed_2013.json')
-    //   let tweets7 = await d3.json('raw_tweets_data/condensed_2012.json')
-    //   let tweets8 = await d3.json('raw_tweets_data/condensed_2011.json')
-    //   let tweets9 = await d3.json('raw_tweets_data/condensed_2010.json')
-    //   let tweets10 = await d3.json('raw_tweets_data/condensed_2009.json')
-
-    //   finalObj = tweets1.concat(tweets2).concat(tweets3).concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
-    //   beforePrez = tweets3.concat(tweets4).concat(tweets5).concat(tweets6).concat(tweets7).concat(tweets8).concat(tweets9).concat(tweets10);
-    //   duringPrez = tweets1.concat(tweets2)
-    //   // console.log(finalObj.length)
-    //   // console.log(JSON.stringify(finalObj))
-    //   console.log(JSON.stringify(beforePrez))
-    //   console.log(JSON.stringify(duringPrez))
-    //   }
-    //   get_data();
-
-    //drawing first graph
+////////////////////////////////////////////////////////CREATING BUBBLE CHART//////////////////////////////////////////////////
+// used https://bl.ocks.org/officeofjane/a70f4b44013d06b9c0a973f163d8ab7a as a reference
     const load_network_graph = async () => {
 
-
-      // producing Bubble Chart Hover Data
-
-      //   let tweets = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
-      //   let keyword = await d3.csv('processed_tweets/Bubble_Chart_Data.csv');
-      //   // console.log(tweets[1].token_meaningful)
-      //   // console.log("abv")
-      // let Bubble_Chart_Hover_Data = [];
-      // keyword.forEach((key) => {
-      //   let maxBefore = {};
-      //   let maxLikesBefore = 0;
-      //   let maxAfter = {};
-      //   let maxLikesAfter = 0;
-      //   tweets.forEach((d,i) => {
-      //     if (d.token_meaningful.includes(key['name'])) {
-      //       created_date = new Date(d.created_at)
-      //       presidency = new Date(("November 8, 2016 00:00:00"))
-      //       if (created_date <= presidency) {
-      //         if (d.favorite_count >= maxLikesBefore) {
-      //           maxLikesBefore = d.favorite_count
-      //           maxBefore = d
-      //         }
-      //       } else {
-      //         if (d.favorite_count >= maxLikesAfter) {
-      //           maxLikesAfter = d.favorite_count
-      //           maxAfter = d
-      //         }
-      //       }
-
-      //     }
-      //   })
-      //   Bubble_Chart_Hover_Data.push({
-      //     name: key['name'],
-      //     tweet_before: maxBefore,
-      //     tweet_after: maxAfter
-      //   })
-      //   // console.log("Before")
-      //   // console.log(JSON.stringify(maxBefore))
-      //   // console.log("After")
-      //   // console.log(JSON.stringify(maxAfter))
-      // })
-      // console.log(JSON.stringify(Bubble_Chart_Hover_Data))
-      //create a hashmap of all word occurrances, key = word, value = occurrances
-      // word_occurr = new Map();
-      // tweets.forEach((d) => {
-      //   d.token_meaningful.forEach((word) => {
-      //     if (word_occurr.has(word)) // if already exists then update count. 
-      //       word_occurr.set(word, word_occurr.get(word) + 1);
-      //     else
-      //       word_occurr.set(word, 1)
-      //   })
-      // })
-
-      // //ordering the hashmap based on value
-      // //https://stackoverflow.com/questions/37982476/how-to-sort-a-map-by-value-in-javascript
-      // word_occurr[Symbol.iterator] = function* () {
-      //   yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-      // }
-      // ordered_words = [];
-      // for (let [key, value] of word_occurr) {
-      //   //shortening list to words occurring 500+ times
-      //   if (value > 500) {
-      //     ordered_words.push({ "name": key, "value": value })
-      //   }
-      // }
-      // console.log(word_occurr)
-      // console.log(ordered_words)
-
-      //console.log(JSON.stringify(ordered_words))
-
-
-      // var json = ordered_words
-      // var fields = Object.keys(json[0])
-      // var replacer = function (key, value) { return value === null ? '' : value }
-      // var csv = json.map(function (row) {
-      //   return fields.map(function (fieldName) {
-      //     return JSON.stringify(row[fieldName], replacer)
-      //   }).join(',')
-      // })
-      // csv.unshift(fields.join(',')) // add header column
-      // csv = csv.join('\r\n');
-      // console.log(csv)
-
+      //define variables
       const rawData = await d3.csv('processed_tweets/bubble/Bubble_Chart_Data.csv');
       const width = 1100;
       const height = 550;
-
-      //creating the bubble chart
-      //https://bl.ocks.org/officeofjane/a70f4b44013d06b9c0a973f163d8ab7a
-
-
       const center = { "x": width / 2, 'y': height / 2 };
-
       let svg = null;
       let bubbles = null;
       let labels = null;
       let nodes = [];
 
+      //define forces
       function charge(d) {
         return Math.pow(d.radius, 2.0) * 0.03
       }
-
       var simulation = d3.forceSimulation(nodes)
         .force('charge', d3.forceManyBody().strength(charge))
         .force('center', d3.forceCenter(width / 2, height / 2))
@@ -473,23 +416,21 @@ input[type=range]::-webkit-slider-thumb {
         .force('y', d3.forceY().strength(.08).y(function (d) {
           return 0;
         }))
-
       simulation.stop();
 
+      //define color scale
       var fillColor = d3.scaleLinear()
-        // .domain([500, 1000, 2000, 5000])
-        // .range(['#C8C8C8', '#808080', "#606060", "#484848"])
         .domain([500, 1000, 2000, 5000])
         .range(['#D6EFFF', "#A6DBFC","#75C6F8","#1DA1F2"])
         .clamp(true)
         .interpolate(d3.interpolateHcl);
 
+      //create bubbles
       function createNodes() {
         const maxSize = d3.max(rawData, d => +d.value);
         const radiusScale = d3.scaleSqrt()
           .domain([0, maxSize])
           .range([0, 70])
-
         const myNodes = rawData.map(d => ({
           name: d.name,
           value: d.value,
@@ -503,6 +444,8 @@ input[type=range]::-webkit-slider-thumb {
       }
       createNodes();
 
+
+      //append circles and labels to svg
       let chart = function chart(rawData) {
         nodes = createNodes(rawData);
 
@@ -532,12 +475,11 @@ input[type=range]::-webkit-slider-thumb {
           .style('font-weight', 'bold')
           .text(d => d.name.charAt(0).toUpperCase() + d.name.slice(1))
 
-
+        //run animation
         simulation.nodes(nodes)
           .on('tick', ticked)
           .restart();
       }
-
       function ticked() {
         bubbles
           .attr('cx', d => d.x)
@@ -547,28 +489,28 @@ input[type=range]::-webkit-slider-thumb {
           .attr('x', d => d.x)
           .attr('y', d => d.y)
       }
-
       chart();
 
-
-
+      //hover functionality: show tweets of topic
       function bubbleMouseover() {
         let hoverData = d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data.json').then((hoverData) => {
           bubble = d3.select(this)
-
           bubble.attr("stroke-width", 4).attr("stroke", "#000")
-
           let singleData = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
+          //get before and after tweets containing topic
           beforeTweet = singleData[0].tweet_before.id_str;
           afterTweet = singleData[0].tweet_after.id_str;
 
+          //clear any existing tweets
           d3.select("#tweet-example-before")
             .text("")
             .text("")
           d3.select("#tweet-example-after")
             .text("")
 
+          //dyanmically load embedded tweet
+          //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
           twttr.widgets.createTweet(
             beforeTweet,
             document.getElementById('tweet-example-before'),
@@ -596,7 +538,6 @@ input[type=range]::-webkit-slider-thumb {
         });
       }
 
-
       function bubbleMouseout() {
         bubble = d3.select(this)
         bubble.attr("stroke", "none")
@@ -605,38 +546,49 @@ input[type=range]::-webkit-slider-thumb {
     }
     load_network_graph();
 
+
+////////////////////////////////////////////////////////CREATING LINE CHART/////////////////////////////////////////////////////
+// used this site to add xAxis manipulation: https://www.d3-graph-gallery.com/graph/line_change_data.html
+// used this site to add hover interactions: https://observablehq.com/@d3/multi-line-chart
     const load_line_graph = async () => {
-  //////////////////////////////////////////DRAW LINE CHART//////////////////////////////////////////
+
+      //define variables and chart
       const margin = { top: 50, right: 60, bottom: 50, left: 60 };
       const width = 1000
       const height = 500
-
-
       svg = d3.select('#line-chart')
-
       svg.attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-
       linechart = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
       const data = await d3.json('processed_tweets/timeline/timeline_data.json');
 
-      console.log(data)
+      //found this value while creating the dataset
       let maxOccurrences = 200;
 
+      //creating initial date range for xAxis using the first and last items in my data.dates array
       let minDate = new Date(data.dates[0])
       let maxDate = new Date(data.dates[115]);
 
-      //adding axis and labels
+      //initialize Xaxis
       var scaleX = d3.scaleTime().range([-margin.left, width+margin.right-1]);
       var xAxis = d3.axisBottom(scaleX)
       svg.append("g")
         .attr("class", "line-graph-axis")
         .attr("id","x-axis")
         .attr("transform", "translate(" + margin.left + "," + height + ")")
-        // .call(d3.axisBottom(scaleX))
+      svg.append("text")
+        .attr("transform",
+          "translate(" + ((width / 2) + margin.left) + " ," +
+          (height + margin.top + 10) + ")")
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .text("Date");
 
+      //adding Yaxis to seperate svg
+      //this was done to mitigate some styling issues resulting from timeline expansion
       yAxisSvg = d3.selectAll('#line-chart-yaxis')
         .attr("width", 100)
       var scaleY = d3.scaleLinear()
@@ -646,8 +598,6 @@ input[type=range]::-webkit-slider-thumb {
         .attr("class", "line-graph-axis")
         .attr("transform", "translate(" + 99 + "," + margin.top + ")")
         .call(d3.axisLeft(scaleY));
-
-      ///adding axis labels
       yAxisSvg.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 30)
@@ -657,15 +607,7 @@ input[type=range]::-webkit-slider-thumb {
         .style("fill", "white")
         .text("Number of Occurrences");
 
-      svg.append("text")
-        .attr("transform",
-          "translate(" + ((width / 2) + margin.left) + " ," +
-          (height + margin.top + 10) + ")")
-        .style("text-anchor", "middle")
-        .style("fill", "white")
-        .text("Date");
-
-      //////////////////////////////////////////////// ADDING TIMELINE ANNOTATIONS/////////////////////////////////////////
+      
       //add line to indicate presidency
       // svg.append("line")
       //     // .attr("class", "zero")
@@ -678,19 +620,23 @@ input[type=range]::-webkit-slider-thumb {
       //     .attr("y2", height)
 
     
-    ///////////////////////////////////UPDATE LINE CHART BASED ON RANGE///////////////
+   ///////////////////////////////////////////////START: UPDATE TIMELINE BASED ON SLIDER/////////////////////////////////////////////////////
     function update_chart(minIndex, maxIndex) {
+
+      //get input values
       minIndex = document.getElementById("input-left").value;
       maxIndex = document.getElementById("input-right").value;
 
+      //create scale based on input values
       scaleX.domain([new Date(data.dates[minIndex]), new Date(data.dates[maxIndex])])
       
+      //draw x axis
       d3.selectAll("#x-axis").transition()
         .duration(500)
         .call(xAxis)
 
 
-      ////////////////////draw graph
+      //draw graph given defined xAxis
       line = d3.line()
         .defined(d => !isNaN(d))
         .x((d, i) => scaleX(new Date(data.dates[i])))
@@ -710,22 +656,25 @@ input[type=range]::-webkit-slider-thumb {
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
 
-      //adding hover function to viz
+      //adding hover function to viz here
      svg.call(hover, path);
 
-      function hover(linechart, path) {
+    ////////////////////////////////////START: HOVER TIMELINE INTERACTION ///////////////////////////
+    //https://observablehq.com/@d3/multi-line-chart
+    function hover(linechart, path) {
+
+      //add interaction functions to path
         path
           .on("mousemove", moved)
           .on("mouseover", entered)
           .on("mouseout", left);
 
+      //initialize position dot
         const dot = linechart.append("g")
           .attr("display", "none");
-
         dot.append("circle")
           .attr("r", 4)
           .attr("fill", "white")
-
         dot.append("text")
           .attr("font-family", "sans-serif")
           .attr("font-size", 20)
@@ -733,12 +682,15 @@ input[type=range]::-webkit-slider-thumb {
           .attr("text-anchor", "middle")
           .attr("y", -12);
 
+        //function if moving mouse on a path
         function moved(event) {
 
+          //get mouse position
           var coordinates = d3.mouse(this);
           var xm = scaleX.invert(coordinates[0]);
           var ym = scaleY.invert(coordinates[1]);
 
+          //find nearest month to mouse
           let i = null;
           data.dates.forEach((d, idx) => {
             e = new Date(d)
@@ -747,6 +699,7 @@ input[type=range]::-webkit-slider-thumb {
             }
           })
 
+          //get nearest line given month
           let s = null;
           let distance = Infinity;
           data.series.forEach((d) => {
@@ -756,8 +709,10 @@ input[type=range]::-webkit-slider-thumb {
             }
           })
 
+          //given nearest line, color paths accordingly, highlight and lowlight
           path.attr("stroke", d => d !== s ? "#212E39" : "#1DA1F2").filter(d => d === s).raise();
 
+          //add dot to location and label
           dot.attr("transform", `translate(${margin.left+scaleX(new Date(data.dates[i]))},${margin.top+scaleY(s.values[i])})`);
           dot.select("text").text(s.name.charAt(0).toUpperCase() + s.name.slice(1)+ ", " + s.values[i] + " times");
         }
@@ -771,11 +726,17 @@ input[type=range]::-webkit-slider-thumb {
           dot.attr("display", "none");
         }
       }
-
+      ////////////////////////////////////END: HOVER TIMELINE INTERACTION ///////////////////////////
     }
 
+
+    //call the first chart with entire xaxis values
     update_chart(0, 115)
 
+///////////////////////////////////////////////END: UPDATE TIMELINE BASED ON SLIDER/////////////////////////////////////////////////////
+
+///////////////////////////////////////////////HANDLE DOUBLE ENDED SLIDER/////////////////////////////////////////////////////
+//code taken from here: https://codepen.io/MinzCode/pen/MWKgyqb
     var minIndex
     var maxIndex
     var inputLeft = document.getElementById("input-left");
@@ -796,7 +757,6 @@ function setLeftValue() {
 
 	thumbLeft.style.left = percent + "%";
 	range.style.left = percent + "%";
-  // console.log(minIndex, maxIndex)
 }
 setLeftValue();
 
@@ -812,14 +772,13 @@ function setRightValue() {
 
 	thumbRight.style.right = (100 - percent) + "%";
 	range.style.right = (100 - percent) + "%";
-  // console.log(minIndex, maxIndex)
 }
 setRightValue();
 
-//every time the element is altered, redraw line chart
 inputLeft.addEventListener("input", setLeftValue);
 inputRight.addEventListener("input", setRightValue);
 
+//every time the element is altered, redraw line chart
 inputRight.addEventListener("input", update_chart);
 inputLeft.addEventListener("input", update_chart);
 
@@ -851,10 +810,10 @@ inputRight.addEventListener("mouseup", function() {
 }
     load_line_graph();
 
-    //////////////////////////////CODE TO GET INPUT VALUES FOR TWO INPUT SLIDER//////////////////////
     
 
-
+///////////////////////////////////////////////////////CREATING RADIAL CHART/////////////////////////////////////////////////////
+//TO DO: cite resources
     const drawRadial = async () => {
 
     const radialsvg = d3.select("#radial");
