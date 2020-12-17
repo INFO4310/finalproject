@@ -6,6 +6,11 @@
   <script src="https://unpkg.com/d3-sankey@0"></script>
   <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
 
+  <!-- adding in double handle slider -->
+  <!-- https://codepen.io/Pierre_Hamel/pen/ocJEH -->
+  <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
+  <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
+	<script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script>
 
   <style>
     body {
@@ -83,7 +88,6 @@
 
     .tweet-examples {
       width: 100%;
-      /* margin: 100px; */
       display: flex;
       justify-content: center;
       min-height: 300px;
@@ -93,14 +97,14 @@
 
     .tweet-example {
       width: 40%;
-      /* max-width: 400px;
-      border: 1px #37444C;
-      border-radius: 5px;
-      border-style: solid; */
-      padding: 20px 0px 20px 0px;
+      text-align: center;
       margin: 10px;
-      /* background-color: #1B2732; */
     }
+
+    #tweet-text-before #tweet-text-after {
+      text-align: center;
+    }
+
 
     #analysis2-div {
       text-align: left;
@@ -141,6 +145,27 @@
     span {
       margin-left: 24.5%;
     }
+
+    /* styling slider */
+    /* https://codepen.io/Pierre_Hamel/pen/ocJEH */
+    form  {
+    margin: 60px 0 0 0 !important;
+  }
+ 
+    .ui-slider .ui-btn-inner {
+    padding: 4px 0 0 0 !important;
+  }
+ 
+.ui-slider-popup {
+    position: absolute !important;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    font-size: 36px;
+    padding-top: 14px;
+    z-index: 100;
+    opacity: 0.8;
+}
   </style>
 </head>
 
@@ -157,16 +182,8 @@
   <div id="tweet-contain">
     <div class="tweet-examples">
       <div id="tweet-example-before" class="tweet-example">
-        <h3 id="tweet-text-before"></h3>
-        <div class="likes-comments">
-          <p id="likes-before"></p>
-        </div>
       </div>
       <div id="tweet-example-after" class="tweet-example">
-        <h3 id="tweet-text-after"></h3>
-        <div class="likes-comments">
-          <p id="likes-after"></p>
-        </div>
       </div>
     </div>
   </div>
@@ -184,6 +201,14 @@
     </p>
   </div>
   <div id="line-chart-div">
+  <form>
+    <div data-role="rangeslider">
+        <label for="range-1a">Rangeslider:</label>
+        <input type="range" name="range-1a" id="range-1a" min="0" max="100" value="40" data-popup-enabled="true" data-show-value="true">
+        <label for="range-1b">Rangeslider:</label>
+        <input type="range" name="range-1b" id="range-1b" min="0" max="100" value="80" data-popup-enabled="true" data-show-value="true">
+    </div>
+</form>
     <svg id="line-chart"></svg>
   </div>
   <div class="section">
@@ -445,7 +470,7 @@
 
 
       function bubbleMouseover() {
-        let hoverData = d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data_Old.json').then((hoverData) => {
+        let hoverData = d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data.json').then((hoverData) => {
           bubble = d3.select(this)
 
           bubble.attr("stroke-width", 5).attr("stroke", "#1DA1F2")
@@ -455,22 +480,19 @@
           beforeTweet = singleData[0].tweet_before.id_str;
           afterTweet = singleData[0].tweet_after.id_str;
 
-          d3.select("#tweet-text-before")
+          d3.select("#tweet-example-before")
             .text("")
-          d3.select("#likes-before")
             .text("")
-          d3.select("#tweet-text-after")
-            .text("")
-          d3.select("#likes-after")
+          d3.select("#tweet-example-after")
             .text("")
 
           //i changed all the id numbers, idk why the browser is still loading the old numbers :(
           twttr.widgets.createTweet(
             beforeTweet,
-            document.getElementById('tweet-text-before'),
+            document.getElementById('tweet-example-before'),
             {
               theme: 'dark',
-              // width: '550px',
+              align: 'center',
               cards: 'hidden',
               conversation: 'none'
             }
@@ -478,10 +500,10 @@
 
           twttr.widgets.createTweet(
             afterTweet,
-            document.getElementById('tweet-text-after'),
+            document.getElementById('tweet-example-after'),
             {
               theme: 'dark',
-              // width: '550px',
+              align: 'center',
               cards: 'hidden',
               conversation: 'none'
             }
@@ -499,35 +521,18 @@
         bubble = d3.select(this)
         bubble.attr("stroke", "none")
 
-        // d3.select("#tweet-text-before")
-        //   .text("")
-        // d3.select("#likes-before")
-        //   .text("")
-        // d3.select("#tweet-text-after")
-        //   .text("")
-        // d3.select("#likes-after")
-        //   .text("")
       }
     }
     load_network_graph();
 
     const load_line_graph = async () => {
-      // console.log("linechart data")
-
-      // getting data for line charts
-      // top 5 words
-      // great",5052
-      // "trump",4917
-      // "thank",4392
-      // "president",2303
-      // "obama",2276
-
-
       let great = [];
       let trump = [];
       let thank = [];
       let president = [];
       let obama = [];
+      let people = [];
+      let country = [];
       let minDate1 = new Date(2025, 11, 17);
       let maxDate1 = new Date(1990, 11, 17);
 
@@ -542,22 +547,21 @@
         }
         if (d.token_meaningful.includes("great")) {
           great.push(d)
-        } else if (d.token_meaningful.includes("trump")) {
-          trump.push(d)
+        }else if (d.token_meaningful.includes("great")) {
+          great.push(d)
         } else if (d.token_meaningful.includes("thank")) {
           thank.push(d)
         } else if (d.token_meaningful.includes("president")) {
           president.push(d)
         } else if (d.token_meaningful.includes("obama")) {
           obama.push(d)
+        }  else if (d.token_meaningful.includes("people")) {
+          people.push(d)
+        } else if (d.token_meaningful.includes("country")) {
+          country.push(d)
         }
       })
-      // arrays of each
-      // console.log(great.length, trump.length, thank.length, president.length, obama.length)
-      // console.log(minDate1, maxDate1)
-      // min = Mon May 04 2009 14:54:25 GMT-0400 (Eastern Daylight Time) 
-      // max = Mon Dec 31 2018 18:53:06 GMT-0500 (Eastern Standard Time)
-      // now count by month
+
       var now = new Date(maxDate1);
       var months = [];
       for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
@@ -568,32 +572,26 @@
       let trump_data = [];
       let thank_data = [];
       let president_data = [];
-      let obama_data = []
+      let obama_data = [];
+      let people_data = [];
+      let country_data = [];
 
       //summing occurrences and likes per month per topic
 
       months.forEach((d, i) => {
-        let great_counter = 0;
-        let trump_counter = 0;
-        let than_counter = 0;
-        let president_counter = 0;
-        let obama_counter = 0
         let like_counter = 0;
         let word_counter = 0;
-        president.forEach((e, j) => {
+        country.forEach((e, j) => {
           date = new Date(e.created_at)
           if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
             word_counter += 1;
-            like_counter += e.favorite_count;
           }
         })
-        president_data.push(
-          // date: d,
+        people_data.push(
           word_counter
-          // likes: like_counter
         )
       })
-      // console.log(JSON.stringify(president_data))
+      console.log(JSON.stringify(people_data))
 
 
 
@@ -610,21 +608,8 @@
       linechart = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      const great_data_json = await d3.json('processed_tweets/timeline/great_timeline.json');
-      const trump_data_json = await d3.json('processed_tweets/timeline/trump_timeline.json');
-      const thank_data_json = await d3.json('processed_tweets/timeline/thank_timeline.json');
-      const president_data_json = await d3.json('processed_tweets/timeline/president_timeline.json');
-      const obama_data_json = await d3.json('processed_tweets/timeline/obama_timeline.json');
       const data = await d3.json('processed_tweets/timeline/timeline_data.json');
-      //Find the max value between all datasets
-      // maxValue = 0;
-      // trump_data_json.forEach((d)=> {
-      //   if (d.occurrences >= maxValue) {
-      //     maxValue = d.occurrences
-      //   }
-      // })
-      // console.log(maxValue)
-      //max occurrences is 200!
+
       let maxOccurrences = 200;
 
       let minDate = new Date(2009, 04, 4)
@@ -642,7 +627,7 @@
 
       var scaleY = d3.scaleLinear()
         .domain([0, maxOccurrences])
-        .range([height - margin.bottom, margin.top]);
+        .range([height-margin.bottom, 0]);
 
       svg.append("g")
         .attr("class", "line-graph-axis")
@@ -666,92 +651,17 @@
         .style("fill", "white")
         .text("Date");
 
-      //adding great
-      // linechart.append("path")
-      //   .datum(trump_data_json)
-      //   .attr("fill", "none")
-      //   .attr("stroke", "#1DA1F2")
-      //   .attr("stroke-width", 1.5)
-      //   .attr("d", d3.line()
-      //     .x(function (d) { return scaleX((new Date(d.date))) })
-      //     .y(function (d) { return scaleY(d.occurrences) })
-      //   )
-      //   .on("mouseover", function (d) {
-      //     d3.select(this).style("cursor", "pointer");
-      //   })
-      //   .on("mouseout", function (d) {
-      //     d3.select(this).style("cursor", "default");
-      //   });
-
-      // //adding thank
-      // linechart.append("path")
-      //   .datum(thank_data_json)
-      //   .attr("fill", "none")
-      //   .attr("stroke", "#1DA1F2")
-      //   .attr("stroke-width", 1.5)
-      //   .attr("d", d3.line()
-      //     .x(function (d) { return scaleX((new Date(d.date))) })
-      //     .y(function (d) { return scaleY(d.occurrences) })
-      //   )
-      //   .on("mouseover", function (d) {
-      //     d3.select(this).style("cursor", "pointer");
-      //   })
-      //   .on("mouseout", function (d) {
-      //     d3.select(this).style("cursor", "default");
-      //   });
-
-      // //adding trump
-      // linechart.append("path")
-      //   .datum(trump_data_json)
-      //   .attr("fill", "none")
-      //   .attr("stroke", "#1DA1F2")
-      //   .attr("stroke-width", 1.5)
-      //   .attr("d", d3.line()
-      //     .x(function (d) { return scaleX((new Date(d.date))) })
-      //     .y(function (d) { return scaleY(d.occurrences) })
-      //   )
-      //   .on("mouseover", function (d) {
-      //     d3.select(this).style("cursor", "pointer");
-      //   })
-      //   .on("mouseout", function (d) {
-      //     d3.select(this).style("cursor", "default");
-      //   });
-
-      // //adding president
-      // linechart.append("path")
-      //   .datum(president_data_json)
-      //   .attr("fill", "none")
-      //   .attr("stroke", "#1DA1F2")
-      //   .attr("stroke-width", 1.5)
-      //   .attr("d", d3.line()
-      //     .x(function (d) { return scaleX((new Date(d.date))) })
-      //     .y(function (d) { return scaleY(d.occurrences) })
-      //   )
-      //   .on("mouseover", function (d) {
-      //     d3.select(this).style("cursor", "pointer");
-      //   })
-      //   .on("mouseout", function (d) {
-      //     d3.select(this).style("cursor", "default");
-      //   });
-
-      // //adding obama
-      // linechart.append("path")
-      //   .datum(obama_data_json)
-      //   .attr("fill", "none")
-      //   .attr("stroke", "#1DA1F2")
-      //   .attr("stroke-width", 1.5)
-      //   .attr("d", d3.line()
-      //     .x(function (d) { return scaleX((new Date(d.date))) })
-      //     .y(function (d) { return scaleY(d.occurrences) })
-      //   )
-      //   .on("mouseover", function (d) {
-      //     d3.select(this).style("cursor", "pointer");
-      //   })
-      //   .on("mouseout", function (d) {
-      //     d3.select(this).style("cursor", "default");
-      //   });
-
-      // adding lines
+      //////////////////////////////////////////////// ADDING TIMELINE ANNOTATIONS/////////////////////////////////////////
+      //add line to indicate presidency
+      svg.append("line")
+          // .attr("class", "zero")
+          .attr("stroke-dasharray", "5,5")
+          .attr("stroke", "white")
+          .attr("stroke-width", 1)
+          .attr("x1", scaleX(new Date(2016,11,8)))
+          .attr("y1", margin.top)
+          .attr("x2", scaleX(new Date(2016,11,8)))
+          .attr("y2", height)
 
       line = d3.line()
         .defined(d => !isNaN(d))
