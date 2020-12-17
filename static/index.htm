@@ -6,12 +6,6 @@
   <script src="https://unpkg.com/d3-sankey@0"></script>
   <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
 
-  <!-- adding in double handle slider -->
-  <!-- https://codepen.io/Pierre_Hamel/pen/ocJEH -->
-  <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
-  <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
-	<script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script>
-
   <style>
     body {
       background-color: #15202B;
@@ -55,7 +49,7 @@
       left: 330;
       top: 40;
       z-index: -1;
-      opacity: .9;
+      opacity: .4;
     }
 
     #title2 {
@@ -70,7 +64,6 @@
     }
 
     #analysis2 {
-      /* margin: 60px 0px 20px 200px; */
       width: 50%;
     }
 
@@ -120,9 +113,18 @@
       z-index: -1;
     }
 
+    #line-chart-div {
+      display: flex;
+      justify-content: center;
+
+    }
     #line-chart-div,
     #radial-chart-div {
       text-align: center;
+    }
+
+    #line-chart-div path:hover {
+      cursor: pointer;
     }
 
     #top-header {
@@ -146,26 +148,96 @@
       margin-left: 24.5%;
     }
 
-    /* styling slider */
-    /* https://codepen.io/Pierre_Hamel/pen/ocJEH */
-    form  {
-    margin: 60px 0 0 0 !important;
-  }
- 
-    .ui-slider .ui-btn-inner {
-    padding: 4px 0 0 0 !important;
-  }
- 
-.ui-slider-popup {
-    position: absolute !important;
-    width: 64px;
-    height: 64px;
-    text-align: center;
-    font-size: 36px;
-    padding-top: 14px;
-    z-index: 100;
-    opacity: 0.8;
+    /* styling two range slider */
+    #input-slider {
+	margin: 0;
+	padding: 0;
+  height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    }
+
+  .middle {
+	position: relative;
+	width: 50%;
+	max-width: 500px;
 }
+
+.slider {
+	position: relative;
+	z-index: 1;
+	height: 10px;
+	margin: 0 15px;
+}
+.slider > .track {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: 5px;
+	background-color: #c6aee7;
+}
+.slider > .range {
+	position: absolute;
+	z-index: 2;
+	left: 25%;
+	right: 25%;
+	top: 0;
+	bottom: 0;
+	border-radius: 5px;
+	background-color: #6200ee;
+}
+.slider > .thumb {
+	position: absolute;
+	z-index: 3;
+	width: 30px;
+	height: 30px;
+	background-color: #6200ee;
+	border-radius: 50%;
+	box-shadow: 0 0 0 0 rgba(98,0,238,.1);
+	transition: box-shadow .3s ease-in-out;
+}
+.slider > .thumb.left {
+	left: 25%;
+	transform: translate(-15px, -10px);
+}
+.slider > .thumb.right {
+	right: 25%;
+	transform: translate(15px, -10px);
+}
+.slider > .thumb.hover {
+	box-shadow: 0 0 0 20px rgba(98,0,238,.1);
+}
+.slider > .thumb.active {
+	box-shadow: 0 0 0 40px rgba(98,0,238,.2);
+}
+
+input[type=range] {
+	position: absolute;
+	pointer-events: none;
+	-webkit-appearance: none;
+	z-index: 2;
+	height: 10px;
+	width: 100%;
+	opacity: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+	pointer-events: all;
+	width: 30px;
+	height: 30px;
+	border-radius: 0;
+	border: 0 none;
+	background-color: red;
+	-webkit-appearance: none;
+}
+
+#line-chart-yaxis {
+  z-index: 1;
+}
+
   </style>
 </head>
 
@@ -200,15 +272,23 @@
       Obama.
     </p>
   </div>
+  <div id="input-slider">
+    <div class="middle">
+	<div class="multi-range-slider">
+		<input type="range" id="input-left" min="0" max="115" value="0">
+		<input type="range" id="input-right" min="0" max="115" value="115">
+
+		<div class="slider">
+			<div class="track"></div>
+			<div class="range"></div>
+			<div class="thumb left"></div>
+			<div class="thumb right"></div>
+		</div>
+	</div>
+</div>
+</div>
   <div id="line-chart-div">
-  <form>
-    <div data-role="rangeslider">
-        <label for="range-1a">Rangeslider:</label>
-        <input type="range" name="range-1a" id="range-1a" min="0" max="100" value="40" data-popup-enabled="true" data-show-value="true">
-        <label for="range-1b">Rangeslider:</label>
-        <input type="range" name="range-1b" id="range-1b" min="0" max="100" value="80" data-popup-enabled="true" data-show-value="true">
-    </div>
-</form>
+    <svg id="line-chart-yaxis"></svg>
     <svg id="line-chart"></svg>
   </div>
   <div class="section">
@@ -232,6 +312,7 @@
   </div>
   <script>
 
+  ////////////////////////////////////////SETTING UP TWITTER INTEGRATION///////////////////////
     window.twttr = (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
@@ -396,8 +477,10 @@
       simulation.stop();
 
       var fillColor = d3.scaleLinear()
+        // .domain([500, 1000, 2000, 5000])
+        // .range(['#C8C8C8', '#808080', "#606060", "#484848"])
         .domain([500, 1000, 2000, 5000])
-        .range(['#C8C8C8', '#808080', "#606060", "#484848"])
+        .range(['#D6EFFF', "#A6DBFC","#75C6F8","#1DA1F2"])
         .clamp(true)
         .interpolate(d3.interpolateHcl);
 
@@ -473,7 +556,7 @@
         let hoverData = d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data.json').then((hoverData) => {
           bubble = d3.select(this)
 
-          bubble.attr("stroke-width", 5).attr("stroke", "#1DA1F2")
+          bubble.attr("stroke-width", 4).attr("stroke", "#000")
 
           let singleData = hoverData.filter(function (datum) { return datum.name === bubble.attr("name"); })
 
@@ -486,7 +569,6 @@
           d3.select("#tweet-example-after")
             .text("")
 
-          //i changed all the id numbers, idk why the browser is still loading the old numbers :(
           twttr.widgets.createTweet(
             beforeTweet,
             document.getElementById('tweet-example-before'),
@@ -509,8 +591,6 @@
             }
           );
 
-
-
         }, (error) => {
           console.log(error);
         });
@@ -526,75 +606,7 @@
     load_network_graph();
 
     const load_line_graph = async () => {
-      let great = [];
-      let trump = [];
-      let thank = [];
-      let president = [];
-      let obama = [];
-      let people = [];
-      let country = [];
-      let minDate1 = new Date(2025, 11, 17);
-      let maxDate1 = new Date(1990, 11, 17);
-
-      const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
-
-      rawData.forEach((d, i) => {
-        date = new Date(d.created_at)
-        if (date >= maxDate1) {
-          maxDate1 = date
-        } else if (date <= minDate1) {
-          minDate1 = date
-        }
-        if (d.token_meaningful.includes("great")) {
-          great.push(d)
-        }else if (d.token_meaningful.includes("great")) {
-          great.push(d)
-        } else if (d.token_meaningful.includes("thank")) {
-          thank.push(d)
-        } else if (d.token_meaningful.includes("president")) {
-          president.push(d)
-        } else if (d.token_meaningful.includes("obama")) {
-          obama.push(d)
-        }  else if (d.token_meaningful.includes("people")) {
-          people.push(d)
-        } else if (d.token_meaningful.includes("country")) {
-          country.push(d)
-        }
-      })
-
-      var now = new Date(maxDate1);
-      var months = [];
-      for (var d = new Date(minDate1); d <= now; d.setMonth(d.getMonth() + 1)) {
-        months.push(new Date(d));
-      }
-
-      let great_data = [];
-      let trump_data = [];
-      let thank_data = [];
-      let president_data = [];
-      let obama_data = [];
-      let people_data = [];
-      let country_data = [];
-
-      //summing occurrences and likes per month per topic
-
-      months.forEach((d, i) => {
-        let like_counter = 0;
-        let word_counter = 0;
-        country.forEach((e, j) => {
-          date = new Date(e.created_at)
-          if (date.getMonth() == d.getMonth() && date.getYear() == d.getYear()) {
-            word_counter += 1;
-          }
-        })
-        people_data.push(
-          word_counter
-        )
-      })
-      console.log(JSON.stringify(people_data))
-
-
-
+  //////////////////////////////////////////DRAW LINE CHART//////////////////////////////////////////
       const margin = { top: 50, right: 60, bottom: 50, left: 60 };
       const width = 1000
       const height = 500
@@ -610,33 +622,35 @@
 
       const data = await d3.json('processed_tweets/timeline/timeline_data.json');
 
+      console.log(data)
       let maxOccurrences = 200;
 
-      let minDate = new Date(2009, 04, 4)
-      let maxDate = new Date(2018, 11, 4);
+      let minDate = new Date(data.dates[0])
+      let maxDate = new Date(data.dates[115]);
 
       //adding axis and labels
-      var scaleX = d3.scaleTime()
-        .domain([minDate, maxDate])
-        .range([0, width]);
-
+      var scaleX = d3.scaleTime().range([-margin.left, width+margin.right-1]);
+      var xAxis = d3.axisBottom(scaleX)
       svg.append("g")
         .attr("class", "line-graph-axis")
+        .attr("id","x-axis")
         .attr("transform", "translate(" + margin.left + "," + height + ")")
-        .call(d3.axisBottom(scaleX))
+        // .call(d3.axisBottom(scaleX))
 
+      yAxisSvg = d3.selectAll('#line-chart-yaxis')
+        .attr("width", 100)
       var scaleY = d3.scaleLinear()
         .domain([0, maxOccurrences])
         .range([height-margin.bottom, 0]);
-
-      svg.append("g")
+      var yAxis = yAxisSvg.append("g")
         .attr("class", "line-graph-axis")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("transform", "translate(" + 99 + "," + margin.top + ")")
         .call(d3.axisLeft(scaleY));
 
-      svg.append("text")
+      ///adding axis labels
+      yAxisSvg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0)
+        .attr("y", 30)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -653,35 +667,51 @@
 
       //////////////////////////////////////////////// ADDING TIMELINE ANNOTATIONS/////////////////////////////////////////
       //add line to indicate presidency
-      svg.append("line")
-          // .attr("class", "zero")
-          .attr("stroke-dasharray", "5,5")
-          .attr("stroke", "white")
-          .attr("stroke-width", 1)
-          .attr("x1", scaleX(new Date(2016,11,8)))
-          .attr("y1", margin.top)
-          .attr("x2", scaleX(new Date(2016,11,8)))
-          .attr("y2", height)
+      // svg.append("line")
+      //     // .attr("class", "zero")
+      //     .attr("stroke-dasharray", "5,5")
+      //     .attr("stroke", "white")
+      //     .attr("stroke-width", 1)
+      //     .attr("x1", scaleX(new Date(2016,11,8)))
+      //     .attr("y1", margin.top)
+      //     .attr("x2", scaleX(new Date(2016,11,8)))
+      //     .attr("y2", height)
 
+    
+    ///////////////////////////////////UPDATE LINE CHART BASED ON RANGE///////////////
+    function update_chart(minIndex, maxIndex) {
+      minIndex = document.getElementById("input-left").value;
+      maxIndex = document.getElementById("input-right").value;
+
+      scaleX.domain([new Date(data.dates[minIndex]), new Date(data.dates[maxIndex])])
+      
+      d3.selectAll("#x-axis").transition()
+        .duration(500)
+        .call(xAxis)
+
+
+      ////////////////////draw graph
       line = d3.line()
         .defined(d => !isNaN(d))
         .x((d, i) => scaleX(new Date(data.dates[i])))
         .y(d => scaleY(d))
 
 
-      const path = linechart.append("g")
-        .attr("fill", "none")
-        .attr("stroke", "#1DA1F2")
-        .attr("stroke-width", 4)
-        .attr("stroke-linejoin", "round")
-        .attr("stroke-linecap", "round")
+      const path = linechart
+        .attr("transform", "translate("+margin.left+","+margin.top+")")
         .selectAll("path")
         .data(data.series)
         .join("path")
-        .attr("d", d => line(d.values));
+        .attr("d", d => line(d.values))
+        .attr("fill", "none")
+        .attr("stroke", "#1DA1F2")
+        .attr("class", "lines")
+        .attr("stroke-width", 4)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
 
       //adding hover function to viz
-      svg.call(hover, path);
+     svg.call(hover, path);
 
       function hover(linechart, path) {
         path
@@ -726,16 +756,13 @@
             }
           })
 
-          path.attr("stroke", d => d === s ? null : "#212E39").filter(d => d === s).raise();
+          path.attr("stroke", d => d !== s ? "#212E39" : "#1DA1F2").filter(d => d === s).raise();
 
           dot.attr("transform", `translate(${margin.left+scaleX(new Date(data.dates[i]))},${margin.top+scaleY(s.values[i])})`);
-
-
           dot.select("text").text(s.name.charAt(0).toUpperCase() + s.name.slice(1)+ ", " + s.values[i] + " times");
         }
 
         function entered() {
-        //   path.style("mix-blend-mode", null).attr("stroke", "#ddd");
           dot.attr("display", null);
         }
 
@@ -744,78 +771,91 @@
           dot.attr("display", "none");
         }
       }
+
     }
+
+    update_chart(0, 115)
+
+    var minIndex
+    var maxIndex
+    var inputLeft = document.getElementById("input-left");
+    var inputRight = document.getElementById("input-right");
+
+var thumbLeft = document.querySelector(".slider > .thumb.left");
+var thumbRight = document.querySelector(".slider > .thumb.right");
+var range = document.querySelector(".slider > .range");
+
+function setLeftValue() {
+	var _this = inputLeft,
+		min = parseInt(_this.min),
+		max = parseInt(_this.max);
+
+	_this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
+  minIndex = _this.value;
+	var percent = ((_this.value - min) / (max - min)) * 100;
+
+	thumbLeft.style.left = percent + "%";
+	range.style.left = percent + "%";
+  // console.log(minIndex, maxIndex)
+}
+setLeftValue();
+
+function setRightValue() {
+	var _this = inputRight,
+		min = parseInt(_this.min),
+		max = parseInt(_this.max);
+
+	_this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
+  maxIndex = _this.value;
+
+	var percent = ((_this.value - min) / (max - min)) * 100;
+
+	thumbRight.style.right = (100 - percent) + "%";
+	range.style.right = (100 - percent) + "%";
+  // console.log(minIndex, maxIndex)
+}
+setRightValue();
+
+//every time the element is altered, redraw line chart
+inputLeft.addEventListener("input", setLeftValue);
+inputRight.addEventListener("input", setRightValue);
+
+inputRight.addEventListener("input", update_chart);
+inputLeft.addEventListener("input", update_chart);
+
+inputLeft.addEventListener("mouseover", function() {
+	thumbLeft.classList.add("hover");
+});
+inputLeft.addEventListener("mouseout", function() {
+	thumbLeft.classList.remove("hover");
+});
+inputLeft.addEventListener("mousedown", function() {
+	thumbLeft.classList.add("active");
+});
+inputLeft.addEventListener("mouseup", function() {
+	thumbLeft.classList.remove("active");
+});
+
+inputRight.addEventListener("mouseover", function() {
+	thumbRight.classList.add("hover");
+});
+inputRight.addEventListener("mouseout", function() {
+	thumbRight.classList.remove("hover");
+});
+inputRight.addEventListener("mousedown", function() {
+	thumbRight.classList.add("active");
+});
+inputRight.addEventListener("mouseup", function() {
+	thumbRight.classList.remove("active");
+});
+}
     load_line_graph();
 
-    const make_jennifers_data = async () => {
-    //   const rawData = await d3.json('processed_tweets/Processed_Tweets_Not_Stemmed.json');
-
-    //   let beforePrez = [];
-    //   let afterPrez = [];
-
-    //   rawData.forEach((d,i) => {
-    //     date = new Date(d.created_at)
-    //       if (date.getYear()+1900 <= 2016) {
-    //         beforePrez.push(d)
-    //       }
-    //       // console.log(date.getYear())
-    //       if (date.getYear()+1900 > 2016) {
-    //         afterPrez.push(d)
-    //       }
-    //   })
-
-    //   console.log(afterPrez)
+    //////////////////////////////CODE TO GET INPUT VALUES FOR TWO INPUT SLIDER//////////////////////
+    
 
 
-    //   var hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-
-    //   data = [];
-
-    //   hours.forEach((d, i) => {
-    //     counter = 0;
-    //     word_occurr = new Map();
-    //     beforePrez.forEach((e, j) => {
-    //       date = new Date(e.created_at)
-    //       if (date.getHours() == d) {
-    //         counter += 1;
-    //         e.token_meaningful.forEach((word) => {
-    //           if (word != "realdonaldtrump") {
-    //           if (word_occurr.has(word)) // if already exists then update count. 
-    //             word_occurr.set(word, word_occurr.get(word) + 1);
-    //           else
-    //             word_occurr.set(word, 1)
-    //         }})
-    //       }
-    //     })
-    //     word_occurr[Symbol.iterator] = function* () {
-    //       yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-    //     }
-    //     ordered_words = [];
-    //     for (let [key, value] of word_occurr) {
-    //       //shortening list to words occurring 500+ times
-    //         ordered_words.push({ "name": key, "value": Math.round(value/8,1) })
-    //     }
-    //     data.push({
-    //       hour: d,
-    //       frequency: Math.round(counter/8, 1),
-    //       topics: ordered_words.slice(0,10)
-    //     })
-    //   })
-
-    //   console.log(JSON.stringify(data))
-    // }
-
-      ///const data = await d3.json('processed_tweets/bubble/Bubble_Chart_Hover_Data_Old.json')
-
-      // data.forEach((d,i)=>{
-      //   d.tweet_before.id_str = String(d.tweet_before.id_str)
-      //   d.tweet_after.id_str = String(d.tweet_after.id_str)
-      // })
-      // console.log(data)
-      // console.log(JSON.stringify(data))
-    }
-    make_jennifers_data();
-
+    const drawRadial = async () => {
 
     const radialsvg = d3.select("#radial");
     const radialsvg2 = d3.select("#radial2");
@@ -828,8 +868,6 @@
     const radialChart2 = radialsvg2.append("g")
       .attr("transform", "translate(" + 300 + "," + 300 + ")");
 
-
-    const drawRadial = async () => {
 
       const tweets = await d3.json("processed_tweets/hours/before.json");
       const tweets2 = await d3.json("processed_tweets/hours/after.json");
@@ -871,7 +909,7 @@
         .data(tweets)
         .enter()
         .append("path")
-        .attr("fill", "green")
+        .attr("fill", "#1DA1F2")
         .attr("d", d3.arc()
           .innerRadius(innerRadius)
           .outerRadius(d => { return y(d.frequency); })
@@ -910,7 +948,7 @@
         let current = d3.select(this);
 
         current.transition().duration(200)
-          .attr("fill", "yellow");
+          .attr("fill", "white");
 
         currentdata = current.datum();
         d3.select("#labelBox").attr("visibility", "visible")
@@ -926,7 +964,7 @@
         let current = d3.select(this);
 
         current.transition().duration(200)
-          .attr("fill", "green");
+          .attr("fill", "#1DA1F2");
 
         currentdata = current.datum();
         d3.select("#labelBox").attr("visibility", "hidden");
@@ -938,7 +976,7 @@
         .data(tweets2)
         .enter()
         .append("path")
-        .attr("fill", "green")
+        .attr("fill", "#1DA1F2")
         .attr("d", d3.arc()
           .innerRadius(innerRadius)
           .outerRadius(d => { return y(d.frequency); })
@@ -974,7 +1012,7 @@
         let current = d3.select(this);
 
         current.transition().duration(200)
-          .attr("fill", "yellow");
+          .attr("fill", "white");
 
         currentdata = current.datum();
         d3.select("#labelBox2").attr("visibility", "visible")
@@ -990,7 +1028,7 @@
         let current = d3.select(this);
 
         current.transition().duration(200)
-          .attr("fill", "green");
+          .attr("fill", "#1DA1F2");
 
         currentdata = current.datum();
         d3.select("#labelBox2").attr("visibility", "hidden");
