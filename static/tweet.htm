@@ -4,130 +4,139 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
   <script src="https://unpkg.com/d3-sankey@0"></script>
-  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
   </head>
 
+  <style>
+    #chart{
+      fill:none;
+    }
+  </style>
+
   <body>
-      <svg id="radial" width="900" height="800"></svg>
+      <svg id="radial" width="500" height="500"></svg>
+      <svg id="radial2" width="500" height="500"></svg>
       <script>
           const radialsvg=d3.select("#radial");
+          const radialsvg2=d3.select("#radial2");
           const width = radialsvg.attr("width");
           const height = radialsvg.attr("height");
-          const margin = { top: 500, right: 20, bottom: 20, left: 400};
-          const radialWidth = width - margin.left - margin.right;
-          const radialHeight = height - margin.top - margin.bottom;
           const radialChart = radialsvg.append("g")
-                  .attr("transform","translate("+margin.left+","+margin.top+")");
+                .attr("id", "chart")
+                .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+          const radialChart2 = radialsvg2.append("g")
+                .attr("id", "chart")
+                .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
 
           const drawRadial = async () => {
+            const b4tweets = await d3.json("processed_tweets/hours/before.json");
+            const aftertweets = await d3.json("processed_tweets/hours/after.json");
 
-            const tweets = await d3.json("../static/processed_tweets/all_tweets.json"); 
-            const preprez=[];
-            const preztime=[];
-
-            tweets.forEach(d => {
-                let year = Number(d["created_at"].substring(d["created_at"].length - 4));
-                if (year<2016){
-                  preprez.push(d);
-                } else {
-                  preztime.push(d);
-                }
-            });
-
-            let precount = [];
-            let prezcount=[];
-            function timeConvert(data){
-              data.forEach(d=>{
-                let time = d["created_at"].toLocaleString();
-                time = new Date(time);
-                let hour = time.getHours();
-                let min = time.getMinutes();
-                  if (min<10){
-                    min = "0"+time.getMinutes();
-                  } else {
-                    min=time.getMinutes();
-                  }
-                time = hour+":"+min;
-                d["created_at"]=time;
-                d["hour"]=hour;
-              })
-            }
-
-            for(i=1; i<25; i++){
-              preprez.forEach(d=>{
-                let j = 0;
-                if (d["hour"]==i){
-                  j+=1; 
-                }
-                precount.push({
-                  time: i, 
-                  count: j
-                })
-              })
-            }
-
-            timeConvert(preprez);
-
-            let clock=["12AM", "1AM","2AM","3AM","4AM","5AM","6AM","7AM","8AM","9AM","10AM","11AM","12PM", "1PM","2AM","3PM","4PM","5PM","6PM","7PM","8PM","9PM","10PM","11PM"]
-
-            var data = [{time: 1, count: 100},{time: 2, count: 200}, {time: 3, count: 300}, {time: 4, count: 400}, {time: 5, count: 500}, {time: 6, count: 600}, {time: 7, count: 700}, {time: 8, count: 800}]
-
-            let counts = [];
+            let b4counts = [];
+            let aftercounts = [];
             let hours = [];
-        
-            data.forEach(d=>{
-              counts.push(d["count"]);
-              hours.push(d["time"]);
+
+            b4tweets.forEach(d => {
+                b4counts.push(d["frequency"]);
             })
 
-            dataExtent = d3.extent(counts);
-            hourExtent = d3.extent(hours);
+            aftertweets.forEach(d => {
+                aftercounts.push(d["frequency"]);
+            })
 
-            var innerRadius = 100
-            var outerRadius = Math.min(width, height) / 2; 
+            b4dataExtent = d3.extent(b4counts);
+            afterdataExtent = d3.extent(aftercounts);
+
+            var clock=["12AM", "1AM","2AM","3AM","4AM","5AM","6AM","7AM","8AM","9AM","10AM","11AM","12PM", "1PM","2AM","3PM","4PM","5PM","6PM","7PM","8PM","9PM","10PM","11PM"]
+            var hourBars = clock.length;
         
             // Scales
-            var x = d3.scaleBand()
-              .range([0, 2 * Math.PI])    
-              .align(0)                 
-              .domain(data.map(function(d) { return d.time;})); //list of hours
+            var barHeight = height/2-40; 
+            var x = d3.scaleLinear()
+              .domain(b4dataExtent)
+              .range([0, -barHeight]);
+            var xAxis = d3.axisLeft(x)
+              .ticks(3);
+            var barScale = d3.scaleLinear()
+                .domain(b4dataExtent)
+                .range([0, barHeight]);
+            var barScale2 = d3.scaleLinear()
+                .domain(afterdataExtent)
+                .range([0, barHeight]);
 
-            var y = d3.scaleRadial()
-                .range([innerRadius, outerRadius])   
-                .domain(dataExtent);
-            
-        
-            radialChart.append("g")
+            function drawCircle(chartArea, scale){
+              chartArea.selectAll("circle")
+                .data(x.ticks(3))
+                .enter().append("circle")
+                .attr("r", d=> { return scale(+d.frequency); })
+                .style("fill", "none");
+            }
+            var circles = drawCircle(radialChart, barScale);
+            var circles2 = drawCircle(radialChart2, barScale2);
+
+            function drawBars(chartArea, data, scale){
+              chartArea.append("g")
               .selectAll("path")
               .data(data)
               .enter()
               .append("path")
-                .attr("fill", "green")
-                .attr("d", d3.arc()    
-                    .innerRadius(innerRadius)
-                    .outerRadius(function(d) { return y(d.count); })
-                    .startAngle(function(d) { return x(d.time); })
-                    .endAngle(function(d) { return x(d.time) + x.bandwidth(); })
-                    .padAngle(0.03)
-                    .padRadius(innerRadius))
+              .attr("class", "bars")
+              .attr("fill", "#1DA1F2")
+              .attr("id", d => { return d.frequency})
+              .attr("d", d3.arc()
+                .innerRadius(0)
+                .outerRadius(d => { return scale(+d.frequency); })
+                .startAngle((d, i) => { return (i * 2 * Math.PI) / hourBars; })
+                .endAngle((d, i) => { return ((i + 1) * 2 * Math.PI) / hourBars; }))
+            }
+            var bars = drawBars(radialChart, b4tweets, barScale);
+            var bars2 = drawBars(radialChart2, aftertweets, barScale2);
 
-            radialChart.append("g")
-                .selectAll("g")
-                .data(data)
-                .enter()
-                .append("g")
-                  .attr("text-anchor", function(d) { return (x(d.time) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
-                  .attr("transform", function(d) { return "rotate(" + ((x(d.time) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (y(d.count)+10) + ",0)"; })
-                .append("text")
-                  .text(function(d){return(d.time)})
-                  .attr("transform", function(d) { return (x(d.time) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
-                  .style("font-size", "11px")
-                  .attr("alignment-baseline", "middle")
+            function innerScale(chartArea, ){
+              chartArea.append("circle")
+                  .attr("r", barHeight)
+                  .classed("outer", true)
+                  .style("fill", "none")
+                  .style("stroke", "black")
+                  .style("stroke-width", "1px");
+              chartArea.selectAll("line")
+                  .data(clock)
+                  .enter().append("line")
+                  .attr("y2", -barHeight - 20)
+                  .style("fill","none")
+                  .style("stroke", "black")
+                  .style("stroke-width", ".5px")
+                  .attr("transform", function (d, i) { return "rotate(" + (i * 360 / hourBars) + ")"; });
+              chartArea.append("g")
+                .attr("class", "x axis")
+                .style("fill","none")
+                .call(xAxis);
+            }
+            innerScale(radialChart)
+            innerScale(radialChart2)
 
-            
-            
-          
-         
+            function drawLabels(chartArea){
+              let labelRadius = barHeight * 1.025;
+              let labels = chartArea.append("g")
+                  .classed("labels", true);
+              
+              labels.append("def")
+                .append("path")
+                .attr("id", "label-path")
+                .attr("d", "m0 " + -labelRadius + " a" + labelRadius + " " + labelRadius + " 0 1,1 -0.01 0");
+
+              labels.selectAll("text")
+                .data(clock)
+                .enter().append("text")
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold")
+                .style("fill", function (d, i) { return "#3e3e3e"; })
+                .append("textPath")
+                .attr("xlink:href", "#label-path")
+                .attr("startOffset", function (d, i) { return i * 100 / hourBars + 50 / hourBars + '%'; })
+                .text(function (d) { return d});
+            }
+            drawLabels(radialChart);
+            drawLabels(radialChart2);
           }
           drawRadial();
       </script>
