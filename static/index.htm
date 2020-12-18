@@ -916,7 +916,8 @@
               .data(x.ticks(3))
               .enter().append("circle")
               .attr("r", d => { return scale(+d.frequency); })
-              .style("fill", "none");
+              .style("fill", "none")
+              .style("font-color","white");
           }
           var circles = drawCircle(radialChart, barScale);
           var circles2 = drawCircle(radialChart2, barScale2);
@@ -946,7 +947,7 @@
               .attr("r", barHeight)
               .classed("outer", true)
               .style("fill", "none")
-              .style("stroke", "black")
+              .style("stroke", "white")
               .style("stroke-width", "1px");
             chartArea.selectAll("line")
               .data(clock)
@@ -959,6 +960,8 @@
             chartArea.append("g")
               .attr("class", "x axis")
               .style("fill", "none")
+              .style("color","white")
+              .style("font-weight", "bold")
               .call(xAxis);
           }
           innerScale(radialChart)
@@ -980,7 +983,7 @@
               .enter().append("text")
               .style("text-anchor", "middle")
               .style("font-weight", "bold")
-              .style("fill", function (d, i) { return "#3e3e3e"; })
+              .style("fill", "white")
               .append("textPath")
               .attr("xlink:href", "#label-path")
               .attr("startOffset", function (d, i) { return i * 100 / hourBars + 50 / hourBars + '%'; })
