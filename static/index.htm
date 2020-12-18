@@ -916,7 +916,8 @@
               .data(x.ticks(3))
               .enter().append("circle")
               .attr("r", d => { return scale(+d.frequency); })
-              .style("fill", "none")
+              .style("stroke-dasharray", "2")
+              .style("stroke-width","1px")
               .style("font-color","white");
           }
           var circles = drawCircle(radialChart, barScale);
