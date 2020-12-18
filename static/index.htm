@@ -11,10 +11,7 @@
             padding: 20px 200px 20px 200px;
             border: 1px #37444C;
             border-style: solid none;
-        }
-        
-        #analysis2 {
-            width: 50%;
+            margin: 20px 0px 20px 0px;
         }
         
         .bubble:hover {
@@ -35,6 +32,7 @@
             justify-content: center;
             min-height: 300px;
             height: auto;
+            padding-bottom: 50px;
         }
         
         .tweet-example {
@@ -64,6 +62,7 @@
         #line-chart-div {
             display: flex;
             justify-content: center;
+            margin-top: 50px;
         }
         
         #line-chart-div,
@@ -82,8 +81,6 @@
         span {
             margin-left: 24.5%;
         }
-        /* (['#D6EFFF', "#A6DBFC","#75C6F8","#1DA1F2"]) */
-        /* styling two range slider */
         
         #input-slider {
             margin: 0;
@@ -141,12 +138,10 @@
         }
         
         .slider>.thumb.left {
-            /* left: 25%; */
             transform: translate(-13px, -8px);
         }
         
         .slider>.thumb.right {
-            /* right: 25%; */
             transform: translate(13px, -8px);
         }
         
@@ -261,22 +256,24 @@
             width: 500px;
             position: absolute;
             left: -50px;
-            top: 1000px;
+            /* top: 1100px; */
             z-index: -1;
         }
         
         #bubble-chart {
             position: absolute;
-            left: 500;
-            top: 900px;
+            left: 480;
+            /* top: 1000px; */
+            z-index: 1;
+            margin-top: -50px;
         }
         
         #speech-bub {
             position: absolute;
             width: 1060;
             height: 430;
-            left: 330;
-            top: 40;
+            left: 450;
+            /* top: 40; */
             z-index: -1;
             opacity: .4;
         }
@@ -284,6 +281,31 @@
         #slider-labels {
             margin-top: -1px;
             z-index: -1;
+        }
+        
+        #graph1 {
+            min-height: 500px;
+            display: flex;
+        }
+        
+        #tweet-labels {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .tweet-labels-divs {
+            width: 40%;
+            text-align: center;
+            margin: 10px 10px 0px 10px;
+        }
+        
+        #hide-show {
+            visibility: hidden;
+        }
+        
+        #graph2 {
+            margin: 70px 0px 10px 0px
         }
     </style>
 </head>
@@ -320,50 +342,69 @@
     <div class="section">
         <h2>Trumps Favorite Topics</h2>
         <p>
-            We have included a bubble chart of the most popular words of all time that Donald Trump has tweeted. Hover over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The words included in this chart are
-            the words that he said more than 500 times over all time. The radius reflects the frequency of his use of each word. The five most frequent words Trump says are: Great, Trump, Thank, President, Obama.
+            First, we have included a bubble chart of the most popular words of all time that Trump has tweeted. Hover over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The words included in this chart are
+            the words that he said more than 500 times over all time. The radius reflects the frequency of his use of each word. Unsurprisingly, the five most frequent words Trump says are: Great, Trump, Thank, President, Obama.
         </p>
     </div>
-    <div>
+    <div id="graph1">
         <img id="trump_talking" src="IMG_0109.PNG" alt="Trump Talking">
         <svg id="bubble-chart"></svg>
         <img id="speech-bub" src="SpeechBub.png" alt="Speech Bubble Drawing">
     </div>
     <div id="tweet-contain">
+        <p style="text-align: center">Hover over a topic to view Trump's most favorited tweets containing that word before and during presidency.</p>
+        <div id="tweet-labels">
+            <div class="tweet-labels-divs">
+                <h2 class="before-after">Before</h2>
+            </div>
+            <div class="tweet-labels-divs">
+                <h2 class="before-after">After</h2>
+            </div>
+        </div>
         <div class="tweet-examples">
             <div id="tweet-example-before" class="tweet-example"></div>
             <div id="tweet-example-after" class="tweet-example"></div>
         </div>
     </div>
+    <div class="section">
+        <h2>Tweets Over the Years</h2>
+        <p>
+            Next, we have included a line chart that shows the frequency over time of words that Trump has tweeted. This chart includes the top five words that Trump tweeted before his presidency, and the top five words that Trump has tweeted during his presidency.
+            Move your mouse over the lines to see the word each line represents and the number of times Trump has tweeted it at different times. Most notably, we can see that Trump has a lot to say about Obama during the 2012 US Presidential Election,
+            and he has even more to say about himself in the time leading up to the 2016 US Presidential Election
+        </p>
+    </div>
     <!-- code taken from here: https://codepen.io/MinzCode/pen/MWKgyqb -->
-    <div id="input-slider">
-        <div class="middle">
-            <div class="multi-range-slider">
-                <input type="range" id="input-left" min="0" max="115" value="0">
-                <input type="range" id="input-right" min="0" max="115" value="115">
-                <div class="slider">
-                    <div class="track"></div>
-                    <div class="range"></div>
-                    <div class="thumb left"></div>
-                    <div class="thumb right"></div>
+    <div id="graph2">
+        <div id="input-slider">
+            <div class="middle">
+                <div class="multi-range-slider">
+                    <input type="range" id="input-left" min="0" max="115" value="0">
+                    <input type="range" id="input-right" min="0" max="115" value="115">
+                    <div class="slider">
+                        <div class="track"></div>
+                        <div class="range"></div>
+                        <div class="thumb left"></div>
+                        <div class="thumb right"></div>
+                    </div>
                 </div>
+                <svg id="slider-labels"></svg>
             </div>
-            <svg id="slider-labels"></svg>
+        </div>
+        <div id="line-chart-div">
+            <svg id="line-chart-yaxis"></svg>
+            <svg id="line-chart"></svg>
         </div>
     </div>
-    <div id="line-chart-div">
-        <svg id="line-chart-yaxis"></svg>
-        <svg id="line-chart"></svg>
-    </div>
     <div class="section">
-        <p id="analysis2">
+        <h2>Tweeting Around the Clock</h2>
+        <p>
             Here is an analysis on the line graph. Bind a behavior to nodes to allow interactive dragging, either using the mouse or touch. Use this in conjunction with the call operator on the nodes; for example, say node.call(force.drag) on initialization. The
             drag event sets the fixed attribute of nodes on mouseover, such that as soon as the mouse is over a node, it stops moving. Fixing on mouseover, rather than on mousedown, makes it easier to catch moving nodes. When a mousedown event is received,
             and on each subsequent mousemove until mouseup, the node center is set to the current mouse position. In addition, each mousemove triggers a resume of the force layout, reheating the simulation. If you want dragged nodes to remain fixed after
             dragging, set the fixed attribute to true on dragstart, as in the sticky force layout example.
         </p>
     </div>
-    <h2>Tweeting Around the Clock</h2>
     <div id="radial-chart-div">
         <h3>
             <span>Pre-Presidency</span>
@@ -508,6 +549,8 @@
                     let singleData = hoverData.filter(function(datum) {
                         return datum.name === bubble.attr("name");
                     })
+
+                    d3.selectAll('#hide-show').attr("visibility", "visible")
 
                     //get before and after tweets containing topic
                     beforeTweet = singleData[0].tweet_before.id_str;
@@ -683,11 +726,11 @@
                 d3.selectAll("#pres-annotation").remove();
                 d3.selectAll("#annotation-lbl").remove();
                 //redraw line
-                const annotation = linechart.append("line")
+                linechart.append("line")
                     .attr('id', 'pres-annotation')
-                    .attr("x1", scaleX(new Date(2016, 11, 8)))
+                    .attr("x1", scaleX(new Date(2016, 10, 8)))
                     .attr("y1", 0)
-                    .attr("x2", scaleX(new Date(2016, 11, 8)))
+                    .attr("x2", scaleX(new Date(2016, 10, 8)))
                     .attr("y2", height - margin.bottom)
                     .attr("stroke-dasharray", "5,5")
                     .attr("stroke", "white")
@@ -696,11 +739,35 @@
                 linechart.append('text')
                     .attr("y", 0)
                     .attr("id", "annotation-lbl")
-                    .attr("x", scaleX(new Date(2016, 11, 8)) + 5)
+                    .attr("x", scaleX(new Date(2016, 10, 8)) + 5)
                     .attr("dy", "1em")
                     .style("text-anchor", "left")
                     .style("fill", "white")
-                    .text('Elected President')
+                    .text('Trump Elected President')
+
+                //add line for Obama's presidency
+                //delete old line everytime chart updates
+                d3.selectAll("#obama-line").remove();
+                d3.selectAll("#obama-lbl").remove();
+                //redraw line
+                linechart.append("line")
+                    .attr('id', 'obama-line')
+                    .attr("x1", scaleX(new Date(2012, 10, 6)))
+                    .attr("y1", 0)
+                    .attr("x2", scaleX(new Date(2012, 10, 6)))
+                    .attr("y2", height - margin.bottom)
+                    .attr("stroke-dasharray", "5,5")
+                    .attr("stroke", "white")
+                    .attr("stroke-width", 1)
+
+                linechart.append('text')
+                    .attr("y", 0)
+                    .attr("id", "obama-lbl")
+                    .attr("x", scaleX(new Date(2012, 10, 6)) + 5)
+                    .attr("dy", "1em")
+                    .style("text-anchor", "left")
+                    .style("fill", "white")
+                    .text('Obama Elected President')
 
 
                 //adding hover function to viz here
