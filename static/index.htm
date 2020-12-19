@@ -979,22 +979,36 @@
                 .domain(afterdataExtent)
                 .range([0, barHeight]);
 
-            //draw "concentric" circles
-            function drawCircle(chartArea, scale) {
-                chartArea.selectAll("circle")
-                    .data(x.ticks(3))
-                    .enter().append("circle")
-                    .attr("r", d => {
-                        return scale(+d.frequency);
-                    })
-                    .style("fill", "none")
-                    .style("font-color", "white");
-            }
-            var circles = drawCircle(radialChart, barScale);
-            var circles2 = drawCircle(radialChart2, barScale2);
+            function hoverBox(chartArea, tweetBox, idlabel){
+              //drawing the text box for labels
+              let labelWidth = 120;
+              let labelHeight = 50;
+
+              var labelBox = chartArea.append("g")
+                  .attr("id", tweetBox)
+                  .attr("visibility", "hidden")
+                  .attr("width", labelWidth)
+                  .attr("height", labelHeight)
+              labelBox.append("rect")
+                  .attr("fill", "white")
+                  .attr("rx", 10)
+                  .attr("opacity", 0.9)
+                  .attr("width", labelWidth)
+                  .attr("height", labelHeight)
+              labelBox.append("text")
+                  .attr("class", "text")
+                  .attr("id", idlabel)
+                  .attr("x", 8)
+                  .attr("y", 16)
+                  .attr("font-size", 12)
+                  .attr("text-anchor", "start")
+                  .attr("text-align", "center")
+                  .attr("alignment-baseline", "text-before-edge")
+                  .attr("font-weight", "bold");
+            } 
 
             function drawBars(chartArea, data, scale) {
-                chartArea.append("g")
+                var bars = chartArea.append("g")
                     .selectAll("path")
                     .data(data)
                     .enter()
@@ -1015,13 +1029,59 @@
                         .endAngle((d, i) => {
                             return ((i + 1) * 2 * Math.PI) / hourBars;
                         }))
+                        
+                bars.on("mouseover", function(){
+                  let tweetbar = d3.select(this)
+                  tweetbar.transition().duration(200)
+                    .attr("fill", "yellow");
+                  let tweetinfo = tweetbar.datum().frequency + " tweets at " + tweetbar.datum().time;
+
+                    if(chartArea == radialChart){
+                      d3.select("#b4tweetBox").attr("visibility", "visible");
+                      d3.select("#b4tweetnum").text(tweetinfo);
+                    } else {
+                      d3.select("#aftertweetBox").attr("visibility", "visible");
+                      d3.select("#aftertweetnum").text(tweetinfo);
+                    }
+                })
+                bars.on("mouseout", function () {
+                  let tweetbar = d3.select(this)
+                  tweetbar.transition().duration(200)
+                    .attr("fill", "#1DA1F2");
+
+                  if(chartArea == radialChart){
+                      d3.select("#b4tweetBox").attr("visibility", "hidden");
+                      d3.select("#b4tweetnum").text("");
+                  } else {
+                      d3.select("#aftertweetBox").attr("visibility", "hidden");
+                      d3.select("#aftertweetnum").text("");
+                  }
+
+                }) 
             }
 
-            var bars = drawBars(radialChart, b4tweets, barScale);
-            var bars2 = drawBars(radialChart2, aftertweets, barScale2);
+            drawBars(radialChart, b4tweets, barScale);
+            drawBars(radialChart2, aftertweets, barScale2);
+
+            //draw "concentric" circles
+            function drawCircle(chartArea, scale) {
+                chartArea.selectAll("circle")
+                    .data(x.ticks(3))
+                    .enter().append("circle")
+                    .attr("r", d => {
+                        return scale(d);
+                    })
+                    .style("font-color", "white")
+                    .style("fill", "none")
+                    .style("stroke", "white")
+                    .style("stroke-dasharray", "2,2")
+                    .style("stroke-width",".5px");
+            }
+            drawCircle(radialChart, barScale);
+            drawCircle(radialChart2, barScale2);
 
             // setting lines
-            function innerScale(chartArea, ) {
+            function innerScale(chartArea) {
                 chartArea.append("circle")
                     .attr("r", barHeight)
                     .classed("outer", true)
@@ -1033,8 +1093,8 @@
                     .enter().append("line")
                     .attr("y2", -barHeight - 20)
                     .style("fill", "none")
-                    .style("stroke", "black")
-                    .style("stroke-width", ".5px")
+                    .style("stroke", "white")
+                    .style("stroke-width", "1px")
                     .attr("transform", function(d, i) {
                         return "rotate(" + (i * 360 / hourBars) + ")";
                     });
@@ -1047,6 +1107,8 @@
             }
             innerScale(radialChart)
             innerScale(radialChart2)
+            hoverBox(radialChart, "b4tweetBox", "b4tweetnum")
+            hoverBox(radialChart2, "aftertweetBox","aftertweetnum")
 
             // labeling hours around circle
             function drawLabels(chartArea) {
@@ -1076,6 +1138,8 @@
             }
             drawLabels(radialChart);
             drawLabels(radialChart2);
+
+            
         }
         drawRadial();
     </script>

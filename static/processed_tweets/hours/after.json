@@ -48,7 +48,7 @@
     },
     {
         "hour": 1,
-        "time": "1",
+        "time": "1AM",
         "frequency": 9,
         "topics": [
             {
@@ -95,7 +95,7 @@
     },
     {
         "hour": 2,
-        "time": "2",
+        "time": "2AM",
         "frequency": 7,
         "topics": [
             {
@@ -142,7 +142,7 @@
     },
     {
         "hour": 3,
-        "time": "3",
+        "time": "3AM",
         "frequency": 7,
         "topics": [
             {
@@ -189,7 +189,7 @@
     },
     {
         "hour": 4,
-        "time": "4",
+        "time": "4AM",
         "frequency": 7,
         "topics": [
             {
@@ -236,7 +236,7 @@
     },
     {
         "hour": 5,
-        "time": "5",
+        "time": "5AM",
         "frequency": 49,
         "topics": [
             {
@@ -283,7 +283,7 @@
     },
     {
         "hour": 6,
-        "time": "6",
+        "time": "6AM",
         "frequency": 228,
         "topics": [
             {
@@ -330,7 +330,7 @@
     },
     {
         "hour": 7,
-        "time": "7",
+        "time": "7AM",
         "frequency": 337,
         "topics": [
             {
@@ -377,7 +377,7 @@
     },
     {
         "hour": 8,
-        "time": "8",
+        "time": "8AM",
         "frequency": 339,
         "topics": [
             {
@@ -424,7 +424,7 @@
     },
     {
         "hour": 9,
-        "time": "9",
+        "time": "9AM",
         "frequency": 251,
         "topics": [
             {
@@ -471,7 +471,7 @@
     },
     {
         "hour": 10,
-        "time": "10",
+        "time": "10AM",
         "frequency": 177,
         "topics": [
             {
@@ -518,7 +518,7 @@
     },
     {
         "hour": 11,
-        "time": "11",
+        "time": "11AM",
         "frequency": 113,
         "topics": [
             {
@@ -612,7 +612,7 @@
     },
     {
         "hour": 13,
-        "time": "1",
+        "time": "1PM",
         "frequency": 126,
         "topics": [
             {
@@ -659,7 +659,7 @@
     },
     {
         "hour": 14,
-        "time": "2",
+        "time": "2PM",
         "frequency": 109,
         "topics": [
             {
@@ -706,7 +706,7 @@
     },
     {
         "hour": 15,
-        "time": "3",
+        "time": "3PM",
         "frequency": 150,
         "topics": [
             {
@@ -753,7 +753,7 @@
     },
     {
         "hour": 16,
-        "time": "4",
+        "time": "4PM",
         "frequency": 152,
         "topics": [
             {
@@ -800,7 +800,7 @@
     },
     {
         "hour": 17,
-        "time": "5",
+        "time": "5PM",
         "frequency": 147,
         "topics": [
             {
@@ -847,7 +847,7 @@
     },
     {
         "hour": 18,
-        "time": "6",
+        "time": "6PM",
         "frequency": 164,
         "topics": [
             {
@@ -894,7 +894,7 @@
     },
     {
         "hour": 19,
-        "time": "7",
+        "time": "7PM",
         "frequency": 119,
         "topics": [
             {
@@ -941,7 +941,7 @@
     },
     {
         "hour": 20,
-        "time": "8",
+        "time": "8PM",
         "frequency": 120,
         "topics": [
             {
@@ -988,7 +988,7 @@
     },
     {
         "hour": 21,
-        "time": "9",
+        "time": "9PM",
         "frequency": 133,
         "topics": [
             {
@@ -1035,7 +1035,7 @@
     },
     {
         "hour": 22,
-        "time": "10",
+        "time": "10PM",
         "frequency": 106,
         "topics": [
             {
@@ -1082,7 +1082,7 @@
     },
     {
         "hour": 23,
-        "time": "11",
+        "time": "11PM",
         "frequency": 76,
         "topics": [
             {
