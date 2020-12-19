@@ -1034,13 +1034,17 @@
                   let tweetbar = d3.select(this)
                   tweetbar.transition().duration(200)
                     .attr("fill", "yellow");
+                  
                   let tweetinfo = tweetbar.datum().frequency + " tweets at " + tweetbar.datum().time;
+                  let coordinates = d3.mouse(this);
 
                     if(chartArea == radialChart){
-                      d3.select("#b4tweetBox").attr("visibility", "visible");
+                      d3.select("#b4tweetBox").attr("visibility", "visible")
+                        .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#b4tweetnum").text(tweetinfo);
                     } else {
-                      d3.select("#aftertweetBox").attr("visibility", "visible");
+                      d3.select("#aftertweetBox").attr("visibility", "visible")
+                      .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#aftertweetnum").text(tweetinfo);
                     }
                 })
@@ -1050,7 +1054,7 @@
                     .attr("fill", "#1DA1F2");
 
                   if(chartArea == radialChart){
-                      d3.select("#b4tweetBox").attr("visibility", "hidden");
+                      d3.select("#b4tweetBox").attr("visibility", "hidden")
                       d3.select("#b4tweetnum").text("");
                   } else {
                       d3.select("#aftertweetBox").attr("visibility", "hidden");
