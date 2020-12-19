@@ -415,6 +415,10 @@
         <svg id="radial" width="500" height="500"></svg>
         <svg id="radial2" width="500" height="500"></svg>
     </div>
+    <div id="compareTopics">
+      <svg id="compare1" width="500" height="200"></svg>
+      <svg id="compare2" width="500" height="200"></svg>
+    </div>
     <script>
         ////////////////////////////////////////////////////////SETTING UP TWITTER INTEGRATION//////////////////////////////////////////////////
         //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function  
@@ -1007,6 +1011,39 @@
                   .attr("font-weight", "bold");
             } 
 
+            function compareBox(svg, name, id){
+              //drawing the text box for labels
+              let compareWidth = 300;
+              let compareHeight = 100;
+
+              let compareBox = svg.append("g")
+                  .attr("id", name)
+                  .attr("visibility", "hidden")
+                  .attr("width", compareWidth)
+                  .attr("height", compareHeight)
+              compareBox.append("rect")
+                  .attr("fill", "white")
+                  .attr("rx", 10)
+                  .attr("opacity", 0.9)
+                  .attr("width", compareWidth)
+                  .attr("height", compareHeight)
+              compareBox.append("text")
+                  .attr("class", "text")
+                  .attr("id", id)
+                  .attr("x", 20)
+                  .attr("y", compareHeight/2)
+                  .attr("font-size", 12)
+                  .attr("text-anchor", "start")
+                  .attr("text-align", "center")
+                  .attr("alignment-baseline", "text-before-edge")
+                  .attr("font-weight", "bold");
+            } 
+
+            const comparesvg = d3.select("#compare1");
+            const comparesvg2 = d3.select("#compare2");
+
+            compareBox(comparesvg, "compareBox1", "topics1")
+            compareBox(comparesvg2, "compareBox2", "topics2")
             function drawBars(chartArea, data, scale) {
                 var bars = chartArea.append("g")
                     .selectAll("path")
@@ -1042,10 +1079,33 @@
                       d3.select("#b4tweetBox").attr("visibility", "visible")
                         .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#b4tweetnum").text(tweetinfo);
+                      d3.select("#compareBox1").attr("visibility", "visible");
+                  
+                      let topwords = "";
+                      let topiclist = b4tweets[tweetbar.datum().hour].topics;
+                      topiclist.forEach((d,i)=>{
+                        if (i<5){
+                          topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
+                        }
+                      })
+
+                      d3.select("#topics1").text(topwords);
+
                     } else {
                       d3.select("#aftertweetBox").attr("visibility", "visible")
                       .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#aftertweetnum").text(tweetinfo);
+                      d3.select("#compareBox2").attr("visibility", "visible");
+                  
+                      let topwords = "";
+                      let topiclist = aftertweets[tweetbar.datum().hour].topics;
+                      topiclist.forEach((d,i)=>{
+                        if (i<5){
+                          topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
+                        }
+                      })
+
+                      d3.select("#topics2").text(topwords);
                     }
                 })
                 bars.on("mouseout", function () {
@@ -1067,6 +1127,13 @@
             drawBars(radialChart, b4tweets, barScale);
             drawBars(radialChart2, aftertweets, barScale2);
 
+            console.log(b4tweets[0].topics[0]);
+            b4tweets.forEach((d, i)=>{
+              console.log(d[0])
+              if (i <5){
+                console.log(d.topics[i]["value"]);
+              }
+            })
             //draw "concentric" circles
             function drawCircle(chartArea, scale) {
                 chartArea.selectAll("circle")
@@ -1142,7 +1209,6 @@
             }
             drawLabels(radialChart);
             drawLabels(radialChart2);
-
             
         }
         drawRadial();
