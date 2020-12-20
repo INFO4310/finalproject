@@ -626,7 +626,7 @@
                     d3.select("#filler-row").remove();
                     d3.select("#real-row").style("display", "flex");
 
-                    //dyanmically load embedded tweet
+                    //dynamically load embedded tweet
                     //code refereced from here: https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
                     twttr.widgets.createTweet(
                         beforeTweet,
@@ -727,7 +727,7 @@
                 .style("fill", "white")
                 .text("Date");
 
-            //adding Yaxis to seperate svg
+            //adding Yaxis to separate svg
             //this was done to mitigate some styling issues resulting from timeline expansion
             yAxisSvg = d3.selectAll('#line-chart-yaxis')
                 .attr("width", 100)
