@@ -66,7 +66,7 @@
         }
         
         #line-chart-div,
-        #radial-chart-div {
+        #radial-chart-div, #compareTopics {
             text-align: center;
         }
         
@@ -1011,9 +1011,9 @@
                   .attr("font-weight", "bold");
             } 
 
-            function compareBox(svg, name, id){
+            function compareBox(svg, name, rect, time, words){
               //drawing the text box for labels
-              let compareWidth = 300;
+              let compareWidth = 450;
               let compareHeight = 100;
 
               let compareBox = svg.append("g")
@@ -1022,6 +1022,7 @@
                   .attr("width", compareWidth)
                   .attr("height", compareHeight)
               compareBox.append("rect")
+                  .attr("id", rect)
                   .attr("fill", "white")
                   .attr("rx", 10)
                   .attr("opacity", 0.9)
@@ -1029,8 +1030,18 @@
                   .attr("height", compareHeight)
               compareBox.append("text")
                   .attr("class", "text")
-                  .attr("id", id)
-                  .attr("x", 20)
+                  .attr("id", time)
+                  .attr("x", compareWidth/2 - 150)
+                  .attr("y", compareHeight/4)
+                  .attr("font-size", 16)
+                  .attr("text-anchor", "start")
+                  .attr("text-align", "center")
+                  .attr("alignment-baseline", "text-before-edge")
+                  .attr("font-weight", "bold");
+              compareBox.append("text")
+                  .attr("class", "text")
+                  .attr("id", words)
+                  .attr("x", compareWidth/2 - 150)
                   .attr("y", compareHeight/2)
                   .attr("font-size", 12)
                   .attr("text-anchor", "start")
@@ -1041,9 +1052,9 @@
 
             const comparesvg = d3.select("#compare1");
             const comparesvg2 = d3.select("#compare2");
+            compareBox(comparesvg, "compareBox1", "box1", "time1","topics1")
+            compareBox(comparesvg2, "compareBox2", "box2", "time2","topics2")
 
-            compareBox(comparesvg, "compareBox1", "topics1")
-            compareBox(comparesvg2, "compareBox2", "topics2")
             function drawBars(chartArea, data, scale) {
                 var bars = chartArea.append("g")
                     .selectAll("path")
@@ -1080,32 +1091,61 @@
                         .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#b4tweetnum").text(tweetinfo);
                       d3.select("#compareBox1").attr("visibility", "visible");
+                      d3.select("#compareBox2").attr("visibility", "visible");
+                      d3.select("#box1").attr("stroke", "#1DA1F2").attr("stroke-width",5)
                   
+                      let time = "Top 5 Pre-Elected Tweeted Words at "+tweetbar.datum().time;
+                      d3.select("#time1").text(time);
+                      let time2 = "Top 5 Post-Elected Tweeted Words at "+tweetbar.datum().time;
+                      d3.select("#time2").text(time2);
+                  
+
                       let topwords = "";
+                      let topwords2 = "";
                       let topiclist = b4tweets[tweetbar.datum().hour].topics;
+                      let topiclist2 = aftertweets[tweetbar.datum().hour].topics;
                       topiclist.forEach((d,i)=>{
                         if (i<5){
                           topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
                         }
                       })
-
+                      topiclist2.forEach((d,i)=>{
+                        if (i<5){
+                          topwords2+=(i+1)+". "+topiclist2[i]["name"]+" ";
+                        }
+                      })
                       d3.select("#topics1").text(topwords);
+                      d3.select("#topics2").text(topwords2);
 
                     } else {
                       d3.select("#aftertweetBox").attr("visibility", "visible")
                       .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
                       d3.select("#aftertweetnum").text(tweetinfo);
                       d3.select("#compareBox2").attr("visibility", "visible");
+                      d3.select("#compareBox1").attr("visibility", "visible");
+                      d3.select("#box2").attr("stroke", "#1DA1F2").attr("stroke-width",5)
                   
+                      let time2 = "Top 5 Post-Elected Tweeted Words at "+tweetbar.datum().time;
+                      d3.select("#time2").text(time2);
+                      let time = "Top 5 Pre-Elected Tweeted Words at "+tweetbar.datum().time;
+                      d3.select("#time1").text(time);
+                  
+                      let topwords2 = "";
                       let topwords = "";
-                      let topiclist = aftertweets[tweetbar.datum().hour].topics;
+                      let topiclist2 = aftertweets[tweetbar.datum().hour].topics;
+                      let topiclist = b4tweets[tweetbar.datum().hour].topics;
+                      topiclist2.forEach((d,i)=>{
+                        if (i<5){
+                          topwords2+=(i+1)+". "+topiclist2[i]["name"]+" ";
+                        }
+                      })
                       topiclist.forEach((d,i)=>{
                         if (i<5){
                           topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
                         }
                       })
-
-                      d3.select("#topics2").text(topwords);
+                      d3.select("#topics2").text(topwords2);
+                      d3.select("#topics1").text(topwords);
                     }
                 })
                 bars.on("mouseout", function () {
@@ -1116,9 +1156,12 @@
                   if(chartArea == radialChart){
                       d3.select("#b4tweetBox").attr("visibility", "hidden")
                       d3.select("#b4tweetnum").text("");
+                      d3.select("#box1").attr("stroke", "none");
+                      
                   } else {
                       d3.select("#aftertweetBox").attr("visibility", "hidden");
                       d3.select("#aftertweetnum").text("");
+                      d3.select("#box2").attr("stroke", "none");
                   }
 
                 }) 
