@@ -26,19 +26,24 @@
             overflow: scroll;
         }
         
-        .tweet-examples {
+        .before-after-examples {
             width: 100%;
             display: flex;
             justify-content: center;
-            min-height: 300px;
             height: auto;
             padding-bottom: 50px;
         }
-        
+
+        .before-after-examples div {
+            width: 40%;
+            text-align: center;
+            margin: 10px;
+        }
         .tweet-example {
             width: 40%;
             text-align: center;
             margin: 10px;
+            min-height: 300px;
         }
         
         #tweet-text-before #tweet-text-after {
@@ -72,10 +77,6 @@
         
         #line-chart-div path:hover {
             cursor: pointer;
-        }
-        
-        h3 {
-            text-align: left;
         }
         
         span {
@@ -191,7 +192,8 @@
         p {
             color: white;
             font-family: arial;
-            margin: 0px 30px 0px 30px
+            margin: 0px 30px 0px 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
         
         p {
@@ -211,7 +213,7 @@
         }
         
         #header {
-            margin: 0px 100px 0px 100px;
+            margin: 0px 100px 40px 100px;
         }
         
         #top-header {
@@ -267,7 +269,7 @@
             left: 480;
             /* top: 1000px; */
             z-index: 1;
-            margin-top: -50px;
+            margin-top: -60px;
         }
         
         #speech-bub {
@@ -286,11 +288,11 @@
         }
         
         #graph1 {
-            min-height: 500px;
+            min-height: 440px;
             display: flex;
         }
         
-        #tweet-labels {
+        .before-after-labels {
             display: flex;
             width: 100%;
             justify-content: center;
@@ -308,6 +310,31 @@
         
         #graph2 {
             margin: 70px 0px 10px 0px
+        }
+
+        #compareTopics {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .compare-div {
+            text-align: center;  
+        }
+        h3{
+           margin-bottom: 20px;
+        }
+        .filler-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background-color: #000000;
+            border-radius: 10px;
+            border: 1px #2E3336 solid;
+        }
+        #real-row {
+            display: none;
         }
     </style>
 </head>
@@ -355,15 +382,23 @@
     </div>
     <div id="tweet-contain">
         <p style="text-align: center">Hover over a topic to view Trump's most favorited tweets containing that word before and during presidency.</p>
-        <div id="tweet-labels">
+        <div class="before-after-labels">
             <div class="tweet-labels-divs">
-                <h2 class="before-after">Before</h2>
+                <h2 class="before-after">Before Presidency</h2>
             </div>
             <div class="tweet-labels-divs">
-                <h2 class="before-after">After</h2>
+                <h2 class="before-after">During Presidency</h2>
             </div>
         </div>
-        <div class="tweet-examples">
+        <div class="before-after-examples" id="filler-row">
+            <div class="tweet-example filler-div">
+                <h3>
+                    No Topic Selected
+            </h3></div>
+            <div class="tweet-example filler-div"><h3>
+                No Topic Selected
+        </h3></div>
+        </div><div class="before-after-examples" id ="real-row">
             <div id="tweet-example-before" class="tweet-example"></div>
             <div id="tweet-example-after" class="tweet-example"></div>
         </div>
@@ -401,23 +436,37 @@
     <div class="section">
         <h2>Tweeting Around the Clock</h2>
         <p>
-            Here is an analysis on the line graph. Bind a behavior to nodes to allow interactive dragging, either using the mouse or touch. Use this in conjunction with the call operator on the nodes; for example, say node.call(force.drag) on initialization. The
-            drag event sets the fixed attribute of nodes on mouseover, such that as soon as the mouse is over a node, it stops moving. Fixing on mouseover, rather than on mousedown, makes it easier to catch moving nodes. When a mousedown event is received,
-            and on each subsequent mousemove until mouseup, the node center is set to the current mouse position. In addition, each mousemove triggers a resume of the force layout, reheating the simulation. If you want dragged nodes to remain fixed after
-            dragging, set the fixed attribute to true on dragstart, as in the sticky force layout example.
+            Finally, we have included two circular bar charts to explore the different times of day that Trump has tweeted, before and during his presidency. Before his presidency, he primarily spent his afternoons tweeting, but during his presidency, it seems Trump has found that his best thoughts occur in the morning, just after he wakes up. Move your mouse over the bars to see the top topics he tweets about at different times of the day and night, as well as the quantity of tweets he has composed at that hour. 
         </p>
     </div>
     <div id="radial-chart-div">
-        <h3>
-            <span>Pre-Presidency</span>
-            <span>During Presidency</span>
-        </h3>
-        <svg id="radial" width="500" height="500"></svg>
-        <svg id="radial2" width="500" height="500"></svg>
+        <div class="before-after-labels">
+            <div class="tweet-labels-divs">
+                <h2 class="before-after">Before Presidency</h2>
+            </div>
+            <div class="tweet-labels-divs">
+                <h2 class="before-after">During Presidency</h2>
+            </div>
+        </div>
+        <div class="before-after-examples" >
+            <div>
+        <svg id="radial" width="700" height="500"></svg></div>
+        <div><svg id="radial2" width="700" height="500"></svg></div>
     </div>
-    <div id="compareTopics">
-      <svg id="compare1" width="500" height="200"></svg>
-      <svg id="compare2" width="500" height="200"></svg>
+    </div>
+    <div id="compareTopics" class="before-after-examples">
+        <div class="compare-div">
+            <h3 id="compare1-hour"></h3>
+            <svg id="compare1"></svg></div>
+        <div class="compare-div">
+            <h3 id="compare2-hour"></h3>
+            <svg id="compare2"></svg></div>
+    </div>
+    <div class="section">
+        <h2>Concluding Thoughts</h2>
+        <p>
+            Finally, we have included two circular bar charts to explore the different times of day that Trump has tweeted, before and during his presidency. Before his presidency, he primarily spent his afternoons tweeting, but during his presidency, it seems Trump has found that his best thoughts occur in the morning, just after he wakes up. Move your mouse over the bars to see the top topics he tweets about at different times of the day and night, as well as the quantity of tweets he has composed at that hour. 
+        </p>
     </div>
     <script>
         ////////////////////////////////////////////////////////SETTING UP TWITTER INTEGRATION//////////////////////////////////////////////////
@@ -565,9 +614,10 @@
                     //clear any existing tweets
                     d3.select("#tweet-example-before")
                         .text("")
-                        .text("")
                     d3.select("#tweet-example-after")
                         .text("")
+                    d3.select("#filler-row").remove();
+                    d3.select("#real-row").style("display", "flex");
 
                     //dyanmically load embedded tweet
                     //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
@@ -985,7 +1035,7 @@
 
             function hoverBox(chartArea, tweetBox, idlabel){
               //drawing the text box for labels
-              let labelWidth = 120;
+              let labelWidth = 160;
               let labelHeight = 50;
 
               var labelBox = chartArea.append("g")
@@ -1004,7 +1054,7 @@
                   .attr("id", idlabel)
                   .attr("x", 8)
                   .attr("y", 16)
-                  .attr("font-size", 12)
+                  .attr("font-size", 18)
                   .attr("text-anchor", "start")
                   .attr("text-align", "center")
                   .attr("alignment-baseline", "text-before-edge")
@@ -1013,20 +1063,24 @@
 
             function compareBox(svg, name, id){
               //drawing the text box for labels
-              let compareWidth = 300;
+              let compareWidth = 530;
               let compareHeight = 100;
 
+                svg.attr("width", compareWidth).attr("height", compareHeight)
               let compareBox = svg.append("g")
                   .attr("id", name)
                   .attr("visibility", "hidden")
                   .attr("width", compareWidth)
                   .attr("height", compareHeight)
               compareBox.append("rect")
-                  .attr("fill", "white")
+                  .attr("fill", "#000")
                   .attr("rx", 10)
                   .attr("opacity", 0.9)
                   .attr("width", compareWidth)
                   .attr("height", compareHeight)
+                  .attr("border-radius", 10)
+                  .attr("stroke", "#2E3336")
+                  .attr("stroke-width", 2)
               compareBox.append("text")
                   .attr("class", "text")
                   .attr("id", id)
@@ -1044,6 +1098,7 @@
 
             compareBox(comparesvg, "compareBox1", "topics1")
             compareBox(comparesvg2, "compareBox2", "topics2")
+
             function drawBars(chartArea, data, scale) {
                 var bars = chartArea.append("g")
                     .selectAll("path")
@@ -1085,12 +1140,16 @@
                       let topiclist = b4tweets[tweetbar.datum().hour].topics;
                       topiclist.forEach((d,i)=>{
                         if (i<5){
-                          topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
+                          topwords+=(i+1)+". "+ topiclist[i]["name"].charAt(0).toUpperCase() + topiclist[i]["name"].slice(1)  +"\xa0\xa0\xa0";
                         }
                       })
-
-                      d3.select("#topics1").text(topwords);
-
+                      d3.select("#compare1-hour").text(tweetbar.datum().time)
+                      d3.select("#topics1")
+                        .text(topwords)
+                        .attr("font-size", 18)
+                        .attr("alignment-baseline", "middle")
+                        .attr("dy", ".1em")
+                        .attr("fill", "white");
                     } else {
                       d3.select("#aftertweetBox").attr("visibility", "visible")
                       .attr("transform", "translate(" + (coordinates[0]) + "," + (coordinates[1]) + ")");
@@ -1101,11 +1160,16 @@
                       let topiclist = aftertweets[tweetbar.datum().hour].topics;
                       topiclist.forEach((d,i)=>{
                         if (i<5){
-                          topwords+=(i+1)+". "+topiclist[i]["name"]+" ";
+                            topwords+=(i+1)+". "+ topiclist[i]["name"].charAt(0).toUpperCase() + topiclist[i]["name"].slice(1)  +"\xa0\xa0\xa0";
                         }
                       })
-
-                      d3.select("#topics2").text(topwords);
+                      d3.select("#compare2-hour").text(tweetbar.datum().time)
+                      d3.select("#topics2")
+                        .text(topwords)
+                        .attr("font-size", 18)
+                        .attr("alignment-baseline", "middle")
+                        .attr("dy", ".1em")
+                        .attr("fill", "white");
                     }
                 })
                 bars.on("mouseout", function () {
