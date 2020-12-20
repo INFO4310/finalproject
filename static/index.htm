@@ -65,9 +65,19 @@
             margin-top: 50px;
         }
         
-        #line-chart-div,
-        #radial-chart-div, #compareTopics {
+        #line-chart-div, 
+        #radial-chart-div {
             text-align: center;
+            margin:auto;
+            margin-bottom: 30px;
+        }
+
+        #compareTopics {
+            text-align: center;
+        }
+
+        #compare1 {
+            margin-right: 5%;
         }
         
         #line-chart-div path:hover {
@@ -408,12 +418,8 @@
         </p>
     </div>
     <div id="radial-chart-div">
-        <h3>
-            <span>Pre-Presidency</span>
-            <span>During Presidency</span>
-        </h3>
-        <svg id="radial" width="500" height="500"></svg>
-        <svg id="radial2" width="500" height="500"></svg>
+        <svg id="radial" width="600" height="600"></svg>
+        <svg id="radial2" width="600" height="600"></svg>
     </div>
     <div id="compareTopics">
       <svg id="compare1" width="500" height="200"></svg>
@@ -943,12 +949,26 @@
             const radialsvg2 = d3.select("#radial2");
             const width = radialsvg.attr("width");
             const height = radialsvg.attr("height");
+            let header1 = radialsvg.append("text")
+                .attr("fill", "white")
+                .attr("x", width/2 - 90)
+                .attr("y", 20)
+                .style("font-size", 28)
+                .style("font-weight", "bold")
+                .text("Before Election");
+            let header2 = radialsvg2.append("text")
+                .attr("fill", "white")
+                .attr("x", width/2 - 90)
+                .attr("y", 20)
+                .style("font-size", 28)
+                .style("font-weight", "bold")
+                .text("After Election");
             const radialChart = radialsvg.append("g")
                 .attr("id", "chart")
-                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 20)+")");
             const radialChart2 = radialsvg2.append("g")
                 .attr("id", "chart")
-                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 20) + ")");
 
             const b4tweets = await d3.json("processed_tweets/hours/before.json");
             const aftertweets = await d3.json("processed_tweets/hours/after.json");
@@ -985,7 +1005,7 @@
 
             function hoverBox(chartArea, tweetBox, idlabel){
               //drawing the text box for labels
-              let labelWidth = 120;
+              let labelWidth = 150;
               let labelHeight = 50;
 
               var labelBox = chartArea.append("g")
@@ -1004,7 +1024,7 @@
                   .attr("id", idlabel)
                   .attr("x", 8)
                   .attr("y", 16)
-                  .attr("font-size", 12)
+                  .attr("font-size", 16)
                   .attr("text-anchor", "start")
                   .attr("text-align", "center")
                   .attr("alignment-baseline", "text-before-edge")
