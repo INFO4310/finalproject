@@ -467,7 +467,7 @@
     <div class="section">
         <h2>Concluding Thoughts</h2>
         <p>
-            Finally, we have included two circular bar charts to explore the different times of day that Trump has tweeted, before and during his presidency. Before his presidency, he primarily spent his afternoons tweeting, but during his presidency, it seems Trump has found that his best thoughts occur in the morning, just after he wakes up. Move your mouse over the bars to see the top topics he tweets about at different times of the day and night, as well as the quantity of tweets he has composed at that hour. 
+            As we can see from these charts, Trump’s behavior clearly changed before and during his presidency. He has new favorite words during his presidency, as well as a modified tweeting schedule. This visualization has also allowed us to see the different ideas about which he frequently tweets, including his idol, Obama. While Trump’s tweeting patterns may continue to change as he begins the next phase of his life post-presidency, we provide insight into how Trump’s presidency has changed his life, via his tweets. 
         </p>
     </div>
     <script>
@@ -1237,13 +1237,6 @@
             drawBars(radialChart, b4tweets, barScale);
             drawBars(radialChart2, aftertweets, barScale2);
 
-            console.log(b4tweets[0].topics[0]);
-            b4tweets.forEach((d, i)=>{
-              console.log(d[0])
-              if (i <5){
-                console.log(d.topics[i]["value"]);
-              }
-            })
             //draw "concentric" circles
             function drawCircle(chartArea, scale) {
                 chartArea.selectAll("circle")
