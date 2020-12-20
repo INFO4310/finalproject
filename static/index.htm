@@ -79,6 +79,10 @@
 
         #compareTopics {
             text-align: center;
+            width: 100%;
+            justify-content: center;
+            height: auto;
+            padding-bottom: 50px;
         }
 
         #compare1 {
@@ -323,13 +327,13 @@
         }
 
         #compareTopics {
-            display: flex;
             width: 100%;
             justify-content: center;
+            display: none;
         }
 
         .compare-div {
-            text-align: center;  
+            text-align: center;
         }
         h3{
            margin-bottom: 20px;
@@ -458,10 +462,8 @@
     </div>
     <div id="compareTopics" class="before-after-examples">
         <div class="compare-div">
-            <h3 id="compare1-hour"></h3>
             <svg id="compare1"></svg></div>
         <div class="compare-div">
-            <h3 id="compare2-hour"></h3>
             <svg id="compare2"></svg></div>
     </div>
     <div class="section">
@@ -1164,6 +1166,7 @@
                       d3.select("#b4tweetnum").text(tweetinfo);
                       d3.select("#compareBox1").attr("visibility", "visible");
                       d3.select("#compareBox2").attr("visibility", "visible");
+                      d3.select("#compareTopics").style("display", "flex");
                       d3.select("#box1").attr("stroke", "#1DA1F2").attr("stroke-width",5)
                   
                       let time = "Top 5 Pre-Elected Tweeted Words at "+tweetbar.datum().time;
@@ -1192,6 +1195,7 @@
                       d3.select("#aftertweetnum").text(tweetinfo);
                       d3.select("#compareBox2").attr("visibility", "visible");
                       d3.select("#compareBox1").attr("visibility", "visible");
+                      d3.select("#compareTopics").style("display", "flex");
                       d3.select("#box2").attr("stroke", "#1DA1F2").attr("stroke-width",5)
                   
                       let time2 = "Top 5 Post-Elected Tweeted Words at "+tweetbar.datum().time;
