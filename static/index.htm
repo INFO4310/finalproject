@@ -386,7 +386,7 @@
                 </div>
     </div>
     <div class="section">
-        <h2>Trumps Favorite Topics</h2>
+        <h2>Trump's Favorite Topics</h2>
         <p>
             First, we have included a bubble chart of the most popular words of all time that Trump has tweeted. Hover over each bubble to see his most favorited tweet that uses that word from before and during his presidency. The words included in this chart are
             the words that he said more than 500 times over all time. The radius reflects the frequency of his use of each word. Unsurprisingly, the five most frequent words Trump says are: Great, Trump, Thank, President, Obama.
@@ -428,7 +428,7 @@
             and he has even more to say about himself in the time leading up to the 2016 US Presidential Election. Use the slider below to investigate more specific time frames.
         </p>
     </div>
-    <!-- code taken from here: https://codepen.io/MinzCode/pen/MWKgyqb -->
+    <!-- code referenced from here: https://codepen.io/MinzCode/pen/MWKgyqb -->
     <div id="graph2">
         <div id="input-slider">
             <div class="middle">
@@ -477,7 +477,7 @@
     </div>
     <script>
         ////////////////////////////////////////////////////////SETTING UP TWITTER INTEGRATION//////////////////////////////////////////////////
-        //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function  
+        //code referenced from here: https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function  
 
         window.twttr = (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
@@ -627,7 +627,7 @@
                     d3.select("#real-row").style("display", "flex");
 
                     //dyanmically load embedded tweet
-                    //https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
+                    //code refereced from here: https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
                     twttr.widgets.createTweet(
                         beforeTweet,
                         document.getElementById('tweet-example-before'), {
@@ -663,8 +663,8 @@
 
 
         ////////////////////////////////////////////////////////CREATING LINE CHART/////////////////////////////////////////////////////
-        // used this site to add xAxis manipulation: https://www.d3-graph-gallery.com/graph/line_change_data.html
-        // used this site to add hover interactions: https://observablehq.com/@d3/multi-line-chart
+        // referenced this site to add xAxis manipulation: https://www.d3-graph-gallery.com/graph/line_change_data.html
+        // referenced this site to add hover interactions: https://observablehq.com/@d3/multi-line-chart
         const load_line_graph = async() => {
 
 
@@ -837,7 +837,7 @@
                 svg.call(hover, path);
 
                 ////////////////////////////////////START: HOVER TIMELINE INTERACTION ///////////////////////////
-                //https://observablehq.com/@d3/multi-line-chart
+                //code referenced from https://observablehq.com/@d3/multi-line-chart
                 function hover(linechart, path) {
 
                     //add interaction functions to path
@@ -917,7 +917,7 @@
             ///////////////////////////////////////////////END: UPDATE TIMELINE BASED ON SLIDER/////////////////////////////////////////////////////
 
             ///////////////////////////////////////////////HANDLE DOUBLE ENDED SLIDER/////////////////////////////////////////////////////
-            //code taken from here: https://codepen.io/MinzCode/pen/MWKgyqb
+            //code referenced: https://codepen.io/MinzCode/pen/MWKgyqb
             var minIndex
             var maxIndex
             var inputLeft = document.getElementById("input-left");
