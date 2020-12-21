@@ -96,7 +96,7 @@
         span {
             margin-left: 24.5%;
         }
-        
+        /* styling for double ended slider is referenced here: https://codepen.io/MinzCode/pen/MWKgyqb */
         #input-slider {
             margin: 0;
             padding: 0;
@@ -158,14 +158,6 @@
         
         .slider>.thumb.right {
             transform: translate(13px, -8px);
-        }
-        
-        .slider>.thumb.hover {
-            box-shadow: 0 0 0 20px rgba(29, 161, 242, .2);
-        }
-        
-        .slider>.thumb.active {
-            box-shadow: 0 0 0 40px rgba(29, 161, 242, .2);
         }
         
         input[type=range] {
@@ -274,14 +266,12 @@
             width: 500px;
             position: absolute;
             left: -50px;
-            /* top: 1100px; */
             z-index: -1;
         }
         
         #bubble-chart {
             position: absolute;
             left: 480;
-            /* top: 1000px; */
             z-index: 1;
             margin-top: -60px;
         }
@@ -291,7 +281,6 @@
             width: 1060;
             height: 430;
             left: 450;
-            /* top: 40; */
             z-index: -1;
             opacity: .4;
         }
@@ -459,8 +448,8 @@
     <div id="radial-chart-div">
         <div class="before-after-examples" >
             <div>
-        <svg id="radial" width="700" height="500"></svg></div>
-        <div><svg id="radial2" width="700" height="500"></svg></div>
+        <svg id="radial" width="600" height="500"></svg></div>
+        <div><svg id="radial2" width="600" height="500"></svg></div>
     </div>
     </div>
     <div id="compareTopics" class="before-after-examples">
@@ -920,6 +909,9 @@
             //code referenced: https://codepen.io/MinzCode/pen/MWKgyqb
             var minIndex
             var maxIndex
+            
+
+            //need to use these particular getter functions, d3 will not work
             var inputLeft = document.getElementById("input-left");
             var inputRight = document.getElementById("input-right");
 
@@ -927,67 +919,41 @@
             var thumbRight = document.querySelector(".slider > .thumb.right");
             var range = document.querySelector(".slider > .range");
 
-            function setLeftValue() {
-                var _this = inputLeft,
-                    min = parseInt(_this.min),
-                    max = parseInt(_this.max);
 
-                _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-                minIndex = _this.value;
-                var percent = ((_this.value - min) / (max - min)) * 100;
+            function getLeft() {
+                min = parseInt(inputLeft.min),
+                max = parseInt(inputLeft.max);
+
+                inputLeft.value = Math.min(parseInt(inputLeft.value), parseInt(inputRight.value) - 1);
+                minIndex = inputLeft.value;
+                var percent = ((inputLeft.value - min) / (max - min)) * 100;
 
                 thumbLeft.style.left = percent + "%";
                 range.style.left = percent + "%";
             }
-            setLeftValue();
+            getLeft();
 
-            function setRightValue() {
-                var _this = inputRight,
-                    min = parseInt(_this.min),
-                    max = parseInt(_this.max);
+            function getRight() {
+                min = parseInt(inputRight.min),
+                max = parseInt(inputRight.max);
 
-                _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-                maxIndex = _this.value;
+                inputRight.value = Math.max(parseInt(inputRight.value), parseInt(inputLeft.value) + 1);
+                maxIndex = inputRight.value;
 
-                var percent = ((_this.value - min) / (max - min)) * 100;
+                var percent = ((inputRight.value - min) / (max - min)) * 100;
 
                 thumbRight.style.right = (100 - percent) + "%";
                 range.style.right = (100 - percent) + "%";
             }
-            setRightValue();
+            getRight();
 
-            inputLeft.addEventListener("input", setLeftValue);
-            inputRight.addEventListener("input", setRightValue);
+            inputLeft.addEventListener("input", getLeft);
+            inputRight.addEventListener("input", getRight);
 
             //every time the element is altered, redraw line chart
             inputRight.addEventListener("input", update_chart);
             inputLeft.addEventListener("input", update_chart);
 
-            inputLeft.addEventListener("mouseover", function() {
-                thumbLeft.classList.add("hover");
-            });
-            inputLeft.addEventListener("mouseout", function() {
-                thumbLeft.classList.remove("hover");
-            });
-            inputLeft.addEventListener("mousedown", function() {
-                thumbLeft.classList.add("active");
-            });
-            inputLeft.addEventListener("mouseup", function() {
-                thumbLeft.classList.remove("active");
-            });
-
-            inputRight.addEventListener("mouseover", function() {
-                thumbRight.classList.add("hover");
-            });
-            inputRight.addEventListener("mouseout", function() {
-                thumbRight.classList.remove("hover");
-            });
-            inputRight.addEventListener("mousedown", function() {
-                thumbRight.classList.add("active");
-            });
-            inputRight.addEventListener("mouseup", function() {
-                thumbRight.classList.remove("active");
-            });
         }
         load_line_graph();
 
